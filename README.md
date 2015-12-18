@@ -17,4 +17,4 @@
                   * SENSOR_STATUS = 6;
 - digits 2 and 3 forms the number for the battery level 
 (EXAMPLE: code for battery level 45 out of 100: "0145"; code for battery level 5 out of 100: "0105")
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
