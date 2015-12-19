@@ -61,7 +61,7 @@ public class BluetoothActivity extends AppCompatActivity {
     // Local Bluetooth adapter
     private BluetoothAdapter mBluetoothAdapter = null;
     // Member object for the chat services
-    private BluetoothCommService mChatService = null;
+    private BluetoothCommService mCommService = null;
     // bluetooth message resolver and UI updater
     MessageResolver msgResolver;
 
@@ -99,7 +99,7 @@ public class BluetoothActivity extends AppCompatActivity {
             startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
         // Otherwise, setup the chat session
         } else {
-            if (mChatService == null) setupComm();
+            if (mCommService == null) setupComm();
         }
     }
 
@@ -111,11 +111,11 @@ public class BluetoothActivity extends AppCompatActivity {
         // Performing this check in onResume() covers the case in which BT was
         // not enabled during onStart(), so we were paused to enable it...
         // onResume() will be called when ACTION_REQUEST_ENABLE activity returns.
-        if (mChatService != null) {
+        if (mCommService != null) {
             // Only if the state is STATE_NONE, do we know that we haven't started already
-            if (mChatService.getState() == BluetoothCommService.STATE_NONE) {
+            if (mCommService.getState() == BluetoothCommService.STATE_NONE) {
               // Start the Bluetooth chat services
-              mChatService.start();
+              mCommService.start();
             }
         }
     }
@@ -135,7 +135,7 @@ public class BluetoothActivity extends AppCompatActivity {
         });
 
         // Initialize the BluetoothCommService to perform bluetooth connections
-        mChatService = new BluetoothCommService(this, mHandler);
+        mCommService = new BluetoothCommService(this, mHandler);
 
         // Initialize the buffer for outgoing messages
         mOutStringBuffer = new StringBuffer("");
@@ -157,7 +157,7 @@ public class BluetoothActivity extends AppCompatActivity {
     public void onDestroy() {
         super.onDestroy();
         // Stop the Bluetooth chat services
-        if (mChatService != null) mChatService.stop();
+        if (mCommService != null) mCommService.stop();
         if(D) Log.e(TAG, "--- ON DESTROY ---");
     }
 
@@ -177,7 +177,7 @@ public class BluetoothActivity extends AppCompatActivity {
      */
     private void sendMessage(String message) {
         // Check that we're actually connected before trying anything
-        if (mChatService.getState() != BluetoothCommService.STATE_CONNECTED) {
+        if (mCommService.getState() != BluetoothCommService.STATE_CONNECTED) {
             Toast.makeText(this, R.string.not_connected, Toast.LENGTH_SHORT).show();
             return;
         }
@@ -186,7 +186,7 @@ public class BluetoothActivity extends AppCompatActivity {
         if (message.length() > 0) {
             // Get the message bytes and tell the BluetoothCommService to write
             byte[] send = message.getBytes();
-            mChatService.write(send);
+            mCommService.write(send);
 
             // Reset out string buffer to zero and clear the edit text field
             mOutStringBuffer.setLength(0);
@@ -310,7 +310,7 @@ public class BluetoothActivity extends AppCompatActivity {
         // Get the BluetoothDevice object
         BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
         // Attempt to connect to the device
-        mChatService.connect(device, secure);
+        mCommService.connect(device);
     }
 
     @Override
