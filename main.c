@@ -21,9 +21,14 @@
 
 void main(void) {
     
-
+    Initialize(); //Initialize the relevant registers
+    while (1) {
+        Get_Inputs();
+        Decide();
+        Do_Outputs();
+    }
     
-    
+    /*
     // light up led 0 as reference
     TRISDbits.TRISD7 = 0;
     PORTDbits.RD7 = 1;    
@@ -32,5 +37,5 @@ void main(void) {
 
     PWM2_Init(1000);
     PWM2_Duty(200);
-    PWM2_Start();
+    PWM2_Start();*/
 }
