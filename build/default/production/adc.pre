@@ -3122,17 +3122,17 @@ extern __bit __powerdown;
 extern __bit __timeout;
 
 # 36 "adc.h"
-void Initialize(void);
-void Get_Inputs(void);
-void Decide(void);
-void Do_Outputs(void);
-void Timing(void);
+void initADC(void);
+void get_inputs(void);
+void decide(void);
+void do_outputs(void);
+void timing(void);
 
 # 11 "adc.c"
 unsigned LED_Output = 0;
 
 
-void Initialize(void)
+void initADC(void)
 {
 
 
@@ -3158,7 +3158,7 @@ ADCON0bits.ADON = 1;
 }
 
 # 45
-void Get_Inputs(void)
+void get_inputs(void)
 {
 
 
@@ -3173,7 +3173,7 @@ while(ADCON0bits.GO_nDONE == 1);
 }
 
 # 66
-void Decide(void)
+void decide(void)
 {
 
 
@@ -3182,7 +3182,7 @@ LED_Output = ADRESL;
 }
 
 # 81
-void Do_Outputs(void)
+void do_output(void)
 {
 
 
@@ -3195,7 +3195,7 @@ return LED_Output;
 }
 
 # 99
-void Timing(void)
+void timing(void)
 
 {
 

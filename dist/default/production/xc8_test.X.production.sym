@@ -14,6 +14,7 @@ ltemp 7E 0 ABS 0
 ttemp 7E 0 ABS 0
 wtemp 7E 0 ABS 0
 start 0 0 CODE 0
+__size_of_decide 0 0 ABS 0
 _TRISA 85 0 ABS 0
 reset_vec 0 0 CODE 0
 _TRISD 88 0 ABS 0
@@ -43,8 +44,6 @@ __Hconfig 2008 0 CONFIG 0
 __Lconfig 2007 0 CONFIG 0
 __Hram 0 0 ABS 0
 __Lram 0 0 ABS 0
-__size_of_Get_Inputs 0 0 ABS 0
-__end_of_Do_Outputs 7B5 0 CODE 0
 _CCP1M2 BA 0 ABS 0
 _CCP2M2 EA 0 ABS 0
 _CCP1M3 BB 0 ABS 0
@@ -60,7 +59,6 @@ __Leeprom_data 0 0 EEDATA 3
 ___int_sp 0 0 STACK 2
 _CCPR1L 15 0 ABS 0
 _CCPR2L 1B 0 ABS 0
-__end_of_Decide 7BF 0 CODE 0
 _TMR2ON 92 0 ABS 0
 __Habs1 0 0 ABS 0
 __Labs1 0 0 ABS 0
@@ -73,10 +71,11 @@ __Hsfr2 0 0 ABS 0
 __Lsfr2 0 0 ABS 0
 __Hsfr3 0 0 ABS 0
 __Lsfr3 0 0 ABS 0
-__size_of_Do_Outputs 0 0 ABS 0
-_Decide 7B5 0 CODE 0
+__end_of_do_output 7B5 0 CODE 0
+__size_of_initADC 0 0 ABS 0
 __Hcode 0 0 ABS 0
 __Lcode 0 0 ABS 0
+_decide 7B5 0 CODE 0
 stackhi 0 0 ABS 0
 stacklo 0 0 ABS 0
 __Hinit 0 0 CODE 0
@@ -84,14 +83,14 @@ __Linit 0 0 CODE 0
 __end_of_main 7F6 0 CODE 0
 __Htext 0 0 ABS 0
 __Ltext 0 0 ABS 0
-__size_of_Initialize 0 0 ABS 0
 end_of_initialization 7FC 0 CODE 0
 _T2CKPS0 90 0 ABS 0
 _T2CKPS1 91 0 ABS 0
 _TRISBbits 86 0 ABS 0
 __Hstrings 0 0 ABS 0
 __Lstrings 0 0 ABS 0
-__size_of_Decide 0 0 ABS 0
+_initADC 7CC 0 CODE 0
+__size_of_do_output 0 0 ABS 0
 __Hbank0 0 0 ABS 0
 __Lbank0 0 0 ABS 0
 __Hbank1 0 0 ABS 0
@@ -107,10 +106,12 @@ __ptext1 7CC 0 CODE 0
 __ptext2 7BF 0 CODE 0
 __ptext3 7B0 0 CODE 0
 __ptext4 7B5 0 CODE 0
-__end_of_Initialize 7E1 0 CODE 0
 __Hclrtext 0 0 ABS 0
 __Lclrtext 0 0 ABS 0
+__end_of_get_inputs 7CC 0 CODE 0
+_do_output 7B0 0 CODE 0
 __end_of__initialization 7FC 0 CODE 0
+__end_of_decide 7BF 0 CODE 0
 __Hidloc 0 0 IDLOC 0
 __Lidloc 0 0 IDLOC 0
 __Hstack 0 0 STACK 2
@@ -128,10 +129,9 @@ __CFG_FOSC$HS 0 0 ABS 0
 __Hspace_3 0 0 ABS 0
 __Lspace_3 0 0 ABS 0
 __size_of_main 0 0 ABS 0
-_Initialize 7CC 0 CODE 0
-__end_of_Get_Inputs 7CC 0 CODE 0
 _ADCON0bits 1F 0 ABS 0
 _ADCON1bits 9F 0 ABS 0
+__end_of_initADC 7E1 0 CODE 0
 __CFG_PWRTE$OFF 0 0 ABS 0
 __HbssCOMMON 0 0 ABS 0
 __LbssCOMMON 0 0 ABS 0
@@ -144,6 +144,7 @@ intlevel0 0 0 CODE 0
 __CFG_WDTE$OFF 0 0 ABS 0
 intlevel1 0 0 CODE 0
 intlevel2 0 0 CODE 0
+__size_of_get_inputs 0 0 ABS 0
 intlevel3 0 0 CODE 0
 intlevel4 0 0 CODE 0
 intlevel5 0 0 CODE 0
@@ -151,13 +152,12 @@ __HcstackCOMMON 0 0 ABS 0
 __LcstackCOMMON 0 0 ABS 0
 __pcstackCOMMON 76 0 COMMON 1
 start_initialization 7F6 0 CODE 0
-_Get_Inputs 7BF 0 CODE 0
 __Hmaintext 0 0 ABS 0
 __Lmaintext 0 0 ABS 0
 __pmaintext 7E1 0 CODE 0
 __CFG_MCLRE$ON 0 0 ABS 0
 _LED_Output 74 0 COMMON 1
-_Do_Outputs 7B0 0 CODE 0
+_get_inputs 7BF 0 CODE 0
 __initialization 7F6 0 CODE 0
 __CFG_CP$OFF 0 0 ABS 0
 __CFG_FCMEN$ON 0 0 ABS 0
@@ -173,7 +173,7 @@ text4 F6A F7D CODE F6A 0
 text3 F60 F69 CODE F60 0
 %locals
 dist/default/production\xc8_test.X.production.obj
-C:\Users\ALEXAN~1\AppData\Local\Temp\s510.
+C:\Users\ALEXAN~1\AppData\Local\Temp\s338.
 646 7F6 0 CODE 0
 649 7F6 0 CODE 0
 663 7F6 0 CODE 0

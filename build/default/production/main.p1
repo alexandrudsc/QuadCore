@@ -1,13 +1,13 @@
 Version 3.2 HI-TECH Software Intermediate Code
 [p mainexit ]
 "36 adc.h
-[v _Initialize `(v ~T0 @X0 0 ef ]
+[v _initADC `(v ~T0 @X0 0 ef ]
 "37
-[v _Get_Inputs `(v ~T0 @X0 0 ef ]
+[v _get_inputs `(v ~T0 @X0 0 ef ]
 "38
-[v _Decide `(v ~T0 @X0 0 ef ]
-"39
-[v _Do_Outputs `(v ~T0 @X0 0 ef ]
+[v _decide `(v ~T0 @X0 0 ef ]
+"28 main.c
+[v _do_output `(i ~T0 @X0 0 ef ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -2276,11 +2276,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 184: extern unsigned char __resetbits;
 [; ;pic.h: 185: extern __bit __powerdown;
 [; ;pic.h: 186: extern __bit __timeout;
-[; ;adc.h: 36: void Initialize(void);
-[; ;adc.h: 37: void Get_Inputs(void);
-[; ;adc.h: 38: void Decide(void);
-[; ;adc.h: 39: void Do_Outputs(void);
-[; ;adc.h: 40: void Timing(void);
+[; ;adc.h: 36: void initADC(void);
+[; ;adc.h: 37: void get_inputs(void);
+[; ;adc.h: 38: void decide(void);
+[; ;adc.h: 39: void do_outputs(void);
+[; ;adc.h: 40: void timing(void);
 [; ;pwm.h: 36: void PWM1_Init(unsigned long freq);
 [; ;pwm.h: 37: void PWM2_Init(unsigned long freq);
 [; ;pwm.h: 39: void PWM1_Start();
@@ -2311,22 +2311,22 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 22: void main(void) {
 [e :U _main ]
 [f ]
-[; ;main.c: 24: Initialize();
+[; ;main.c: 24: initADC();
 "24
-[e ( _Initialize ..  ]
+[e ( _initADC ..  ]
 [; ;main.c: 25: while (1) {
 "25
 [e :U 211 ]
 {
-[; ;main.c: 26: Get_Inputs();
+[; ;main.c: 26: get_inputs();
 "26
-[e ( _Get_Inputs ..  ]
-[; ;main.c: 27: Decide();
+[e ( _get_inputs ..  ]
+[; ;main.c: 27: decide();
 "27
-[e ( _Decide ..  ]
-[; ;main.c: 28: Do_Outputs();
+[e ( _decide ..  ]
+[; ;main.c: 28: do_output();
 "28
-[e ( _Do_Outputs ..  ]
+[e ( _do_output ..  ]
 "29
 }
 [e :U 210 ]

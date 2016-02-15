@@ -33,11 +33,11 @@
 
 #include "uc_config.h"
 
-void Initialize(void);
-void Get_Inputs(void);
-void Decide(void);
-void Do_Outputs(void);
-void Timing(void);
+void initADC(void);
+void get_inputs(void);
+void decide(void);
+void do_outputs(void);
+void timing(void);
 
 // TODO Insert appropriate #include <>
 

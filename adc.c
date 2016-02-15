@@ -11,7 +11,7 @@
 unsigned LED_Output = 0;	//assigned to LED PORT to light
 								//connected LEDs
 
-void Initialize(void)
+void initADC(void)
 {
 	//Configure Port:
 	//Disable pin output driver (See TRIS register)
@@ -37,12 +37,12 @@ void Initialize(void)
 }
 	
 /*----------------------------------------------------------
-	Subroutine: Get_Inputs
+	Subroutine: get_inputs
 	Parameters: none
 	Returns:	nothing
 	Synopsys:	Obtains all off-chip inputs
 ----------------------------------------------------------*/
-void Get_Inputs(void)
+void get_inputs(void)
 {
 	//Perform an ADC of potentiometer connected to pin 13
 	//Wait the required acquisition time
@@ -57,13 +57,13 @@ void Get_Inputs(void)
 }
 
 /*----------------------------------------------------------
-	Subroutine: Decide
+	Subroutine: decide
 	Parameters: none
 	Returns:	nothing
 	Synopsys:	Function that calls all sub-routines for 
 				processing the input data
 ----------------------------------------------------------*/
-void Decide(void)
+void decide(void)
 {
 	//Assign the upper 4 bits of ADRESH to the lower 4 bits
 	//of LED_Output
@@ -72,13 +72,13 @@ void Decide(void)
 }
 
 /*----------------------------------------------------------
-	Subroutine: Do_Outputs
+	Subroutine: do_output
 	Parameters: none
 	Returns:	nothing
 	Synopsys:	Ouputs to off-chip circuitry based off of
 				Decide function
 ----------------------------------------------------------*/
-void Do_Outputs(void)
+void do_output(void)
 {
 	//Assign contents of LED_Output to PORTD to light the connected
 	//LEDs
@@ -96,7 +96,7 @@ unsigned getADCValue()
 	Returns:	nothing
 	Synopsys:	Controls the how fast code in the main() is executed 
 ----------------------------------------------------------*/
-void Timing(void)
+void timing(void)
 
 {
 	//ADD TIMING CODE HERE

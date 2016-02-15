@@ -11,9 +11,6 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\ALEXAN~1\AppData\Local\Temp\s510.obj
-end_init CODE 0 0 0 3 2
-config CONFIG 0 2007 2007 1 2
 $dist/default/production\xc8_test.X.production.obj
 cinit CODE 0 7F6 7F6 A 2
 text1 CODE 0 7CC 7CC 15 2
@@ -23,6 +20,9 @@ text4 CODE 0 7B5 7B5 A 2
 maintext CODE 0 7E1 7E1 15 2
 cstackCOMMON COMMON 1 76 76 2 1
 bssCOMMON COMMON 1 70 70 6 1
+$C:\Users\ALEXAN~1\AppData\Local\Temp\s338.obj
+end_init CODE 0 0 0 3 2
+config CONFIG 0 2007 2007 1 2
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
 # is described on a single line as follows:
@@ -69,45 +69,45 @@ STRING 800-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\xc8_test.X.production.obj
-7F6 cinit CODE >646:C:\Users\ALEXAN~1\AppData\Local\Temp\s510.
-7F6 cinit CODE >649:C:\Users\ALEXAN~1\AppData\Local\Temp\s510.
-7F6 cinit CODE >663:C:\Users\ALEXAN~1\AppData\Local\Temp\s510.
-7F7 cinit CODE >664:C:\Users\ALEXAN~1\AppData\Local\Temp\s510.
-7F8 cinit CODE >665:C:\Users\ALEXAN~1\AppData\Local\Temp\s510.
-7F9 cinit CODE >666:C:\Users\ALEXAN~1\AppData\Local\Temp\s510.
-7FA cinit CODE >667:C:\Users\ALEXAN~1\AppData\Local\Temp\s510.
-7FB cinit CODE >668:C:\Users\ALEXAN~1\AppData\Local\Temp\s510.
-7FC cinit CODE >674:C:\Users\ALEXAN~1\AppData\Local\Temp\s510.
-7FC cinit CODE >676:C:\Users\ALEXAN~1\AppData\Local\Temp\s510.
-7FD cinit CODE >677:C:\Users\ALEXAN~1\AppData\Local\Temp\s510.
-7B5 text4 CODE >66:E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\adc.c
-7B5 text4 CODE >70:E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\adc.c
-7BE text4 CODE >72:E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\adc.c
-7B0 text3 CODE >81:E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\adc.c
-7B0 text3 CODE >85:E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\adc.c
-7B4 text3 CODE >86:E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\adc.c
-7BF text2 CODE >45:E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\adc.c
-7BF text2 CODE >49:E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\adc.c
-7C6 text2 CODE >51:E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\adc.c
-7C9 text2 CODE >56:E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\adc.c
-7CC text1 CODE >14:E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\adc.c
-7CC text1 CODE >18:E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\adc.c
-7CF text1 CODE >20:E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\adc.c
-7D1 text1 CODE >21:E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\adc.c
-7D3 text1 CODE >23:E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\adc.c
-7D4 text1 CODE >27:E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\adc.c
-7D8 text1 CODE >30:E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\adc.c
-7DC text1 CODE >32:E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\adc.c
-7DE text1 CODE >34:E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\adc.c
-7DF text1 CODE >36:E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\adc.c
-7E0 text1 CODE >37:E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\adc.c
-7E1 maintext CODE >22:E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\main.c
-7E1 maintext CODE >24:E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\main.c
-7E6 maintext CODE >25:E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\main.c
-7E6 maintext CODE >26:E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\main.c
-7EB maintext CODE >27:E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\main.c
-7F0 maintext CODE >28:E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\main.c
-7F5 maintext CODE >25:E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\main.c
+7F6 cinit CODE >646:C:\Users\ALEXAN~1\AppData\Local\Temp\s338.
+7F6 cinit CODE >649:C:\Users\ALEXAN~1\AppData\Local\Temp\s338.
+7F6 cinit CODE >663:C:\Users\ALEXAN~1\AppData\Local\Temp\s338.
+7F7 cinit CODE >664:C:\Users\ALEXAN~1\AppData\Local\Temp\s338.
+7F8 cinit CODE >665:C:\Users\ALEXAN~1\AppData\Local\Temp\s338.
+7F9 cinit CODE >666:C:\Users\ALEXAN~1\AppData\Local\Temp\s338.
+7FA cinit CODE >667:C:\Users\ALEXAN~1\AppData\Local\Temp\s338.
+7FB cinit CODE >668:C:\Users\ALEXAN~1\AppData\Local\Temp\s338.
+7FC cinit CODE >674:C:\Users\ALEXAN~1\AppData\Local\Temp\s338.
+7FC cinit CODE >676:C:\Users\ALEXAN~1\AppData\Local\Temp\s338.
+7FD cinit CODE >677:C:\Users\ALEXAN~1\AppData\Local\Temp\s338.
+7B5 text4 CODE >66:E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\adc.c
+7B5 text4 CODE >70:E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\adc.c
+7BE text4 CODE >72:E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\adc.c
+7B0 text3 CODE >81:E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\adc.c
+7B0 text3 CODE >85:E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\adc.c
+7B4 text3 CODE >86:E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\adc.c
+7BF text2 CODE >45:E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\adc.c
+7BF text2 CODE >49:E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\adc.c
+7C6 text2 CODE >51:E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\adc.c
+7C9 text2 CODE >56:E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\adc.c
+7CC text1 CODE >14:E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\adc.c
+7CC text1 CODE >18:E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\adc.c
+7CF text1 CODE >20:E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\adc.c
+7D1 text1 CODE >21:E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\adc.c
+7D3 text1 CODE >23:E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\adc.c
+7D4 text1 CODE >27:E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\adc.c
+7D8 text1 CODE >30:E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\adc.c
+7DC text1 CODE >32:E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\adc.c
+7DE text1 CODE >34:E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\adc.c
+7DF text1 CODE >36:E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\adc.c
+7E0 text1 CODE >37:E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\adc.c
+7E1 maintext CODE >22:E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\main.c
+7E1 maintext CODE >24:E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\main.c
+7E6 maintext CODE >25:E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\main.c
+7E6 maintext CODE >26:E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\main.c
+7EB maintext CODE >27:E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\main.c
+7F0 maintext CODE >28:E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\main.c
+7F5 maintext CODE >25:E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\main.c
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -127,17 +127,18 @@ __Hspace_2 0 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 __CFG_MCLRE$ON 0 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
+__size_of_get_inputs 0 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
 ltemp0 7E 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
 ltemp1 82 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
 ltemp2 86 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
 ltemp3 80 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
 __Hstrings 0 0 ABS 0 strings -
-___sp 0 0 STACK 2 stack C:\Users\ALEXAN~1\AppData\Local\Temp\s510.obj
+___sp 0 0 STACK 2 stack C:\Users\ALEXAN~1\AppData\Local\Temp\s338.obj
 _freq 70 0 COMMON 1 bssCOMMON dist/default/production\xc8_test.X.production.obj
 _main FC2 0 CODE 0 maintext dist/default/production\xc8_test.X.production.obj
 btemp 7E 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
 ltemp 7E 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
-start 0 0 CODE 0 init C:\Users\ALEXAN~1\AppData\Local\Temp\s510.obj
+start 0 0 CODE 0 init C:\Users\ALEXAN~1\AppData\Local\Temp\s338.obj
 ttemp 7E 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
 wtemp 7E 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
 __size_of_main 0 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
@@ -149,12 +150,12 @@ ttemp1 81 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
 ttemp2 84 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
 ttemp3 87 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
 ttemp4 7F 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
-intlevel0 0 0 CODE 0 functab C:\Users\ALEXAN~1\AppData\Local\Temp\s510.obj
-intlevel1 0 0 CODE 0 functab C:\Users\ALEXAN~1\AppData\Local\Temp\s510.obj
-intlevel2 0 0 CODE 0 functab C:\Users\ALEXAN~1\AppData\Local\Temp\s510.obj
-intlevel3 0 0 CODE 0 functab C:\Users\ALEXAN~1\AppData\Local\Temp\s510.obj
-intlevel4 0 0 CODE 0 functab C:\Users\ALEXAN~1\AppData\Local\Temp\s510.obj
-intlevel5 0 0 CODE 0 functab C:\Users\ALEXAN~1\AppData\Local\Temp\s510.obj
+intlevel0 0 0 CODE 0 functab C:\Users\ALEXAN~1\AppData\Local\Temp\s338.obj
+intlevel1 0 0 CODE 0 functab C:\Users\ALEXAN~1\AppData\Local\Temp\s338.obj
+intlevel2 0 0 CODE 0 functab C:\Users\ALEXAN~1\AppData\Local\Temp\s338.obj
+intlevel3 0 0 CODE 0 functab C:\Users\ALEXAN~1\AppData\Local\Temp\s338.obj
+intlevel4 0 0 CODE 0 functab C:\Users\ALEXAN~1\AppData\Local\Temp\s338.obj
+intlevel5 0 0 CODE 0 functab C:\Users\ALEXAN~1\AppData\Local\Temp\s338.obj
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
 wtemp0 7E 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
 wtemp1 80 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
@@ -166,23 +167,25 @@ wtemp6 7F 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
 __Hfunctab 0 0 CODE 0 functab -
 __Hclrtext 0 0 ABS 0 clrtext -
 _ADRESL 9E 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
+__end_of_do_output F6A 0 CODE 0 text3 dist/default/production\xc8_test.X.production.obj
 _CCP1M2 BA 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
 _CCP1M3 BB 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
 _CCP2M2 EA 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
 _CCP2M3 EB 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
 _CCPR1L 15 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
 _CCPR2L 1B 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
-_Decide F6A 0 CODE 0 text4 dist/default/production\xc8_test.X.production.obj
+__size_of_initADC 0 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
+__size_of_do_output 0 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
 __Lmaintext 0 0 ABS 0 maintext -
-__size_of_Get_Inputs 0 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
+_do_output F60 0 CODE 0 text3 dist/default/production\xc8_test.X.production.obj
+__end_of_decide F7E 0 CODE 0 text4 dist/default/production\xc8_test.X.production.obj
 start_initialization FEC 0 CODE 0 cinit dist/default/production\xc8_test.X.production.obj
-__size_of_Decide 0 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
 _TRISBbits 86 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
 _TMR2ON 92 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
 _TRISC1 439 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
 _TRISC2 43A 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
-_Initialize F98 0 CODE 0 text1 dist/default/production\xc8_test.X.production.obj
-___int_sp 0 0 STACK 2 stack C:\Users\ALEXAN~1\AppData\Local\Temp\s510.obj
+__end_of_initADC FC2 0 CODE 0 text1 dist/default/production\xc8_test.X.production.obj
+___int_sp 0 0 STACK 2 stack C:\Users\ALEXAN~1\AppData\Local\Temp\s338.obj
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -222,21 +225,21 @@ __S0 2008 0 ABS 0 - -
 __S1 78 0 ABS 0 - -
 __S2 0 0 ABS 0 - -
 __S3 0 0 ABS 0 - -
-__end_of_Initialize FC2 0 CODE 0 text1 dist/default/production\xc8_test.X.production.obj
-_Do_Outputs F60 0 CODE 0 text3 dist/default/production\xc8_test.X.production.obj
+_decide F6A 0 CODE 0 text4 dist/default/production\xc8_test.X.production.obj
 __CFG_BOREN$ON 0 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
 __Lintentry 0 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec C:\Users\ALEXAN~1\AppData\Local\Temp\s510.obj
+reset_vec 0 0 CODE 0 reset_vec C:\Users\ALEXAN~1\AppData\Local\Temp\s338.obj
 __CFG_FCMEN$ON 0 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
+_get_inputs F7E 0 CODE 0 text2 dist/default/production\xc8_test.X.production.obj
 __pmaintext FC2 0 CODE 0 maintext dist/default/production\xc8_test.X.production.obj
+__size_of_decide 0 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
 __Lcommon 0 0 ABS 0 common -
 __Lconfig 400E 0 CONFIG 0 config -
 __CFG_CP$OFF 0 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
 __CFG_IESO$ON 0 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
 __CFG_WDTE$OFF 0 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
-__end_of_Do_Outputs F6A 0 CODE 0 text3 dist/default/production\xc8_test.X.production.obj
-stackhi 0 0 ABS 0 - C:\Users\ALEXAN~1\AppData\Local\Temp\s510.obj
-stacklo 0 0 ABS 0 - C:\Users\ALEXAN~1\AppData\Local\Temp\s510.obj
+stackhi 0 0 ABS 0 - C:\Users\ALEXAN~1\AppData\Local\Temp\s338.obj
+stacklo 0 0 ABS 0 - C:\Users\ALEXAN~1\AppData\Local\Temp\s338.obj
 _ADCON0bits 1F 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
 _ADCON1bits 9F 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
 __Lspace_0 0 0 ABS 0 - -
@@ -247,19 +250,19 @@ __pbssCOMMON 70 0 COMMON 1 bssCOMMON dist/default/production\xc8_test.X.producti
 __Lend_init 0 0 CODE 0 end_init -
 __LcstackCOMMON 0 0 ABS 0 cstackCOMMON -
 end_of_initialization FF8 0 CODE 0 cinit dist/default/production\xc8_test.X.production.obj
+__end_of_get_inputs F98 0 CODE 0 text2 dist/default/production\xc8_test.X.production.obj
 __Hintentry 0 0 CODE 0 intentry -
 __Lstrings 0 0 ABS 0 strings -
 __Hreset_vec 0 0 CODE 0 reset_vec -
+_initADC F98 0 CODE 0 text1 dist/default/production\xc8_test.X.production.obj
 __ptext1 F98 0 CODE 0 text1 dist/default/production\xc8_test.X.production.obj
 __ptext2 F7E 0 CODE 0 text2 dist/default/production\xc8_test.X.production.obj
 __ptext3 F60 0 CODE 0 text3 dist/default/production\xc8_test.X.production.obj
 __ptext4 F6A 0 CODE 0 text4 dist/default/production\xc8_test.X.production.obj
 __Lpowerup 0 0 CODE 0 powerup -
 __Leeprom_data 0 0 EEDATA 3 eeprom_data -
-_Get_Inputs F7E 0 CODE 0 text2 dist/default/production\xc8_test.X.production.obj
 __Lreset_vec 0 0 CODE 0 reset_vec -
 __CFG_FOSC$HS 0 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
-__size_of_Initialize 0 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
 __end_of__initialization FF8 0 CODE 0 cinit dist/default/production\xc8_test.X.production.obj
 __Lfunctab 0 0 CODE 0 functab -
 __Lclrtext 0 0 ABS 0 clrtext -
@@ -278,11 +281,8 @@ _TRISA 85 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
 _TRISD 88 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
 __Hram 0 0 ABS 0 ram -
 __Lram 0 0 ABS 0 ram -
-__end_of_Get_Inputs F98 0 CODE 0 text2 dist/default/production\xc8_test.X.production.obj
 __initialization FEC 0 CODE 0 cinit dist/default/production\xc8_test.X.production.obj
 __CFG_PWRTE$OFF 0 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
-__size_of_Do_Outputs 0 0 ABS 0 - dist/default/production\xc8_test.X.production.obj
-__end_of_Decide F7E 0 CODE 0 text4 dist/default/production\xc8_test.X.production.obj
 # %SPLITSTAB Section
 # This section enumerates all the psect splits performed by the assembler.
 # The beginning of the section is indicated by %SPLITSTAB.

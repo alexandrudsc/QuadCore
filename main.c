@@ -21,11 +21,11 @@
 
 void main(void) {
     
-    Initialize(); //Initialize the relevant registers
+    initADC(); //Initialize the relevant registers
     while (1) {
-        Get_Inputs();
-        Decide();
-        Do_Outputs();
+        get_inputs();
+        decide();
+        do_output();
     }
     
     /*

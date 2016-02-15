@@ -3122,11 +3122,11 @@ extern __bit __powerdown;
 extern __bit __timeout;
 
 # 36 "adc.h"
-void Initialize(void);
-void Get_Inputs(void);
-void Decide(void);
-void Do_Outputs(void);
-void Timing(void);
+void initADC(void);
+void get_inputs(void);
+void decide(void);
+void do_outputs(void);
+void timing(void);
 
 # 36 "pwm.h"
 void PWM1_Init(unsigned long freq);
@@ -3154,11 +3154,11 @@ void PWM1_Duty(unsigned int duty);
 
 void main(void) {
 
-Initialize();
+initADC();
 while (1) {
-Get_Inputs();
-Decide();
-Do_Outputs();
+get_inputs();
+decide();
+do_output();
 }
 
 # 41

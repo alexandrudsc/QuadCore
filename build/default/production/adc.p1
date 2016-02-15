@@ -2317,11 +2317,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 184: extern unsigned char __resetbits;
 [; ;pic.h: 185: extern __bit __powerdown;
 [; ;pic.h: 186: extern __bit __timeout;
-[; ;adc.h: 36: void Initialize(void);
-[; ;adc.h: 37: void Get_Inputs(void);
-[; ;adc.h: 38: void Decide(void);
-[; ;adc.h: 39: void Do_Outputs(void);
-[; ;adc.h: 40: void Timing(void);
+[; ;adc.h: 36: void initADC(void);
+[; ;adc.h: 37: void get_inputs(void);
+[; ;adc.h: 38: void decide(void);
+[; ;adc.h: 39: void do_outputs(void);
+[; ;adc.h: 40: void timing(void);
 "11 adc.c
 [v _LED_Output `ui ~T0 @X0 1 e ]
 [i _LED_Output
@@ -2329,12 +2329,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [; ;adc.c: 11: unsigned LED_Output = 0;
 "14
-[v _Initialize `(v ~T0 @X0 1 ef ]
+[v _initADC `(v ~T0 @X0 1 ef ]
 "15
 {
-[; ;adc.c: 14: void Initialize(void)
+[; ;adc.c: 14: void initADC(void)
 [; ;adc.c: 15: {
-[e :U _Initialize ]
+[e :U _initADC ]
 [f ]
 [; ;adc.c: 18: TRISBbits.TRISB4 = 1;
 "18
@@ -2368,12 +2368,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 209 ]
 }
 "45
-[v _Get_Inputs `(v ~T0 @X0 1 ef ]
+[v _get_inputs `(v ~T0 @X0 1 ef ]
 "46
 {
-[; ;adc.c: 45: void Get_Inputs(void)
+[; ;adc.c: 45: void get_inputs(void)
 [; ;adc.c: 46: {
-[e :U _Get_Inputs ]
+[e :U _get_inputs ]
 [f ]
 [; ;adc.c: 49: _delay((unsigned long)((1)*(4000000/4000.0)));
 "49
@@ -2393,12 +2393,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 210 ]
 }
 "66
-[v _Decide `(v ~T0 @X0 1 ef ]
+[v _decide `(v ~T0 @X0 1 ef ]
 "67
 {
-[; ;adc.c: 66: void Decide(void)
+[; ;adc.c: 66: void decide(void)
 [; ;adc.c: 67: {
-[e :U _Decide ]
+[e :U _decide ]
 [f ]
 [; ;adc.c: 70: LED_Output = ADRESL;
 "70
@@ -2408,12 +2408,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 214 ]
 }
 "81
-[v _Do_Outputs `(v ~T0 @X0 1 ef ]
+[v _do_output `(v ~T0 @X0 1 ef ]
 "82
 {
-[; ;adc.c: 81: void Do_Outputs(void)
+[; ;adc.c: 81: void do_output(void)
 [; ;adc.c: 82: {
-[e :U _Do_Outputs ]
+[e :U _do_output ]
 [f ]
 [; ;adc.c: 85: PORTD = LED_Output;
 "85
@@ -2439,12 +2439,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 216 ]
 }
 "99
-[v _Timing `(v ~T0 @X0 1 ef ]
+[v _timing `(v ~T0 @X0 1 ef ]
 "101
 {
-[; ;adc.c: 99: void Timing(void)
+[; ;adc.c: 99: void timing(void)
 [; ;adc.c: 101: {
-[e :U _Timing ]
+[e :U _timing ]
 [f ]
 [; ;adc.c: 103: }
 "103

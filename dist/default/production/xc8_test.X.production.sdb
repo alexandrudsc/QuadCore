@@ -3,14 +3,14 @@
 [d edition pro ]
 [d chip 16F917 ]
 [d frameptr 6 ]
-"14 E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\adc.c
-[v _Initialize Initialize `(v  1 e 0 0 ]
+"14 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\adc.c
+[v _initADC initADC `(v  1 e 0 0 ]
 "45
-[v _Get_Inputs Get_Inputs `(v  1 e 0 0 ]
+[v _get_inputs get_inputs `(v  1 e 0 0 ]
 "66
-[v _Decide Decide `(v  1 e 0 0 ]
+[v _decide decide `(v  1 e 0 0 ]
 "81
-[v _Do_Outputs Do_Outputs `(v  1 e 0 0 ]
+[v _do_output do_output `(i  1 e 2 0 ]
 "62 C:\Program Files (x86)\Microchip\xc8\v1.35\sources\common\float.c
 [v ___ftpack __ftpack `(f  1 e 3 0 ]
 "86 C:\Program Files (x86)\Microchip\xc8\v1.35\sources\common\ftadd.c
@@ -21,9 +21,9 @@
 [v _eecpymem eecpymem `(v  1 e 0 0 ]
 "24
 [v _memcpyee memcpyee `(v  1 e 0 0 ]
-"22 E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\main.c
+"22 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\main.c
 [v _main main `(v  1 e 0 0 ]
-"11 E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\adc.c
+"11 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\adc.c
 [v _LED_Output LED_Output `ui  1 e 2 0 ]
 "343 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic16f917.h
 [v _PORTD PORTD `VEuc  1 e 1 @8 ]
@@ -113,30 +113,30 @@
 [v _TRISC1 TRISC1 `VEb  1 e 0 @1081 ]
 "6965
 [v _TRISC2 TRISC2 `VEb  1 e 0 @1082 ]
-"12 E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\pwm.c
+"12 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\pwm.c
 [v _freq freq `ul  1 e 4 0 ]
-"22 E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\main.c
+"22 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\main.c
 [v _main main `(v  1 e 0 0 ]
 {
 "41
 } 0
-"14 E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\adc.c
-[v _Initialize Initialize `(v  1 e 0 0 ]
+"14 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\adc.c
+[v _initADC initADC `(v  1 e 0 0 ]
 {
 "37
 } 0
 "45
-[v _Get_Inputs Get_Inputs `(v  1 e 0 0 ]
+[v _get_inputs get_inputs `(v  1 e 0 0 ]
 {
 "57
 } 0
 "81
-[v _Do_Outputs Do_Outputs `(v  1 e 0 0 ]
+[v _do_output do_output `(i  1 e 2 0 ]
 {
 "86
 } 0
 "66
-[v _Decide Decide `(v  1 e 0 0 ]
+[v _decide decide `(v  1 e 0 0 ]
 {
 "72
 } 0
