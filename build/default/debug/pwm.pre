@@ -1,5 +1,5 @@
 
-# 1 "main.c"
+# 1 "pwm.c"
 
 # 26 "C:\Program Files (x86)\Microchip\xc8\v1.35\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -3121,14 +3121,6 @@ extern unsigned char __resetbits;
 extern __bit __powerdown;
 extern __bit __timeout;
 
-# 36 "adc.h"
-void init_adc(void);
-void get_inputs(void);
-void decide(void);
-void do_outputs(void);
-void timing(void);
-unsigned get_adc_value();
-
 # 36 "pwm.h"
 void PWM1_Init(unsigned long freq);
 void PWM2_Init(unsigned long freq);
@@ -3142,36 +3134,71 @@ void PWM2_Stop();
 void PWM2_Duty(unsigned int duty);
 void PWM1_Duty(unsigned int duty);
 
+# 12 "pwm.c"
+unsigned long freq;
 
-# 13 "main.c"
-#pragma config FOSC = HS
-#pragma config WDTE = OFF
-#pragma config PWRTE = OFF
-#pragma config MCLRE = ON
-#pragma config CP = OFF
-#pragma config BOREN = ON
-#pragma config IESO = ON
-#pragma config FCMEN = ON
-
-void main(void) {
-
-unsigned int adc_value, duty;
-
-init_adc();
-
-PORTD = 0x0;
-
-
-PWM2_Init(1000);
-PWM2_Duty(200);
-PWM2_Start();
-
-while (1) {
-get_inputs();
-decide();
-adc_value = get_adc_value();
-duty = (float)adc_value/ 255 * 1023;
-PWM2_Duty( duty );
+void PWM1_Init(unsigned long fre) {
+PR2 = (4000000 / (fre * 4 * 4)) - 1;
+freq = fre;
 }
 
+void PWM2_Init(unsigned long fre) {
+PR2 = (4000000 / (fre * 4 * 4)) - 1;
+freq = fre;
+}
+
+void PWM1_Duty(unsigned int duty) {
+
+if (duty > 1023)
+duty = 1023;
+
+CCP1X = duty & 2;
+CCP1Y = duty & 1;
+CCPR1L = duty >> 2;
+
+}
+
+void PWM2_Duty(unsigned int duty) {
+if (duty > 1023)
+duty = 1023;
+
+CCP2X = duty & 2;
+CCP2Y = duty & 1;
+CCPR2L = duty >> 2;
+
+
+}
+
+void PWM1_Start() {
+CCP1M3 = 1;
+CCP1M2 = 1;
+
+# 59
+TMR2ON = 1;
+TRISC2 = 0;
+}
+
+void PWM1_Stop() {
+CCP1M3 = 0;
+CCP1M2 = 0;
+}
+
+void PWM2_Start() {
+CCP2M3 = 1;
+CCP2M2 = 1;
+
+
+
+
+T2CKPS0 = 1;
+T2CKPS1 = 0;
+
+# 81
+TMR2ON = 1;
+TRISC1 = 0;
+}
+
+void PWM2_Stop() {
+CCP2M3 = 0;
+CCP2M2 = 0;
 }

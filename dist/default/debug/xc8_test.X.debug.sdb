@@ -219,16 +219,16 @@
 "19
 [v _PWM2_Init PWM2_Init `(v  1 e 0 0 ]
 {
-[v PWM2_Init@fre fre `ul  1 p 4 0 ]
+[v PWM2_Init@fre fre `ul  1 p 4 5 ]
 "22
 } 0
 "6 C:\Program Files (x86)\Microchip\xc8\v1.35\sources\common\lldiv.c
 [v ___lldiv __lldiv `(ul  1 e 4 0 ]
 {
 "11
-[v ___lldiv@quotient quotient `ul  1 a 4 9 ]
+[v ___lldiv@quotient quotient `ul  1 a 4 0 ]
 "12
-[v ___lldiv@counter counter `uc  1 a 1 13 ]
+[v ___lldiv@counter counter `uc  1 a 1 4 ]
 "6
 [v ___lldiv@divisor divisor `ul  1 p 4 0 ]
 [v ___lldiv@dividend dividend `ul  1 p 4 4 ]

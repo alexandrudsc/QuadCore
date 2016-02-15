@@ -11,7 +11,7 @@
 unsigned LED_Output = 0;	//assigned to LED PORT to light
 								//connected LEDs
 
-void initADC(void)
+void init_adc(void)
 {
 	//Configure Port:
 	//Disable pin output driver (See TRIS register)
@@ -69,6 +69,7 @@ void decide(void)
 	//of LED_Output
 	LED_Output = ADRESL;
 								//to the right
+    
 }
 
 /*----------------------------------------------------------
@@ -85,7 +86,7 @@ void do_output(void)
 	PORTD = LED_Output;
 }
 
-unsigned getADCValue()
+unsigned get_adc_value()
 {
     return LED_Output;
 }

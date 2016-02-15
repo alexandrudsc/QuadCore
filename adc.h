@@ -33,11 +33,12 @@
 
 #include "uc_config.h"
 
-void initADC(void);
+void init_adc(void);
 void get_inputs(void);
 void decide(void);
 void do_outputs(void);
 void timing(void);
+unsigned get_adc_value();
 
 // TODO Insert appropriate #include <>
 

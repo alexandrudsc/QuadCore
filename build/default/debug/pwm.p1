@@ -1,54 +1,36 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"1395 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic16f917.h
-[s S55 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S55 . TRISB0 TRISB1 TRISB2 TRISB3 TRISB4 TRISB5 TRISB6 TRISB7 ]
-"1394
-[u S54 `S55 1 ]
-[n S54 . . ]
-"1406
-[v _TRISBbits `VS54 ~T0 @X0 0 e@134 ]
-"1876
-[v _ANSEL `Vuc ~T0 @X0 0 e@145 ]
-"1328
-[v _TRISA `Vuc ~T0 @X0 0 e@133 ]
-"1511
-[v _TRISD `Vuc ~T0 @X0 0 e@136 ]
-"2810
-[s S116 :4 `uc 1 :3 `uc 1 ]
-[n S116 . . ADCS ]
-"2814
-[s S117 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S117 . . ADCS0 ADCS1 ADCS2 ]
-"2809
-[u S115 `S116 1 `S117 1 ]
-[n S115 . . . ]
-"2821
-[v _ADCON1bits `VS115 ~T0 @X0 0 e@159 ]
-"1165
-[s S45 :1 `uc 1 :1 `uc 1 :3 `uc 1 :2 `uc 1 :1 `uc 1 ]
-[n S45 . ADON GO_nDONE CHS VCFG ADFM ]
-"1172
-[s S46 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S46 . . nDONE CHS0 CHS1 CHS2 VCFG0 VCFG1 ]
-"1181
-[s S47 :1 `uc 1 :1 `uc 1 ]
-[n S47 . . GO_DONE ]
-"1185
-[s S48 :1 `uc 1 :1 `uc 1 ]
-[n S48 . . GO ]
-"1164
-[u S44 `S45 1 `S46 1 `S47 1 `S48 1 ]
-[n S44 . . . . . ]
-"1190
-[v _ADCON0bits `VS44 ~T0 @X0 0 e@31 ]
-[v F2607 `(v ~T0 @X0 1 tf1`ul ]
-"150 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic.h
-[v __delay `JF2607 ~T0 @X0 0 e ]
-[p i __delay ]
-"2798 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic16f917.h
-[v _ADRESL `Vuc ~T0 @X0 0 e@158 ]
-"343
-[v _PORTD `Vuc ~T0 @X0 0 e@8 ]
+"1995 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic16f917.h
+[v _PR2 `Vuc ~T0 @X0 0 e@146 ]
+"6035
+[v _CCP1X `Vb ~T0 @X0 0 e@189 ]
+"6037
+[v _CCP1Y `Vb ~T0 @X0 0 e@188 ]
+"903
+[v _CCPR1L `Vuc ~T0 @X0 0 e@21 ]
+"6051
+[v _CCP2X `Vb ~T0 @X0 0 e@237 ]
+"6053
+[v _CCP2Y `Vb ~T0 @X0 0 e@236 ]
+"1084
+[v _CCPR2L `Vuc ~T0 @X0 0 e@27 ]
+"6033
+[v _CCP1M3 `Vb ~T0 @X0 0 e@187 ]
+"6031
+[v _CCP1M2 `Vb ~T0 @X0 0 e@186 ]
+"6919
+[v _TMR2ON `Vb ~T0 @X0 0 e@146 ]
+"6965
+[v _TRISC2 `Vb ~T0 @X0 0 e@1082 ]
+"6049
+[v _CCP2M3 `Vb ~T0 @X0 0 e@235 ]
+"6047
+[v _CCP2M2 `Vb ~T0 @X0 0 e@234 ]
+"6897
+[v _T2CKPS0 `Vb ~T0 @X0 0 e@144 ]
+"6899
+[v _T2CKPS1 `Vb ~T0 @X0 0 e@145 ]
+"6963
+[v _TRISC1 `Vb ~T0 @X0 0 e@1081 ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -2317,137 +2299,184 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 184: extern unsigned char __resetbits;
 [; ;pic.h: 185: extern __bit __powerdown;
 [; ;pic.h: 186: extern __bit __timeout;
-[; ;adc.h: 36: void init_adc(void);
-[; ;adc.h: 37: void get_inputs(void);
-[; ;adc.h: 38: void decide(void);
-[; ;adc.h: 39: void do_outputs(void);
-[; ;adc.h: 40: void timing(void);
-[; ;adc.h: 41: unsigned get_adc_value();
-"11 adc.c
-[v _LED_Output `ui ~T0 @X0 1 e ]
-[i _LED_Output
--> -> 0 `i `ui
-]
-[; ;adc.c: 11: unsigned LED_Output = 0;
+[; ;pwm.h: 36: void PWM1_Init(unsigned long freq);
+[; ;pwm.h: 37: void PWM2_Init(unsigned long freq);
+[; ;pwm.h: 39: void PWM1_Start();
+[; ;pwm.h: 40: void PWM2_Start();
+[; ;pwm.h: 42: void PWM1_Stop();
+[; ;pwm.h: 43: void PWM2_Stop();
+[; ;pwm.h: 45: void PWM2_Duty(unsigned int duty);
+[; ;pwm.h: 46: void PWM1_Duty(unsigned int duty);
+"12 pwm.c
+[v _freq `ul ~T0 @X0 1 e ]
+[; ;pwm.c: 12: unsigned long freq;
 "14
-[v _init_adc `(v ~T0 @X0 1 ef ]
-"15
+[v _PWM1_Init `(v ~T0 @X0 1 ef1`ul ]
 {
-[; ;adc.c: 14: void init_adc(void)
-[; ;adc.c: 15: {
-[e :U _init_adc ]
+[; ;pwm.c: 14: void PWM1_Init(unsigned long fre) {
+[e :U _PWM1_Init ]
+[v _fre `ul ~T0 @X0 1 r1 ]
 [f ]
-[; ;adc.c: 18: TRISBbits.TRISB4 = 1;
-"18
-[e = . . _TRISBbits 0 4 -> -> 1 `i `uc ]
-[; ;adc.c: 20: ANSEL = 0x01;
-"20
-[e = _ANSEL -> -> 1 `i `uc ]
-[; ;adc.c: 21: TRISA = 0xFF;
-"21
-[e = _TRISA -> -> 255 `i `uc ]
-[; ;adc.c: 23: TRISD = 0x00;
-"23
-[e = _TRISD -> -> 0 `i `uc ]
-[; ;adc.c: 27: ADCON1bits.ADCS = 0b11;
-"27
-[e = . . _ADCON1bits 0 1 -> -> 3 `i `uc ]
-[; ;adc.c: 30: ADCON0bits.VCFG = 0;
-"30
-[e = . . _ADCON0bits 0 3 -> -> 0 `i `uc ]
-[; ;adc.c: 32: ADCON0bits.CHS = 0b000;
-"32
-[e = . . _ADCON0bits 0 2 -> -> 0 `i `uc ]
-[; ;adc.c: 34: ADCON0bits.ADFM = 1;
-"34
-[e = . . _ADCON0bits 0 4 -> -> 1 `i `uc ]
-[; ;adc.c: 36: ADCON0bits.ADON = 1;
-"36
-[e = . . _ADCON0bits 0 0 -> -> 1 `i `uc ]
-[; ;adc.c: 37: }
-"37
+[; ;pwm.c: 15: PR2 = (4000000 / (fre * 4 * 4)) - 1;
+"15
+[e = _PR2 -> - / -> -> 4000000 `l `ul * * _fre -> -> -> 4 `i `l `ul -> -> -> 4 `i `l `ul -> -> -> 1 `i `l `ul `uc ]
+[; ;pwm.c: 16: freq = fre;
+"16
+[e = _freq _fre ]
+[; ;pwm.c: 17: }
+"17
 [e :UE 209 ]
 }
-"45
-[v _get_inputs `(v ~T0 @X0 1 ef ]
-"46
+"19
+[v _PWM2_Init `(v ~T0 @X0 1 ef1`ul ]
 {
-[; ;adc.c: 45: void get_inputs(void)
-[; ;adc.c: 46: {
-[e :U _get_inputs ]
+[; ;pwm.c: 19: void PWM2_Init(unsigned long fre) {
+[e :U _PWM2_Init ]
+[v _fre `ul ~T0 @X0 1 r1 ]
 [f ]
-[; ;adc.c: 49: _delay((unsigned long)((1)*(4000000/4000.0)));
-"49
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-[; ;adc.c: 51: ADCON0bits.GO_nDONE = 1;
-"51
-[e = . . _ADCON0bits 0 1 -> -> 1 `i `uc ]
-[; ;adc.c: 56: while(ADCON0bits.GO_nDONE == 1);
-"56
-[e $U 211  ]
-[e :U 212 ]
-[e :U 211 ]
-[e $ == -> . . _ADCON0bits 0 1 `i -> 1 `i 212  ]
-[e :U 213 ]
-[; ;adc.c: 57: }
-"57
+[; ;pwm.c: 20: PR2 = (4000000 / (fre * 4 * 4)) - 1;
+"20
+[e = _PR2 -> - / -> -> 4000000 `l `ul * * _fre -> -> -> 4 `i `l `ul -> -> -> 4 `i `l `ul -> -> -> 1 `i `l `ul `uc ]
+[; ;pwm.c: 21: freq = fre;
+"21
+[e = _freq _fre ]
+[; ;pwm.c: 22: }
+"22
 [e :UE 210 ]
 }
-"66
-[v _decide `(v ~T0 @X0 1 ef ]
-"67
+"24
+[v _PWM1_Duty `(v ~T0 @X0 1 ef1`ui ]
 {
-[; ;adc.c: 66: void decide(void)
-[; ;adc.c: 67: {
-[e :U _decide ]
+[; ;pwm.c: 24: void PWM1_Duty(unsigned int duty) {
+[e :U _PWM1_Duty ]
+[v _duty `ui ~T0 @X0 1 r1 ]
 [f ]
-[; ;adc.c: 70: LED_Output = ADRESL;
-"70
-[e = _LED_Output -> _ADRESL `ui ]
-[; ;adc.c: 73: }
-"73
-[e :UE 214 ]
+[; ;pwm.c: 26: if (duty > 1023)
+"26
+[e $ ! > _duty -> -> 1023 `i `ui 212  ]
+[; ;pwm.c: 27: duty = 1023;
+"27
+[e = _duty -> -> 1023 `i `ui ]
+[e :U 212 ]
+[; ;pwm.c: 29: CCP1X = duty & 2;
+"29
+[e = _CCP1X -> & _duty -> -> 2 `i `ui `b ]
+[; ;pwm.c: 30: CCP1Y = duty & 1;
+"30
+[e = _CCP1Y -> & _duty -> -> 1 `i `ui `b ]
+[; ;pwm.c: 31: CCPR1L = duty >> 2;
+"31
+[e = _CCPR1L -> >> _duty -> 2 `i `uc ]
+[; ;pwm.c: 33: }
+"33
+[e :UE 211 ]
 }
-"82
-[v _do_output `(v ~T0 @X0 1 ef ]
-"83
+"35
+[v _PWM2_Duty `(v ~T0 @X0 1 ef1`ui ]
 {
-[; ;adc.c: 82: void do_output(void)
-[; ;adc.c: 83: {
-[e :U _do_output ]
+[; ;pwm.c: 35: void PWM2_Duty(unsigned int duty) {
+[e :U _PWM2_Duty ]
+[v _duty `ui ~T0 @X0 1 r1 ]
 [f ]
-[; ;adc.c: 86: PORTD = LED_Output;
-"86
-[e = _PORTD -> _LED_Output `uc ]
-[; ;adc.c: 87: }
-"87
+[; ;pwm.c: 36: if (duty > 1023)
+"36
+[e $ ! > _duty -> -> 1023 `i `ui 214  ]
+[; ;pwm.c: 37: duty = 1023;
+"37
+[e = _duty -> -> 1023 `i `ui ]
+[e :U 214 ]
+[; ;pwm.c: 39: CCP2X = duty & 2;
+"39
+[e = _CCP2X -> & _duty -> -> 2 `i `ui `b ]
+[; ;pwm.c: 40: CCP2Y = duty & 1;
+"40
+[e = _CCP2Y -> & _duty -> -> 1 `i `ui `b ]
+[; ;pwm.c: 41: CCPR2L = duty >> 2;
+"41
+[e = _CCPR2L -> >> _duty -> 2 `i `uc ]
+[; ;pwm.c: 44: }
+"44
+[e :UE 213 ]
+}
+"46
+[v _PWM1_Start `(v ~T0 @X0 1 ef ]
+{
+[; ;pwm.c: 46: void PWM1_Start() {
+[e :U _PWM1_Start ]
+[f ]
+[; ;pwm.c: 47: CCP1M3 = 1;
+"47
+[e = _CCP1M3 -> -> 1 `i `b ]
+[; ;pwm.c: 48: CCP1M2 = 1;
+"48
+[e = _CCP1M2 -> -> 1 `i `b ]
+[; ;pwm.c: 59: TMR2ON = 1;
+"59
+[e = _TMR2ON -> -> 1 `i `b ]
+[; ;pwm.c: 60: TRISC2 = 0;
+"60
+[e = _TRISC2 -> -> 0 `i `b ]
+[; ;pwm.c: 61: }
+"61
 [e :UE 215 ]
 }
-"89
-[v _get_adc_value `(ui ~T0 @X0 1 ef ]
-"90
+"63
+[v _PWM1_Stop `(v ~T0 @X0 1 ef ]
 {
-[; ;adc.c: 89: unsigned get_adc_value()
-[; ;adc.c: 90: {
-[e :U _get_adc_value ]
+[; ;pwm.c: 63: void PWM1_Stop() {
+[e :U _PWM1_Stop ]
 [f ]
-[; ;adc.c: 91: return LED_Output;
-"91
-[e ) _LED_Output ]
-[e $UE 216  ]
-[; ;adc.c: 92: }
-"92
+[; ;pwm.c: 64: CCP1M3 = 0;
+"64
+[e = _CCP1M3 -> -> 0 `i `b ]
+[; ;pwm.c: 65: CCP1M2 = 0;
+"65
+[e = _CCP1M2 -> -> 0 `i `b ]
+[; ;pwm.c: 66: }
+"66
 [e :UE 216 ]
 }
-"100
-[v _timing `(v ~T0 @X0 1 ef ]
-"102
+"68
+[v _PWM2_Start `(v ~T0 @X0 1 ef ]
 {
-[; ;adc.c: 100: void timing(void)
-[; ;adc.c: 102: {
-[e :U _timing ]
+[; ;pwm.c: 68: void PWM2_Start() {
+[e :U _PWM2_Start ]
 [f ]
-[; ;adc.c: 104: }
-"104
+[; ;pwm.c: 69: CCP2M3 = 1;
+"69
+[e = _CCP2M3 -> -> 1 `i `b ]
+[; ;pwm.c: 70: CCP2M2 = 1;
+"70
+[e = _CCP2M2 -> -> 1 `i `b ]
+[; ;pwm.c: 75: T2CKPS0 = 1;
+"75
+[e = _T2CKPS0 -> -> 1 `i `b ]
+[; ;pwm.c: 76: T2CKPS1 = 0;
+"76
+[e = _T2CKPS1 -> -> 0 `i `b ]
+[; ;pwm.c: 81: TMR2ON = 1;
+"81
+[e = _TMR2ON -> -> 1 `i `b ]
+[; ;pwm.c: 82: TRISC1 = 0;
+"82
+[e = _TRISC1 -> -> 0 `i `b ]
+[; ;pwm.c: 83: }
+"83
 [e :UE 217 ]
+}
+"85
+[v _PWM2_Stop `(v ~T0 @X0 1 ef ]
+{
+[; ;pwm.c: 85: void PWM2_Stop() {
+[e :U _PWM2_Stop ]
+[f ]
+[; ;pwm.c: 86: CCP2M3 = 0;
+"86
+[e = _CCP2M3 -> -> 0 `i `b ]
+[; ;pwm.c: 87: CCP2M2 = 0;
+"87
+[e = _CCP2M2 -> -> 0 `i `b ]
+[; ;pwm.c: 88: }
+"88
+[e :UE 218 ]
 }

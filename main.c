@@ -21,21 +21,23 @@
 
 void main(void) {
     
-    initADC(); //Initialize the relevant registers
+    unsigned int adc_value, duty;
+    
+    init_adc(); //Initialize the relevant registers
+    
+    PORTD = 0x0;    // all leds turn off
+    
+    
+    PWM2_Init(1000); // init pwm registers with 1 kHz
+    PWM2_Duty(200);  // first duty cycle value; it will be changed
+    PWM2_Start();   
+    
     while (1) {
-        get_inputs();
-        decide();
-        do_output();
+        get_inputs();           // wait for ADC to finish conversion
+        decide();               // store the value of the ADC
+        adc_value = get_adc_value();   // get the value of ADC 
+        duty = (float)adc_value/ 255 * 1023;
+        PWM2_Duty( duty );
     }
-    
-    /*
-    // light up led 0 as reference
-    TRISDbits.TRISD7 = 0;
-    PORTDbits.RD7 = 1;    
-    
-    TRISDbits.TRISD2 = 0;
 
-    PWM2_Init(1000);
-    PWM2_Duty(200);
-    PWM2_Start();*/
 }

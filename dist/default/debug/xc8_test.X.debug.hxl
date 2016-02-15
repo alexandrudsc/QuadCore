@@ -1,14 +1,14 @@
 ### HEXMate logfile and output summary ###
 ### Memory Usage ###
  Unused memory ranges:
-  6h - 7B7h
+  8h - 7B3h
   1000h - 3FFFh
   4000h - 400Dh
   4010h - 403Fh
   
- dist/default/production\xc8_test.X.production.hex ranges:
-  0h - 5h
-  7B8h - FFFh
+ dist/default/debug\xc8_test.X.debug.hex ranges:
+  0h - 7h
+  7B4h - FFFh
   400Eh - 400Fh
   
 ### Hex Memory Map ###
@@ -22,9 +22,9 @@
   T = Trailing code
   & = Find & replace opcode
   X = Find & delete opcode
-  1 = dist/default/production\xc8_test.X.production.hex
-00000000: 111111----------------------------------------------------------
-00000780: --------------------------------------------------------11111111
+  1 = dist/default/debug\xc8_test.X.debug.hex
+00000000: 11111111--------------------------------------------------------
+00000780: ----------------------------------------------------111111111111
 000007C0: 1111111111111111111111111111111111111111111111111111111111111111
 00000800: 1111111111111111111111111111111111111111111111111111111111111111
 00000840: 1111111111111111111111111111111111111111111111111111111111111111
