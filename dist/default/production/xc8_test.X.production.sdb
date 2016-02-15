@@ -1,0 +1,142 @@
+[p LITE_MODE AUTOSTATIC PIC14 PICREGULAR PICMID ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 16F917 ]
+[d frameptr 6 ]
+"14 E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\adc.c
+[v _Initialize Initialize `(v  1 e 0 0 ]
+"45
+[v _Get_Inputs Get_Inputs `(v  1 e 0 0 ]
+"66
+[v _Decide Decide `(v  1 e 0 0 ]
+"81
+[v _Do_Outputs Do_Outputs `(v  1 e 0 0 ]
+"62 C:\Program Files (x86)\Microchip\xc8\v1.35\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 C:\Program Files (x86)\Microchip\xc8\v1.35\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.35\sources\common\lldiv.c
+[v ___lldiv __lldiv `(ul  1 e 4 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.35\sources\pic\eeprom.c
+[v _eecpymem eecpymem `(v  1 e 0 0 ]
+"24
+[v _memcpyee memcpyee `(v  1 e 0 0 ]
+"22 E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\main.c
+[v _main main `(v  1 e 0 0 ]
+"11 E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\adc.c
+[v _LED_Output LED_Output `ui  1 e 2 0 ]
+"343 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic16f917.h
+[v _PORTD PORTD `VEuc  1 e 1 @8 ]
+"903
+[v _CCPR1L CCPR1L `VEuc  1 e 1 @21 ]
+"1084
+[v _CCPR2L CCPR2L `VEuc  1 e 1 @27 ]
+[s S80 . 1 `uc 1 ADON 1 0 :1:0 
+`uc 1 GO_nDONE 1 0 :1:1 
+`uc 1 CHS 1 0 :3:2 
+`uc 1 VCFG 1 0 :2:5 
+`uc 1 ADFM 1 0 :1:7 
+]
+"1190
+[s S86 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 nDONE 1 0 :1:1 
+`uc 1 CHS0 1 0 :1:2 
+`uc 1 CHS1 1 0 :1:3 
+`uc 1 CHS2 1 0 :1:4 
+`uc 1 VCFG0 1 0 :1:5 
+`uc 1 VCFG1 1 0 :1:6 
+]
+[s S94 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO_DONE 1 0 :1:1 
+]
+[s S97 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO 1 0 :1:1 
+]
+[u S100 . 1 `S80 1 . 1 0 `S86 1 . 1 0 `S94 1 . 1 0 `S97 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES100  1 e 1 @31 ]
+"1328
+[v _TRISA TRISA `VEuc  1 e 1 @133 ]
+[s S36 . 1 `uc 1 TRISB0 1 0 :1:0 
+`uc 1 TRISB1 1 0 :1:1 
+`uc 1 TRISB2 1 0 :1:2 
+`uc 1 TRISB3 1 0 :1:3 
+`uc 1 TRISB4 1 0 :1:4 
+`uc 1 TRISB5 1 0 :1:5 
+`uc 1 TRISB6 1 0 :1:6 
+`uc 1 TRISB7 1 0 :1:7 
+]
+"1406
+[u S45 . 1 `S36 1 . 1 0 ]
+[v _TRISBbits TRISBbits `VES45  1 e 1 @134 ]
+"1511
+[v _TRISD TRISD `VEuc  1 e 1 @136 ]
+"1876
+[v _ANSEL ANSEL `VEuc  1 e 1 @145 ]
+"1995
+[v _PR2 PR2 `VEuc  1 e 1 @146 ]
+"2798
+[v _ADRESL ADRESL `VEuc  1 e 1 @158 ]
+[s S60 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 ADCS 1 0 :3:4 
+]
+"2821
+[s S63 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 ADCS0 1 0 :1:4 
+`uc 1 ADCS1 1 0 :1:5 
+`uc 1 ADCS2 1 0 :1:6 
+]
+[u S68 . 1 `S60 1 . 1 0 `S63 1 . 1 0 ]
+[v _ADCON1bits ADCON1bits `VES68  1 e 1 @159 ]
+"6031
+[v _CCP1M2 CCP1M2 `VEb  1 e 0 @186 ]
+"6033
+[v _CCP1M3 CCP1M3 `VEb  1 e 0 @187 ]
+"6035
+[v _CCP1X CCP1X `VEb  1 e 0 @189 ]
+"6037
+[v _CCP1Y CCP1Y `VEb  1 e 0 @188 ]
+"6047
+[v _CCP2M2 CCP2M2 `VEb  1 e 0 @234 ]
+"6049
+[v _CCP2M3 CCP2M3 `VEb  1 e 0 @235 ]
+"6051
+[v _CCP2X CCP2X `VEb  1 e 0 @237 ]
+"6053
+[v _CCP2Y CCP2Y `VEb  1 e 0 @236 ]
+"6897
+[v _T2CKPS0 T2CKPS0 `VEb  1 e 0 @144 ]
+"6899
+[v _T2CKPS1 T2CKPS1 `VEb  1 e 0 @145 ]
+"6919
+[v _TMR2ON TMR2ON `VEb  1 e 0 @146 ]
+"6963
+[v _TRISC1 TRISC1 `VEb  1 e 0 @1081 ]
+"6965
+[v _TRISC2 TRISC2 `VEb  1 e 0 @1082 ]
+"12 E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\pwm.c
+[v _freq freq `ul  1 e 4 0 ]
+"22 E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\main.c
+[v _main main `(v  1 e 0 0 ]
+{
+"41
+} 0
+"14 E:\Work\Embedded\Applications\PIC\XC\xc8_test.X\adc.c
+[v _Initialize Initialize `(v  1 e 0 0 ]
+{
+"37
+} 0
+"45
+[v _Get_Inputs Get_Inputs `(v  1 e 0 0 ]
+{
+"57
+} 0
+"81
+[v _Do_Outputs Do_Outputs `(v  1 e 0 0 ]
+{
+"86
+} 0
+"66
+[v _Decide Decide `(v  1 e 0 0 ]
+{
+"72
+} 0
