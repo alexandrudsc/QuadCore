@@ -1,15 +1,5 @@
 
-# 1 "pwm.c"
-
-# 26 "C:\Program Files (x86)\Microchip\xc8\v1.35\include\htc.h"
-extern const char __xc8_OPTIM_SPEED;
-
-extern double __fpnormalize(double);
-
-
-# 13 "C:\Program Files (x86)\Microchip\xc8\v1.35\include\xc8debug.h"
-#pragma intrinsic(__builtin_software_breakpoint)
-extern void __builtin_software_breakpoint(void);
+# 1 "i2c.c"
 
 # 49 "C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic16f917.h"
 extern volatile unsigned char INDF @ 0x000;
@@ -3097,108 +3087,58 @@ extern volatile __bit nW @ (((unsigned) &SSPSTAT)*8) + 2;
 
 extern volatile __bit nWRITE @ (((unsigned) &SSPSTAT)*8) + 2;
 
+# 26 "i2c.h"
+void i2c_init_slave();
+void i2c_init_master();
+void i2c_master_start();
+void i2c_write_byte();
+unsigned char i2c_read_byte();
 
-# 27 "C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic.h"
-#pragma intrinsic(__nop)
-extern void __nop(void);
-
-# 76
-extern unsigned int flash_read(unsigned short addr);
-
-# 41 "C:\Program Files (x86)\Microchip\xc8\v1.35\include\eeprom_routines.h"
-extern void eeprom_write(unsigned char addr, unsigned char value);
-extern unsigned char eeprom_read(unsigned char addr);
-extern void eecpymem(volatile unsigned char *to, __eeprom unsigned char *from, unsigned char size);
-extern void memcpyee(__eeprom unsigned char *to, const unsigned char *from, unsigned char size);
+# 14 "i2c.c"
+char input_buff[20];
 
 
-# 149 "C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic.h"
-#pragma intrinsic(_delay)
-extern __nonreentrant void _delay(unsigned long);
+void i2c_init_slave()
+{
 
-# 184
-extern unsigned char __resetbits;
-extern __bit __powerdown;
-extern __bit __timeout;
+TRISC7 = 1;
+TRISC6 = 1;
 
-# 36 "pwm.h"
-void PWM1_Init(unsigned long freq);
-void PWM2_Init(unsigned long freq);
 
-void PWM1_Start();
-void PWM2_Start();
+SSPADD = 0x10 << 1;
 
-void PWM1_Stop();
-void PWM2_Stop();
 
-void PWM2_Duty(unsigned int duty);
-void PWM1_Duty(unsigned int duty);
+SSPCON = 0x36;
 
-# 12 "pwm.c"
-unsigned long freq;
 
-void PWM1_Init(unsigned long fre) {
-PR2 = (4000000 / (fre * 4 * 4)) - 1;
-freq = fre;
-}
-
-void PWM2_Init(unsigned long fre) {
-PR2 = (4000000 / (fre * 4 * 4)) - 1;
-freq = fre;
-}
-
-void PWM1_Duty(unsigned int duty) {
-
-if (duty > 1023)
-duty = 1023;
-
-CCP1X = duty & 2;
-CCP1Y = duty & 1;
-CCPR1L = duty >> 2;
+GIE = 1;
+PEIE = 1;
+SSPIE = 1;
 
 }
 
-void PWM2_Duty(unsigned int duty) {
-if (duty > 1023)
-duty = 1023;
 
-CCP2X = duty & 2;
-CCP2Y = duty & 1;
-CCPR2L = duty >> 2;
-
+void i2c_init_master()
+{
 
 }
 
-void PWM1_Start() {
-CCP1M3 = 1;
-CCP1M2 = 1;
 
-# 59
-TMR2ON = 1;
-TRISC2 = 0;
+void i2c_master_start()
+{
+
 }
 
-void PWM1_Stop() {
-CCP1M3 = 0;
-CCP1M2 = 0;
+void i2c_write_byte()
+{
+
 }
 
-void PWM2_Start() {
-CCP2M3 = 1;
-CCP2M2 = 1;
-
-
-
-
-T2CKPS0 = 1;
-T2CKPS1 = 0;
-
-# 81
-TMR2ON = 1;
-TRISC1 = 0;
+unsigned char i2c_read_byte()
+{
+if (!SSPIF){
+SSPIF = 0;
+}
+return SSPBUF;
 }
 
-void PWM2_Stop() {
-CCP2M3 = 0;
-CCP2M2 = 0;
-}

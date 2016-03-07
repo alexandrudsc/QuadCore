@@ -3,14 +3,8 @@
 [d edition pro ]
 [d chip 16F917 ]
 [d frameptr 6 ]
-"14 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\adc.c
+"13 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\adc.c
 [v _init_adc init_adc `(v  1 e 0 0 ]
-"45
-[v _get_inputs get_inputs `(v  1 e 0 0 ]
-"66
-[v _decide decide `(v  1 e 0 0 ]
-"89
-[v _get_adc_value get_adc_value `(ui  1 e 2 0 ]
 "62 C:\Program Files (x86)\Microchip\xc8\v1.35\sources\common\float.c
 [v ___ftpack __ftpack `(f  1 e 3 0 ]
 "86 C:\Program Files (x86)\Microchip\xc8\v1.35\sources\common\ftadd.c
@@ -21,38 +15,50 @@
 [v ___ftmul __ftmul `(f  1 e 3 0 ]
 "44 C:\Program Files (x86)\Microchip\xc8\v1.35\sources\common\fttol.c
 [v ___fttol __fttol `(l  1 e 4 0 ]
+"27 C:\Program Files (x86)\Microchip\xc8\v1.35\sources\common\lbtoft.c
+[v ___lbtoft __lbtoft `(f  1 e 3 0 ]
 "6 C:\Program Files (x86)\Microchip\xc8\v1.35\sources\common\lldiv.c
 [v ___lldiv __lldiv `(ul  1 e 4 0 ]
-"28 C:\Program Files (x86)\Microchip\xc8\v1.35\sources\common\lwtoft.c
-[v ___lwtoft __lwtoft `(f  1 e 3 0 ]
 "6 C:\Program Files (x86)\Microchip\xc8\v1.35\sources\pic\eeprom.c
 [v _eecpymem eecpymem `(v  1 e 0 0 ]
 "24
 [v _memcpyee memcpyee `(v  1 e 0 0 ]
-"22 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\main.c
+"17 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\i2c.c
+[v _i2c_init_slave i2c_init_slave `(v  1 e 0 0 ]
+"53
+[v _i2c_read_byte i2c_read_byte `(uc  1 e 1 0 ]
+"28 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\main.c
 [v _main main `(v  1 e 0 0 ]
-"19 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\pwm.c
-[v _PWM2_Init PWM2_Init `(v  1 e 0 0 ]
-"35
-[v _PWM2_Duty PWM2_Duty `(v  1 e 0 0 ]
-"68
-[v _PWM2_Start PWM2_Start `(v  1 e 0 0 ]
+"55
+[v _ISR_Handler ISR_Handler `II(v  1 e 0 0 ]
+"41 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\pwm.c
+[v _PWM2_init PWM2_init `(v  1 e 0 0 ]
+"63
+[v _PWM2_duty PWM2_duty `(v  1 e 0 0 ]
+"76
+[v _PWM2_duty_percent PWM2_duty_percent `(v  1 e 0 0 ]
+"105
+[v _PWM2_start PWM2_start `(v  1 e 0 0 ]
 "11 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\adc.c
-[v _LED_Output LED_Output `ui  1 e 2 0 ]
+[v _LED_output LED_output `ui  1 e 2 0 ]
 "343 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic16f917.h
 [v _PORTD PORTD `VEuc  1 e 1 @8 ]
+"822
+[v _SSPBUF SSPBUF `VEuc  1 e 1 @19 ]
+"828
+[v _SSPCON SSPCON `VEuc  1 e 1 @20 ]
 "903
 [v _CCPR1L CCPR1L `VEuc  1 e 1 @21 ]
 "1084
 [v _CCPR2L CCPR2L `VEuc  1 e 1 @27 ]
-[s S97 . 1 `uc 1 ADON 1 0 :1:0 
+[s S103 . 1 `uc 1 ADON 1 0 :1:0 
 `uc 1 GO_nDONE 1 0 :1:1 
 `uc 1 CHS 1 0 :3:2 
 `uc 1 VCFG 1 0 :2:5 
 `uc 1 ADFM 1 0 :1:7 
 ]
 "1190
-[s S103 . 1 `uc 1 . 1 0 :1:0 
+[s S109 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 nDONE 1 0 :1:1 
 `uc 1 CHS0 1 0 :1:2 
 `uc 1 CHS1 1 0 :1:3 
@@ -60,17 +66,17 @@
 `uc 1 VCFG0 1 0 :1:5 
 `uc 1 VCFG1 1 0 :1:6 
 ]
-[s S111 . 1 `uc 1 . 1 0 :1:0 
+[s S117 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO_DONE 1 0 :1:1 
 ]
-[s S114 . 1 `uc 1 . 1 0 :1:0 
+[s S120 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO 1 0 :1:1 
 ]
-[u S117 . 1 `S97 1 . 1 0 `S103 1 . 1 0 `S111 1 . 1 0 `S114 1 . 1 0 ]
-[v _ADCON0bits ADCON0bits `VES117  1 e 1 @31 ]
+[u S123 . 1 `S103 1 . 1 0 `S109 1 . 1 0 `S117 1 . 1 0 `S120 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES123  1 e 1 @31 ]
 "1328
 [v _TRISA TRISA `VEuc  1 e 1 @133 ]
-[s S53 . 1 `uc 1 TRISB0 1 0 :1:0 
+[s S59 . 1 `uc 1 TRISB0 1 0 :1:0 
 `uc 1 TRISB1 1 0 :1:1 
 `uc 1 TRISB2 1 0 :1:2 
 `uc 1 TRISB3 1 0 :1:3 
@@ -80,27 +86,31 @@
 `uc 1 TRISB7 1 0 :1:7 
 ]
 "1406
-[u S62 . 1 `S53 1 . 1 0 ]
-[v _TRISBbits TRISBbits `VES62  1 e 1 @134 ]
+[u S68 . 1 `S59 1 . 1 0 ]
+[v _TRISBbits TRISBbits `VES68  1 e 1 @134 ]
 "1511
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
 "1876
 [v _ANSEL ANSEL `VEuc  1 e 1 @145 ]
 "1995
 [v _PR2 PR2 `VEuc  1 e 1 @146 ]
+"2001
+[v _SSPADD SSPADD `VEuc  1 e 1 @147 ]
 "2798
 [v _ADRESL ADRESL `VEuc  1 e 1 @158 ]
-[s S77 . 1 `uc 1 . 1 0 :4:0 
+[s S83 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 ADCS 1 0 :3:4 
 ]
 "2821
-[s S80 . 1 `uc 1 . 1 0 :4:0 
+[s S86 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 ADCS0 1 0 :1:4 
 `uc 1 ADCS1 1 0 :1:5 
 `uc 1 ADCS2 1 0 :1:6 
 ]
-[u S85 . 1 `S77 1 . 1 0 `S80 1 . 1 0 ]
-[v _ADCON1bits ADCON1bits `VES85  1 e 1 @159 ]
+[u S91 . 1 `S83 1 . 1 0 `S86 1 . 1 0 ]
+[v _ADCON1bits ADCON1bits `VES91  1 e 1 @159 ]
+"5961
+[v _ADIF ADIF `VEb  1 e 0 @102 ]
 "6031
 [v _CCP1M2 CCP1M2 `VEb  1 e 0 @186 ]
 "6033
@@ -109,6 +119,8 @@
 [v _CCP1X CCP1X `VEb  1 e 0 @189 ]
 "6037
 [v _CCP1Y CCP1Y `VEb  1 e 0 @188 ]
+"6041
+[v _CCP2IF CCP2IF `VEb  1 e 0 @104 ]
 "6047
 [v _CCP2M2 CCP2M2 `VEb  1 e 0 @234 ]
 "6049
@@ -117,6 +129,14 @@
 [v _CCP2X CCP2X `VEb  1 e 0 @237 ]
 "6053
 [v _CCP2Y CCP2Y `VEb  1 e 0 @236 ]
+"6155
+[v _GIE GIE `VEb  1 e 0 @95 ]
+"6247
+[v _PEIE PEIE `VEb  1 e 0 @94 ]
+"6853
+[v _SSPIE SSPIE `VEb  1 e 0 @1123 ]
+"6855
+[v _SSPIF SSPIF `VEb  1 e 0 @99 ]
 "6897
 [v _T2CKPS0 T2CKPS0 `VEb  1 e 0 @144 ]
 "6899
@@ -127,80 +147,107 @@
 [v _TRISC1 TRISC1 `VEb  1 e 0 @1081 ]
 "6965
 [v _TRISC2 TRISC2 `VEb  1 e 0 @1082 ]
-"12 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\pwm.c
+"6973
+[v _TRISC6 TRISC6 `VEb  1 e 0 @1086 ]
+"6975
+[v _TRISC7 TRISC7 `VEb  1 e 0 @1087 ]
+"26 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\main.c
+[v _duty duty `VEuc  1 e 1 0 ]
+"24 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\pwm.c
 [v _freq freq `ul  1 e 4 0 ]
-"22 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\main.c
+"28 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\main.c
 [v _main main `(v  1 e 0 0 ]
 {
-"24
-[v main@duty duty `ui  1 a 2 48 ]
-[v main@adc_value adc_value `ui  1 a 2 46 ]
-"43
+"52
 } 0
-"14 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\adc.c
+"13 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\adc.c
 [v _init_adc init_adc `(v  1 e 0 0 ]
 {
-"37
+"36
 } 0
-"45
-[v _get_inputs get_inputs `(v  1 e 0 0 ]
+"17 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\i2c.c
+[v _i2c_init_slave i2c_init_slave `(v  1 e 0 0 ]
 {
-"57
+"34
 } 0
-"89
-[v _get_adc_value get_adc_value `(ui  1 e 2 0 ]
+"105 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\pwm.c
+[v _PWM2_start PWM2_start `(v  1 e 0 0 ]
 {
-"92
+"120
 } 0
-"66
-[v _decide decide `(v  1 e 0 0 ]
+"41
+[v _PWM2_init PWM2_init `(v  1 e 0 0 ]
 {
-"73
+[v PWM2_init@fre fre `ul  1 p 4 13 ]
+"44
 } 0
-"28 C:\Program Files (x86)\Microchip\xc8\v1.35\sources\common\lwtoft.c
-[v ___lwtoft __lwtoft `(f  1 e 3 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.35\sources\common\lldiv.c
+[v ___lldiv __lldiv `(ul  1 e 4 0 ]
 {
-[v ___lwtoft@c c `ui  1 p 2 8 ]
+"11
+[v ___lldiv@quotient quotient `ul  1 a 4 8 ]
+"12
+[v ___lldiv@counter counter `uc  1 a 1 12 ]
+"6
+[v ___lldiv@divisor divisor `ul  1 p 4 0 ]
+[v ___lldiv@dividend dividend `ul  1 p 4 4 ]
 "31
+} 0
+"76 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\pwm.c
+[v _PWM2_duty_percent PWM2_duty_percent `(v  1 e 0 0 ]
+{
+[v PWM2_duty_percent@duty duty `uc  1 a 1 wreg ]
+[v PWM2_duty_percent@duty duty `uc  1 a 1 wreg ]
+[v PWM2_duty_percent@duty duty `uc  1 a 1 6 ]
+"78
+} 0
+"27 C:\Program Files (x86)\Microchip\xc8\v1.35\sources\common\lbtoft.c
+[v ___lbtoft __lbtoft `(f  1 e 3 0 ]
+{
+[v ___lbtoft@c c `uc  1 a 1 wreg ]
+[v ___lbtoft@c c `uc  1 a 1 wreg ]
+"29
+[v ___lbtoft@c c `uc  1 a 1 5 ]
+"30
 } 0
 "44 C:\Program Files (x86)\Microchip\xc8\v1.35\sources\common\fttol.c
 [v ___fttol __fttol `(l  1 e 4 0 ]
 {
 "47
-[v ___fttol@lval lval `ul  1 a 4 41 ]
+[v ___fttol@lval lval `ul  1 a 4 56 ]
 "46
-[v ___fttol@exp1 exp1 `uc  1 a 1 45 ]
-[v ___fttol@sign1 sign1 `uc  1 a 1 40 ]
+[v ___fttol@exp1 exp1 `uc  1 a 1 60 ]
+[v ___fttol@sign1 sign1 `uc  1 a 1 55 ]
 "44
-[v ___fttol@f1 f1 `f  1 p 3 32 ]
+[v ___fttol@f1 f1 `f  1 p 3 47 ]
 "73
 } 0
 "62 C:\Program Files (x86)\Microchip\xc8\v1.35\sources\common\ftmul.c
 [v ___ftmul __ftmul `(f  1 e 3 0 ]
 {
 "65
-[v ___ftmul@f3_as_product f3_as_product `um  1 a 3 27 ]
+[v ___ftmul@f3_as_product f3_as_product `um  1 a 3 42 ]
 "64
-[v ___ftmul@sign sign `uc  1 a 1 31 ]
-[v ___ftmul@cntr cntr `uc  1 a 1 30 ]
-[v ___ftmul@exp exp `uc  1 a 1 26 ]
+[v ___ftmul@sign sign `uc  1 a 1 46 ]
+[v ___ftmul@cntr cntr `uc  1 a 1 45 ]
+[v ___ftmul@exp exp `uc  1 a 1 41 ]
 "62
-[v ___ftmul@f1 f1 `f  1 p 3 16 ]
-[v ___ftmul@f2 f2 `f  1 p 3 19 ]
+[v ___ftmul@f1 f1 `f  1 p 3 31 ]
+[v ___ftmul@f2 f2 `f  1 p 3 34 ]
 "157
 } 0
 "56 C:\Program Files (x86)\Microchip\xc8\v1.35\sources\common\ftdiv.c
 [v ___ftdiv __ftdiv `(f  1 e 3 0 ]
 {
 "60
-[v ___ftdiv@f3 f3 `f  1 a 3 11 ]
+[v ___ftdiv@f3 f3 `f  1 a 3 26 ]
 "59
-[v ___ftdiv@sign sign `uc  1 a 1 15 ]
-[v ___ftdiv@exp exp `uc  1 a 1 14 ]
-[v ___ftdiv@cntr cntr `uc  1 a 1 10 ]
+[v ___ftdiv@sign sign `uc  1 a 1 30 ]
+[v ___ftdiv@exp exp `uc  1 a 1 29 ]
+[v ___ftdiv@cntr cntr `uc  1 a 1 25 ]
 "56
-[v ___ftdiv@f2 f2 `f  1 p 3 0 ]
-[v ___ftdiv@f1 f1 `f  1 p 3 3 ]
+[v ___ftdiv@f2 f2 `f  1 p 3 15 ]
+[v ___ftdiv@f1 f1 `f  1 p 3 18 ]
 "86
 } 0
 "62 C:\Program Files (x86)\Microchip\xc8\v1.35\sources\common\float.c
@@ -211,32 +258,19 @@
 [v ___ftpack@sign sign `uc  1 p 1 4 ]
 "86
 } 0
-"68 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\pwm.c
-[v _PWM2_Start PWM2_Start `(v  1 e 0 0 ]
+"63 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\pwm.c
+[v _PWM2_duty PWM2_duty `(v  1 e 0 0 ]
 {
-"83
+[v PWM2_duty@duty duty `ui  1 p 2 61 ]
+"73
 } 0
-"19
-[v _PWM2_Init PWM2_Init `(v  1 e 0 0 ]
+"55 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\main.c
+[v _ISR_Handler ISR_Handler `II(v  1 e 0 0 ]
 {
-[v PWM2_Init@fre fre `ul  1 p 4 0 ]
-"22
+"79
 } 0
-"6 C:\Program Files (x86)\Microchip\xc8\v1.35\sources\common\lldiv.c
-[v ___lldiv __lldiv `(ul  1 e 4 0 ]
+"53 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\i2c.c
+[v _i2c_read_byte i2c_read_byte `(uc  1 e 1 0 ]
 {
-"11
-[v ___lldiv@quotient quotient `ul  1 a 4 9 ]
-"12
-[v ___lldiv@counter counter `uc  1 a 1 13 ]
-"6
-[v ___lldiv@divisor divisor `ul  1 p 4 0 ]
-[v ___lldiv@dividend dividend `ul  1 p 4 4 ]
-"31
-} 0
-"35 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\pwm.c
-[v _PWM2_Duty PWM2_Duty `(v  1 e 0 0 ]
-{
-[v PWM2_Duty@duty duty `ui  1 p 2 0 ]
-"44
+"59
 } 0

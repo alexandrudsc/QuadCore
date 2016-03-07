@@ -3130,8 +3130,7 @@ void timing(void);
 unsigned get_adc_value();
 
 # 11 "adc.c"
-unsigned LED_Output = 0;
-
+unsigned LED_output = 0;
 
 void init_adc(void)
 {
@@ -3158,7 +3157,7 @@ ADCON0bits.ADFM = 1;
 ADCON0bits.ADON = 1;
 }
 
-# 45
+# 44
 void get_inputs(void)
 {
 
@@ -3173,30 +3172,28 @@ ADCON0bits.GO_nDONE = 1;
 while(ADCON0bits.GO_nDONE == 1);
 }
 
-# 66
+# 65
 void decide(void)
 {
 
 
-LED_Output = ADRESL;
-
-
+LED_output = ADRESL;
 }
 
-# 82
+# 79
 void do_output(void)
 {
 
 
-PORTD = LED_Output;
+PORTD = LED_output;
 }
 
 unsigned get_adc_value()
 {
-return LED_Output;
+return LED_output;
 }
 
-# 100
+# 97
 void timing(void)
 
 {

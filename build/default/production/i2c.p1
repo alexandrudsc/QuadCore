@@ -1,57 +1,22 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"1395 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic16f917.h
-[s S55 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S55 . TRISB0 TRISB1 TRISB2 TRISB3 TRISB4 TRISB5 TRISB6 TRISB7 ]
-"1394
-[u S54 `S55 1 ]
-[n S54 . . ]
-"1406
-[v _TRISBbits `VS54 ~T0 @X0 0 e@134 ]
-"1876
-[v _ANSEL `Vuc ~T0 @X0 0 e@145 ]
-"1328
-[v _TRISA `Vuc ~T0 @X0 0 e@133 ]
-"1511
-[v _TRISD `Vuc ~T0 @X0 0 e@136 ]
-"2810
-[s S116 :4 `uc 1 :3 `uc 1 ]
-[n S116 . . ADCS ]
-"2814
-[s S117 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S117 . . ADCS0 ADCS1 ADCS2 ]
-"2809
-[u S115 `S116 1 `S117 1 ]
-[n S115 . . . ]
-"2821
-[v _ADCON1bits `VS115 ~T0 @X0 0 e@159 ]
-"1165
-[s S45 :1 `uc 1 :1 `uc 1 :3 `uc 1 :2 `uc 1 :1 `uc 1 ]
-[n S45 . ADON GO_nDONE CHS VCFG ADFM ]
-"1172
-[s S46 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S46 . . nDONE CHS0 CHS1 CHS2 VCFG0 VCFG1 ]
-"1181
-[s S47 :1 `uc 1 :1 `uc 1 ]
-[n S47 . . GO_DONE ]
-"1185
-[s S48 :1 `uc 1 :1 `uc 1 ]
-[n S48 . . GO ]
-"1164
-[u S44 `S45 1 `S46 1 `S47 1 `S48 1 ]
-[n S44 . . . . . ]
-"1190
-[v _ADCON0bits `VS44 ~T0 @X0 0 e@31 ]
-[v F2607 `(v ~T0 @X0 1 tf1`ul ]
-"150 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic.h
-[v __delay `JF2607 ~T0 @X0 0 e ]
-[p i __delay ]
-"2798 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic16f917.h
-[v _ADRESL `Vuc ~T0 @X0 0 e@158 ]
-"343
-[v _PORTD `Vuc ~T0 @X0 0 e@8 ]
-[; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
-[; ;htc.h: 28: extern double __fpnormalize(double);
-[; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
+"6975 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic16f917.h
+[v _TRISC7 `Vb ~T0 @X0 0 e@1087 ]
+"6973
+[v _TRISC6 `Vb ~T0 @X0 0 e@1086 ]
+"2001
+[v _SSPADD `Vuc ~T0 @X0 0 e@147 ]
+"828
+[v _SSPCON `Vuc ~T0 @X0 0 e@20 ]
+"6155
+[v _GIE `Vb ~T0 @X0 0 e@95 ]
+"6247
+[v _PEIE `Vb ~T0 @X0 0 e@94 ]
+"6853
+[v _SSPIE `Vb ~T0 @X0 0 e@1123 ]
+"6855
+[v _SSPIF `Vb ~T0 @X0 0 e@99 ]
+"822
+[v _SSPBUF `Vuc ~T0 @X0 0 e@19 ]
 [; ;pic16f917.h: 49: extern volatile unsigned char INDF @ 0x000;
 "51 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic16f917.h
 [; ;pic16f917.h: 51: asm("INDF equ 00h");
@@ -2307,147 +2272,107 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic16f917.h: 7125: extern volatile __bit nTX8 @ (((unsigned) &TXSTA)*8) + 6;
 [; ;pic16f917.h: 7127: extern volatile __bit nW @ (((unsigned) &SSPSTAT)*8) + 2;
 [; ;pic16f917.h: 7129: extern volatile __bit nWRITE @ (((unsigned) &SSPSTAT)*8) + 2;
-[; ;pic.h: 28: extern void __nop(void);
-[; ;pic.h: 76: extern unsigned int flash_read(unsigned short addr);
-[; ;eeprom_routines.h: 41: extern void eeprom_write(unsigned char addr, unsigned char value);
-[; ;eeprom_routines.h: 42: extern unsigned char eeprom_read(unsigned char addr);
-[; ;eeprom_routines.h: 43: extern void eecpymem(volatile unsigned char *to, __eeprom unsigned char *from, unsigned char size);
-[; ;eeprom_routines.h: 44: extern void memcpyee(__eeprom unsigned char *to, const unsigned char *from, unsigned char size);
-[; ;pic.h: 150: extern __nonreentrant void _delay(unsigned long);
-[; ;pic.h: 184: extern unsigned char __resetbits;
-[; ;pic.h: 185: extern __bit __powerdown;
-[; ;pic.h: 186: extern __bit __timeout;
-[; ;adc.h: 36: void init_adc(void);
-[; ;adc.h: 37: void get_inputs(void);
-[; ;adc.h: 38: void decide(void);
-[; ;adc.h: 39: void do_outputs(void);
-[; ;adc.h: 40: void timing(void);
-[; ;adc.h: 41: unsigned get_adc_value();
-"11 adc.c
-[v _LED_Output `ui ~T0 @X0 1 e ]
-[i _LED_Output
--> -> 0 `i `ui
-]
-[; ;adc.c: 11: unsigned LED_Output = 0;
-"14
-[v _init_adc `(v ~T0 @X0 1 ef ]
-"15
-{
-[; ;adc.c: 14: void init_adc(void)
-[; ;adc.c: 15: {
-[e :U _init_adc ]
-[f ]
-[; ;adc.c: 18: TRISBbits.TRISB4 = 1;
+[; ;i2c.h: 26: void i2c_init_slave();
+[; ;i2c.h: 27: void i2c_init_master();
+[; ;i2c.h: 28: void i2c_master_start();
+[; ;i2c.h: 29: void i2c_write_byte();
+[; ;i2c.h: 30: unsigned char i2c_read_byte();
+"14 i2c.c
+[v _input_buff `uc ~T0 @X0 -> 20 `i e ]
+[; ;i2c.c: 14: char input_buff[20];
+"17
+[v _i2c_init_slave `(v ~T0 @X0 1 ef ]
 "18
-[e = . . _TRISBbits 0 4 -> -> 1 `i `uc ]
-[; ;adc.c: 20: ANSEL = 0x01;
+{
+[; ;i2c.c: 17: void i2c_init_slave()
+[; ;i2c.c: 18: {
+[e :U _i2c_init_slave ]
+[f ]
+[; ;i2c.c: 20: TRISC7 = 1;
 "20
-[e = _ANSEL -> -> 1 `i `uc ]
-[; ;adc.c: 21: TRISA = 0xFF;
+[e = _TRISC7 -> -> 1 `i `b ]
+[; ;i2c.c: 21: TRISC6 = 1;
 "21
-[e = _TRISA -> -> 255 `i `uc ]
-[; ;adc.c: 23: TRISD = 0x00;
-"23
-[e = _TRISD -> -> 0 `i `uc ]
-[; ;adc.c: 27: ADCON1bits.ADCS = 0b11;
+[e = _TRISC6 -> -> 1 `i `b ]
+[; ;i2c.c: 24: SSPADD = 0x10 << 1;
+"24
+[e = _SSPADD -> << -> 16 `i -> 1 `i `uc ]
+[; ;i2c.c: 27: SSPCON = 0x36;
 "27
-[e = . . _ADCON1bits 0 1 -> -> 3 `i `uc ]
-[; ;adc.c: 30: ADCON0bits.VCFG = 0;
+[e = _SSPCON -> -> 54 `i `uc ]
+[; ;i2c.c: 30: GIE = 1;
 "30
-[e = . . _ADCON0bits 0 3 -> -> 0 `i `uc ]
-[; ;adc.c: 32: ADCON0bits.CHS = 0b000;
+[e = _GIE -> -> 1 `i `b ]
+[; ;i2c.c: 31: PEIE = 1;
+"31
+[e = _PEIE -> -> 1 `i `b ]
+[; ;i2c.c: 32: SSPIE = 1;
 "32
-[e = . . _ADCON0bits 0 2 -> -> 0 `i `uc ]
-[; ;adc.c: 34: ADCON0bits.ADFM = 1;
+[e = _SSPIE -> -> 1 `i `b ]
+[; ;i2c.c: 34: }
 "34
-[e = . . _ADCON0bits 0 4 -> -> 1 `i `uc ]
-[; ;adc.c: 36: ADCON0bits.ADON = 1;
-"36
-[e = . . _ADCON0bits 0 0 -> -> 1 `i `uc ]
-[; ;adc.c: 37: }
-"37
 [e :UE 209 ]
 }
-"45
-[v _get_inputs `(v ~T0 @X0 1 ef ]
-"46
+"37
+[v _i2c_init_master `(v ~T0 @X0 1 ef ]
+"38
 {
-[; ;adc.c: 45: void get_inputs(void)
-[; ;adc.c: 46: {
-[e :U _get_inputs ]
+[; ;i2c.c: 37: void i2c_init_master()
+[; ;i2c.c: 38: {
+[e :U _i2c_init_master ]
 [f ]
-[; ;adc.c: 49: _delay((unsigned long)((1)*(4000000/4000.0)));
-"49
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-[; ;adc.c: 51: ADCON0bits.GO_nDONE = 1;
-"51
-[e = . . _ADCON0bits 0 1 -> -> 1 `i `uc ]
-[; ;adc.c: 56: while(ADCON0bits.GO_nDONE == 1);
-"56
-[e $U 211  ]
-[e :U 212 ]
-[e :U 211 ]
-[e $ == -> . . _ADCON0bits 0 1 `i -> 1 `i 212  ]
-[e :U 213 ]
-[; ;adc.c: 57: }
-"57
+[; ;i2c.c: 40: }
+"40
 [e :UE 210 ]
 }
-"66
-[v _decide `(v ~T0 @X0 1 ef ]
-"67
+"43
+[v _i2c_master_start `(v ~T0 @X0 1 ef ]
+"44
 {
-[; ;adc.c: 66: void decide(void)
-[; ;adc.c: 67: {
-[e :U _decide ]
+[; ;i2c.c: 43: void i2c_master_start()
+[; ;i2c.c: 44: {
+[e :U _i2c_master_start ]
 [f ]
-[; ;adc.c: 70: LED_Output = ADRESL;
-"70
-[e = _LED_Output -> _ADRESL `ui ]
-[; ;adc.c: 73: }
-"73
-[e :UE 214 ]
+[; ;i2c.c: 46: }
+"46
+[e :UE 211 ]
 }
-"82
-[v _do_output `(v ~T0 @X0 1 ef ]
-"83
+"48
+[v _i2c_write_byte `(v ~T0 @X0 1 ef ]
+"49
 {
-[; ;adc.c: 82: void do_output(void)
-[; ;adc.c: 83: {
-[e :U _do_output ]
+[; ;i2c.c: 48: void i2c_write_byte()
+[; ;i2c.c: 49: {
+[e :U _i2c_write_byte ]
 [f ]
-[; ;adc.c: 86: PORTD = LED_Output;
-"86
-[e = _PORTD -> _LED_Output `uc ]
-[; ;adc.c: 87: }
-"87
-[e :UE 215 ]
+[; ;i2c.c: 51: }
+"51
+[e :UE 212 ]
 }
-"89
-[v _get_adc_value `(ui ~T0 @X0 1 ef ]
-"90
+"53
+[v _i2c_read_byte `(uc ~T0 @X0 1 ef ]
+"54
 {
-[; ;adc.c: 89: unsigned get_adc_value()
-[; ;adc.c: 90: {
-[e :U _get_adc_value ]
+[; ;i2c.c: 53: unsigned char i2c_read_byte()
+[; ;i2c.c: 54: {
+[e :U _i2c_read_byte ]
 [f ]
-[; ;adc.c: 91: return LED_Output;
-"91
-[e ) _LED_Output ]
-[e $UE 216  ]
-[; ;adc.c: 92: }
-"92
-[e :UE 216 ]
+[; ;i2c.c: 55: if (!SSPIF){
+"55
+[e $ ! ! _SSPIF 214  ]
+{
+[; ;i2c.c: 56: SSPIF = 0;
+"56
+[e = _SSPIF -> -> 0 `i `b ]
+"57
 }
-"100
-[v _timing `(v ~T0 @X0 1 ef ]
-"102
-{
-[; ;adc.c: 100: void timing(void)
-[; ;adc.c: 102: {
-[e :U _timing ]
-[f ]
-[; ;adc.c: 104: }
-"104
-[e :UE 217 ]
+[e :U 214 ]
+[; ;i2c.c: 57: }
+[; ;i2c.c: 58: return SSPBUF;
+"58
+[e ) _SSPBUF ]
+[e $UE 213  ]
+[; ;i2c.c: 59: }
+"59
+[e :UE 213 ]
 }

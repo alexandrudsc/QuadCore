@@ -2299,184 +2299,213 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 184: extern unsigned char __resetbits;
 [; ;pic.h: 185: extern __bit __powerdown;
 [; ;pic.h: 186: extern __bit __timeout;
-[; ;pwm.h: 36: void PWM1_Init(unsigned long freq);
-[; ;pwm.h: 37: void PWM2_Init(unsigned long freq);
-[; ;pwm.h: 39: void PWM1_Start();
-[; ;pwm.h: 40: void PWM2_Start();
-[; ;pwm.h: 42: void PWM1_Stop();
-[; ;pwm.h: 43: void PWM2_Stop();
-[; ;pwm.h: 45: void PWM2_Duty(unsigned int duty);
-[; ;pwm.h: 46: void PWM1_Duty(unsigned int duty);
-"12 pwm.c
+[; ;pwm.h: 15: void PWM1_init(unsigned long freq);
+[; ;pwm.h: 16: void PWM2_init(unsigned long freq);
+[; ;pwm.h: 18: void PWM1_start();
+[; ;pwm.h: 19: void PWM2_start();
+[; ;pwm.h: 21: void PWM1_stop();
+[; ;pwm.h: 22: void PWM2_stop();
+[; ;pwm.h: 24: void PWM2_duty(unsigned int duty);
+[; ;pwm.h: 25: void PWM1_duty(unsigned int duty);
+[; ;pwm.h: 27: void PWM2_duty_percent(unsigned char duty);
+"24 pwm.c
 [v _freq `ul ~T0 @X0 1 e ]
-[; ;pwm.c: 12: unsigned long freq;
-"14
-[v _PWM1_Init `(v ~T0 @X0 1 ef1`ul ]
+[; ;pwm.c: 24: unsigned long freq;
+"35
+[v _PWM1_init `(v ~T0 @X0 1 ef1`ul ]
 {
-[; ;pwm.c: 14: void PWM1_Init(unsigned long fre) {
-[e :U _PWM1_Init ]
+[; ;pwm.c: 35: void PWM1_init(unsigned long fre) {
+[e :U _PWM1_init ]
 [v _fre `ul ~T0 @X0 1 r1 ]
 [f ]
-[; ;pwm.c: 15: PR2 = (4000000 / (fre * 4 * 4)) - 1;
-"15
+[; ;pwm.c: 36: PR2 = (4000000 / (fre * 4 * 4)) - 1;
+"36
 [e = _PR2 -> - / -> -> 4000000 `l `ul * * _fre -> -> -> 4 `i `l `ul -> -> -> 4 `i `l `ul -> -> -> 1 `i `l `ul `uc ]
-[; ;pwm.c: 16: freq = fre;
-"16
+[; ;pwm.c: 37: freq = fre;
+"37
 [e = _freq _fre ]
-[; ;pwm.c: 17: }
-"17
+[; ;pwm.c: 38: }
+"38
 [e :UE 209 ]
 }
-"19
-[v _PWM2_Init `(v ~T0 @X0 1 ef1`ul ]
+"41
+[v _PWM2_init `(v ~T0 @X0 1 ef1`ul ]
 {
-[; ;pwm.c: 19: void PWM2_Init(unsigned long fre) {
-[e :U _PWM2_Init ]
+[; ;pwm.c: 41: void PWM2_init(unsigned long fre) {
+[e :U _PWM2_init ]
 [v _fre `ul ~T0 @X0 1 r1 ]
 [f ]
-[; ;pwm.c: 20: PR2 = (4000000 / (fre * 4 * 4)) - 1;
-"20
+[; ;pwm.c: 42: PR2 = (4000000 / (fre * 4 * 4)) - 1;
+"42
 [e = _PR2 -> - / -> -> 4000000 `l `ul * * _fre -> -> -> 4 `i `l `ul -> -> -> 4 `i `l `ul -> -> -> 1 `i `l `ul `uc ]
-[; ;pwm.c: 21: freq = fre;
-"21
+[; ;pwm.c: 43: freq = fre;
+"43
 [e = _freq _fre ]
-[; ;pwm.c: 22: }
-"22
-[e :UE 210 ]
-}
-"24
-[v _PWM1_Duty `(v ~T0 @X0 1 ef1`ui ]
-{
-[; ;pwm.c: 24: void PWM1_Duty(unsigned int duty) {
-[e :U _PWM1_Duty ]
-[v _duty `ui ~T0 @X0 1 r1 ]
-[f ]
-[; ;pwm.c: 26: if (duty > 1023)
-"26
-[e $ ! > _duty -> -> 1023 `i `ui 212  ]
-[; ;pwm.c: 27: duty = 1023;
-"27
-[e = _duty -> -> 1023 `i `ui ]
-[e :U 212 ]
-[; ;pwm.c: 29: CCP1X = duty & 2;
-"29
-[e = _CCP1X -> & _duty -> -> 2 `i `ui `b ]
-[; ;pwm.c: 30: CCP1Y = duty & 1;
-"30
-[e = _CCP1Y -> & _duty -> -> 1 `i `ui `b ]
-[; ;pwm.c: 31: CCPR1L = duty >> 2;
-"31
-[e = _CCPR1L -> >> _duty -> 2 `i `uc ]
-[; ;pwm.c: 33: }
-"33
-[e :UE 211 ]
-}
-"35
-[v _PWM2_Duty `(v ~T0 @X0 1 ef1`ui ]
-{
-[; ;pwm.c: 35: void PWM2_Duty(unsigned int duty) {
-[e :U _PWM2_Duty ]
-[v _duty `ui ~T0 @X0 1 r1 ]
-[f ]
-[; ;pwm.c: 36: if (duty > 1023)
-"36
-[e $ ! > _duty -> -> 1023 `i `ui 214  ]
-[; ;pwm.c: 37: duty = 1023;
-"37
-[e = _duty -> -> 1023 `i `ui ]
-[e :U 214 ]
-[; ;pwm.c: 39: CCP2X = duty & 2;
-"39
-[e = _CCP2X -> & _duty -> -> 2 `i `ui `b ]
-[; ;pwm.c: 40: CCP2Y = duty & 1;
-"40
-[e = _CCP2Y -> & _duty -> -> 1 `i `ui `b ]
-[; ;pwm.c: 41: CCPR2L = duty >> 2;
-"41
-[e = _CCPR2L -> >> _duty -> 2 `i `uc ]
 [; ;pwm.c: 44: }
 "44
-[e :UE 213 ]
+[e :UE 210 ]
 }
-"46
-[v _PWM1_Start `(v ~T0 @X0 1 ef ]
+"51
+[v _PWM1_duty `(v ~T0 @X0 1 ef1`ui ]
 {
-[; ;pwm.c: 46: void PWM1_Start() {
-[e :U _PWM1_Start ]
+[; ;pwm.c: 51: void PWM1_duty(unsigned int duty) {
+[e :U _PWM1_duty ]
+[v _duty `ui ~T0 @X0 1 r1 ]
 [f ]
-[; ;pwm.c: 47: CCP1M3 = 1;
-"47
-[e = _CCP1M3 -> -> 1 `i `b ]
-[; ;pwm.c: 48: CCP1M2 = 1;
-"48
-[e = _CCP1M2 -> -> 1 `i `b ]
-[; ;pwm.c: 59: TMR2ON = 1;
+[; ;pwm.c: 54: if (duty > 1023)
+"54
+[e $ ! > _duty -> -> 1023 `i `ui 212  ]
+[; ;pwm.c: 55: duty = 1023;
+"55
+[e = _duty -> -> 1023 `i `ui ]
+[e :U 212 ]
+[; ;pwm.c: 56: if (duty < 0)
+"56
+[e $ ! < _duty -> -> 0 `i `ui 213  ]
+[; ;pwm.c: 57: duty = 0;
+"57
+[e = _duty -> -> 0 `i `ui ]
+[e :U 213 ]
+[; ;pwm.c: 58: CCP1X = duty & 2;
+"58
+[e = _CCP1X -> & _duty -> -> 2 `i `ui `b ]
+[; ;pwm.c: 59: CCP1Y = duty & 1;
 "59
-[e = _TMR2ON -> -> 1 `i `b ]
-[; ;pwm.c: 60: TRISC2 = 0;
+[e = _CCP1Y -> & _duty -> -> 1 `i `ui `b ]
+[; ;pwm.c: 60: CCPR1L = duty >> 2;
 "60
-[e = _TRISC2 -> -> 0 `i `b ]
+[e = _CCPR1L -> >> _duty -> 2 `i `uc ]
 [; ;pwm.c: 61: }
 "61
-[e :UE 215 ]
+[e :UE 211 ]
 }
 "63
-[v _PWM1_Stop `(v ~T0 @X0 1 ef ]
+[v _PWM2_duty `(v ~T0 @X0 1 ef1`ui ]
 {
-[; ;pwm.c: 63: void PWM1_Stop() {
-[e :U _PWM1_Stop ]
+[; ;pwm.c: 63: void PWM2_duty(unsigned int duty) {
+[e :U _PWM2_duty ]
+[v _duty `ui ~T0 @X0 1 r1 ]
 [f ]
-[; ;pwm.c: 64: CCP1M3 = 0;
-"64
-[e = _CCP1M3 -> -> 0 `i `b ]
-[; ;pwm.c: 65: CCP1M2 = 0;
+[; ;pwm.c: 65: if (duty > 1023)
 "65
-[e = _CCP1M2 -> -> 0 `i `b ]
-[; ;pwm.c: 66: }
+[e $ ! > _duty -> -> 1023 `i `ui 215  ]
+[; ;pwm.c: 66: duty = 1023;
 "66
-[e :UE 216 ]
-}
+[e = _duty -> -> 1023 `i `ui ]
+[e :U 215 ]
+[; ;pwm.c: 67: if (duty < 0)
+"67
+[e $ ! < _duty -> -> 0 `i `ui 216  ]
+[; ;pwm.c: 68: duty = 0;
 "68
-[v _PWM2_Start `(v ~T0 @X0 1 ef ]
-{
-[; ;pwm.c: 68: void PWM2_Start() {
-[e :U _PWM2_Start ]
-[f ]
-[; ;pwm.c: 69: CCP2M3 = 1;
-"69
-[e = _CCP2M3 -> -> 1 `i `b ]
-[; ;pwm.c: 70: CCP2M2 = 1;
+[e = _duty -> -> 0 `i `ui ]
+[e :U 216 ]
+[; ;pwm.c: 70: CCP2X = duty & 2;
 "70
-[e = _CCP2M2 -> -> 1 `i `b ]
-[; ;pwm.c: 75: T2CKPS0 = 1;
-"75
-[e = _T2CKPS0 -> -> 1 `i `b ]
-[; ;pwm.c: 76: T2CKPS1 = 0;
+[e = _CCP2X -> & _duty -> -> 2 `i `ui `b ]
+[; ;pwm.c: 71: CCP2Y = duty & 1;
+"71
+[e = _CCP2Y -> & _duty -> -> 1 `i `ui `b ]
+[; ;pwm.c: 72: CCPR2L = duty >> 2;
+"72
+[e = _CCPR2L -> >> _duty -> 2 `i `uc ]
+[; ;pwm.c: 73: }
+"73
+[e :UE 214 ]
+}
 "76
-[e = _T2CKPS1 -> -> 0 `i `b ]
-[; ;pwm.c: 81: TMR2ON = 1;
-"81
-[e = _TMR2ON -> -> 1 `i `b ]
-[; ;pwm.c: 82: TRISC1 = 0;
-"82
-[e = _TRISC1 -> -> 0 `i `b ]
-[; ;pwm.c: 83: }
-"83
+[v _PWM2_duty_percent `(v ~T0 @X0 1 ef1`uc ]
+{
+[; ;pwm.c: 76: void PWM2_duty_percent(unsigned char duty){
+[e :U _PWM2_duty_percent ]
+[v _duty `uc ~T0 @X0 1 r1 ]
+[f ]
+[; ;pwm.c: 77: PWM2_duty( ((float)duty / 100) * 1023 );
+"77
+[e ( _PWM2_duty (1 -> * / -> _duty `f -> -> 100 `i `f -> -> 1023 `i `f `ui ]
+[; ;pwm.c: 78: }
+"78
 [e :UE 217 ]
 }
-"85
-[v _PWM2_Stop `(v ~T0 @X0 1 ef ]
+"83
+[v _PWM1_start `(v ~T0 @X0 1 ef ]
 {
-[; ;pwm.c: 85: void PWM2_Stop() {
-[e :U _PWM2_Stop ]
+[; ;pwm.c: 83: void PWM1_start() {
+[e :U _PWM1_start ]
 [f ]
-[; ;pwm.c: 86: CCP2M3 = 0;
-"86
-[e = _CCP2M3 -> -> 0 `i `b ]
-[; ;pwm.c: 87: CCP2M2 = 0;
-"87
-[e = _CCP2M2 -> -> 0 `i `b ]
-[; ;pwm.c: 88: }
-"88
+[; ;pwm.c: 84: CCP1M3 = 1;
+"84
+[e = _CCP1M3 -> -> 1 `i `b ]
+[; ;pwm.c: 85: CCP1M2 = 1;
+"85
+[e = _CCP1M2 -> -> 1 `i `b ]
+[; ;pwm.c: 96: TMR2ON = 1;
+"96
+[e = _TMR2ON -> -> 1 `i `b ]
+[; ;pwm.c: 97: TRISC2 = 0;
+"97
+[e = _TRISC2 -> -> 0 `i `b ]
+[; ;pwm.c: 98: }
+"98
 [e :UE 218 ]
+}
+"100
+[v _PWM1_stop `(v ~T0 @X0 1 ef ]
+{
+[; ;pwm.c: 100: void PWM1_stop() {
+[e :U _PWM1_stop ]
+[f ]
+[; ;pwm.c: 101: CCP1M3 = 0;
+"101
+[e = _CCP1M3 -> -> 0 `i `b ]
+[; ;pwm.c: 102: CCP1M2 = 0;
+"102
+[e = _CCP1M2 -> -> 0 `i `b ]
+[; ;pwm.c: 103: }
+"103
+[e :UE 219 ]
+}
+"105
+[v _PWM2_start `(v ~T0 @X0 1 ef ]
+{
+[; ;pwm.c: 105: void PWM2_start() {
+[e :U _PWM2_start ]
+[f ]
+[; ;pwm.c: 106: CCP2M3 = 1;
+"106
+[e = _CCP2M3 -> -> 1 `i `b ]
+[; ;pwm.c: 107: CCP2M2 = 1;
+"107
+[e = _CCP2M2 -> -> 1 `i `b ]
+[; ;pwm.c: 112: T2CKPS0 = 1;
+"112
+[e = _T2CKPS0 -> -> 1 `i `b ]
+[; ;pwm.c: 113: T2CKPS1 = 0;
+"113
+[e = _T2CKPS1 -> -> 0 `i `b ]
+[; ;pwm.c: 118: TMR2ON = 1;
+"118
+[e = _TMR2ON -> -> 1 `i `b ]
+[; ;pwm.c: 119: TRISC1 = 0;
+"119
+[e = _TRISC1 -> -> 0 `i `b ]
+[; ;pwm.c: 120: }
+"120
+[e :UE 220 ]
+}
+"122
+[v _PWM2_stop `(v ~T0 @X0 1 ef ]
+{
+[; ;pwm.c: 122: void PWM2_stop() {
+[e :U _PWM2_stop ]
+[f ]
+[; ;pwm.c: 123: CCP2M3 = 0;
+"123
+[e = _CCP2M3 -> -> 0 `i `b ]
+[; ;pwm.c: 124: CCP2M2 = 0;
+"124
+[e = _CCP2M2 -> -> 0 `i `b ]
+[; ;pwm.c: 125: }
+"125
+[e :UE 221 ]
 }

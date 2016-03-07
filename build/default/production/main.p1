@@ -4,18 +4,24 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _init_adc `(v ~T0 @X0 0 ef ]
 "343 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic16f917.h
 [v _PORTD `Vuc ~T0 @X0 0 e@8 ]
-"37 pwm.h
-[v _PWM2_Init `(v ~T0 @X0 0 ef1`ul ]
-"45
-[v _PWM2_Duty `(v ~T0 @X0 0 ef1`ui ]
-"40
-[v _PWM2_Start `(v ~T0 @X0 0 ef ]
-"37 adc.h
-[v _get_inputs `(v ~T0 @X0 0 ef ]
-"38
-[v _decide `(v ~T0 @X0 0 ef ]
-"41
-[v _get_adc_value `(ui ~T0 @X0 0 ef ]
+"26 i2c.h
+[v _i2c_init_slave `(v ~T0 @X0 0 ef ]
+"16 pwm.h
+[v _PWM2_init `(v ~T0 @X0 0 ef1`ul ]
+"24
+[v _PWM2_duty `(v ~T0 @X0 0 ef1`ui ]
+"19
+[v _PWM2_start `(v ~T0 @X0 0 ef ]
+"27
+[v _PWM2_duty_percent `(v ~T0 @X0 0 ef1`uc ]
+"6855 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic16f917.h
+[v _SSPIF `Vb ~T0 @X0 0 e@99 ]
+"30 i2c.h
+[v _i2c_read_byte `(uc ~T0 @X0 0 ef ]
+"6041 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic16f917.h
+[v _CCP2IF `Vb ~T0 @X0 0 e@104 ]
+"5961
+[v _ADIF `Vb ~T0 @X0 0 e@102 ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -2290,82 +2296,135 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adc.h: 39: void do_outputs(void);
 [; ;adc.h: 40: void timing(void);
 [; ;adc.h: 41: unsigned get_adc_value();
-[; ;pwm.h: 36: void PWM1_Init(unsigned long freq);
-[; ;pwm.h: 37: void PWM2_Init(unsigned long freq);
-[; ;pwm.h: 39: void PWM1_Start();
-[; ;pwm.h: 40: void PWM2_Start();
-[; ;pwm.h: 42: void PWM1_Stop();
-[; ;pwm.h: 43: void PWM2_Stop();
-[; ;pwm.h: 45: void PWM2_Duty(unsigned int duty);
-[; ;pwm.h: 46: void PWM1_Duty(unsigned int duty);
-"13 main.c
+[; ;pwm.h: 15: void PWM1_init(unsigned long freq);
+[; ;pwm.h: 16: void PWM2_init(unsigned long freq);
+[; ;pwm.h: 18: void PWM1_start();
+[; ;pwm.h: 19: void PWM2_start();
+[; ;pwm.h: 21: void PWM1_stop();
+[; ;pwm.h: 22: void PWM2_stop();
+[; ;pwm.h: 24: void PWM2_duty(unsigned int duty);
+[; ;pwm.h: 25: void PWM1_duty(unsigned int duty);
+[; ;pwm.h: 27: void PWM2_duty_percent(unsigned char duty);
+[; ;i2c.h: 26: void i2c_init_slave();
+[; ;i2c.h: 27: void i2c_init_master();
+[; ;i2c.h: 28: void i2c_master_start();
+[; ;i2c.h: 29: void i2c_write_byte();
+[; ;i2c.h: 30: unsigned char i2c_read_byte();
+"14 main.c
 [p x FOSC=HS ]
-"14
-[p x WDTE=OFF ]
 "15
-[p x PWRTE=OFF ]
+[p x WDTE=OFF ]
 "16
-[p x MCLRE=ON ]
+[p x PWRTE=OFF ]
 "17
-[p x CP=OFF ]
+[p x MCLRE=ON ]
 "18
-[p x BOREN=ON ]
+[p x CP=OFF ]
 "19
-[p x IESO=ON ]
+[p x BOREN=ON ]
 "20
+[p x IESO=ON ]
+"21
 [p x FCMEN=ON ]
-"22
+"26
+[v _duty `Vuc ~T0 @X0 1 e ]
+[i _duty
+-> -> 0 `i `uc
+]
+[; ;main.c: 26: volatile unsigned char duty = 0;
+"28
 [v _main `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 22: void main(void) {
+[; ;main.c: 28: void main(void) {
 [e :U _main ]
 [f ]
-"24
+"30
 [v _adc_value `ui ~T0 @X0 1 a ]
-[v _duty `ui ~T0 @X0 1 a ]
-[; ;main.c: 24: unsigned int adc_value, duty;
-[; ;main.c: 26: init_adc();
-"26
-[e ( _init_adc ..  ]
-[; ;main.c: 28: PORTD = 0x0;
-"28
-[e = _PORTD -> -> 0 `i `uc ]
-[; ;main.c: 31: PWM2_Init(1000);
-"31
-[e ( _PWM2_Init (1 -> -> -> 1000 `i `l `ul ]
-[; ;main.c: 32: PWM2_Duty(200);
+[; ;main.c: 30: unsigned int adc_value;
+[; ;main.c: 32: init_adc();
 "32
-[e ( _PWM2_Duty (1 -> -> 200 `i `ui ]
-[; ;main.c: 33: PWM2_Start();
-"33
-[e ( _PWM2_Start ..  ]
-[; ;main.c: 35: while (1) {
-"35
+[e ( _init_adc ..  ]
+[; ;main.c: 34: PORTD = 0;
+"34
+[e = _PORTD -> -> 0 `i `uc ]
+[; ;main.c: 36: i2c_init_slave();
+"36
+[e ( _i2c_init_slave ..  ]
+[; ;main.c: 40: PWM2_init(1000);
+"40
+[e ( _PWM2_init (1 -> -> -> 1000 `i `l `ul ]
+[; ;main.c: 41: PWM2_duty(0);
+"41
+[e ( _PWM2_duty (1 -> -> 0 `i `ui ]
+[; ;main.c: 42: PWM2_start();
+"42
+[e ( _PWM2_start ..  ]
+[; ;main.c: 44: while (1) {
+"44
 [e :U 211 ]
 {
-[; ;main.c: 36: get_inputs();
-"36
-[e ( _get_inputs ..  ]
-[; ;main.c: 37: decide();
-"37
-[e ( _decide ..  ]
-[; ;main.c: 38: adc_value = get_adc_value();
-"38
-[e = _adc_value ( _get_adc_value ..  ]
-[; ;main.c: 39: duty = (float)adc_value/ 255 * 1023;
-"39
-[e = _duty -> * / -> _adc_value `f -> -> 255 `i `f -> -> 1023 `i `f `ui ]
-[; ;main.c: 40: PWM2_Duty( duty );
-"40
-[e ( _PWM2_Duty (1 _duty ]
-"41
+[; ;main.c: 49: PWM2_duty_percent (duty);
+"49
+[e ( _PWM2_duty_percent (1 _duty ]
+"50
 }
 [e :U 210 ]
-"35
+"44
 [e $U 211  ]
 [e :U 212 ]
-[; ;main.c: 41: }
-[; ;main.c: 43: }
-"43
+[; ;main.c: 50: }
+[; ;main.c: 52: }
+"52
 [e :UE 209 ]
+}
+[v F2647 `(v ~T0 @X0 1 tf ]
+"55
+[v _ISR_Handler `IF2647 ~T0 @X0 1 e ]
+{
+[; ;main.c: 55: interrupt void ISR_Handler(void){
+[e :U _ISR_Handler ]
+[f ]
+[; ;main.c: 58: if(SSPIF) {
+"58
+[e $ ! _SSPIF 214  ]
+{
+[; ;main.c: 60: duty = i2c_read_byte();
+"60
+[e = _duty ( _i2c_read_byte ..  ]
+[; ;main.c: 62: SSPIF = 0;
+"62
+[e = _SSPIF -> -> 0 `i `b ]
+"64
+}
+[e :U 214 ]
+[; ;main.c: 64: }
+[; ;main.c: 67: if(CCP2IF)
+"67
+[e $ ! _CCP2IF 215  ]
+[; ;main.c: 68: {
+"68
+{
+[; ;main.c: 69: CCP2IF = 0;
+"69
+[e = _CCP2IF -> -> 0 `i `b ]
+"71
+}
+[e :U 215 ]
+[; ;main.c: 71: }
+[; ;main.c: 74: if(ADIF)
+"74
+[e $ ! _ADIF 216  ]
+[; ;main.c: 75: {
+"75
+{
+[; ;main.c: 76: ADIF = 0;
+"76
+[e = _ADIF -> -> 0 `i `b ]
+"78
+}
+[e :U 216 ]
+[; ;main.c: 78: }
+[; ;main.c: 79: }
+"79
+[e :UE 213 ]
 }

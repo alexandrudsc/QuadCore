@@ -8,8 +8,7 @@
 
 #include <xc.h>
 #include "adc.h"
-unsigned LED_Output = 0;	//assigned to LED PORT to light
-								//connected LEDs
+unsigned LED_output = 0;	//assigned to LED PORT to light
 
 void init_adc(void)
 {
@@ -67,9 +66,7 @@ void decide(void)
 {
 	//Assign the upper 4 bits of ADRESH to the lower 4 bits
 	//of LED_Output
-	LED_Output = ADRESL;
-								//to the right
-    
+	LED_output = ADRESL;
 }
 
 /*----------------------------------------------------------
@@ -83,12 +80,12 @@ void do_output(void)
 {
 	//Assign contents of LED_Output to PORTD to light the connected
 	//LEDs
-	PORTD = LED_Output;
+	PORTD = LED_output;
 }
 
 unsigned get_adc_value()
 {
-    return LED_Output;
+    return LED_output;
 }
 
 /*----------------------------------------------------------

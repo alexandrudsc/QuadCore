@@ -3,47 +3,84 @@
  * Author: Alexandru
  *
  * Created on November 10, 2015, 3:55 PM
+ * Has functions for initializing, starting/ stoping PWM output for two CCP (Capture - Compare - PWM ) modules of PIC16f917
+ * PWM operation from datasheet:
+        The following steps should be taken when configuring 
+        the CCP module for PWM operation:
+            1. Set the PWM period by writing to the PR2
+            register.
+            2. Set the PWM duty cycle by writing to the
+            CCPR1L register and CCP1CON<5:4> bits.
+            3. Make the RC5/T1CKI/CCP1/SEG10 pin an
+            output by clearing the TRISC<5> bit.
+            4. Set the TMR2 prescale value and enable Timer2
+            by writing to T2CON.
+            5. Configure the CCP1 module for PWM operation
  */
-
 
 #include "uc_config.h"
 #include "pwm.h"
 
 unsigned long freq;
 
-void PWM1_Init(unsigned long fre) {
+/*----------------------------------------------------------
+	Subroutine: PWM1_init
+	Parameters: fre - the PWM frequency
+	Returns:	nothing
+	Synopsys:	PR2 register specifies the PWM period like below: 
+                PWM period = (PR2) + 1] * 4 * TOSC * (TMR2 prescale value)
+                The PWM frequency is: freq = 1/period.
+                _XTAL_FREQ - internal clock ( "uc_config.h" )
+----------------------------------------------------------*/
+void PWM1_init(unsigned long fre) {
     PR2 = (_XTAL_FREQ / (fre * 4 * TMR2PRESCALE)) - 1;
     freq = fre;
 }
 
-void PWM2_Init(unsigned long fre) {
+
+void PWM2_init(unsigned long fre) {
     PR2 = (_XTAL_FREQ / (fre * 4 * TMR2PRESCALE)) - 1;
     freq = fre;
 }
 
-void PWM1_Duty(unsigned int duty) {
-    
+
+/* The PWM duty cycle is defined as this:
+ * PWM duty cycle =(CCPR1L:CCP1CON<5:4>) * TOSC * (TMR2 prescale value)
+ * PWM duty has 10 bit resolution. 
+ */
+void PWM1_duty(unsigned int duty) {
+  
+    // duty is 10 bit value
     if (duty > 1023) 
         duty = 1023;
-    
+    if (duty < 0)
+        duty = 0;
     CCP1X = duty & 2;
     CCP1Y = duty & 1;
     CCPR1L = duty >> 2;
-    
 }
 
-void PWM2_Duty(unsigned int duty) {
+void PWM2_duty(unsigned int duty) { 
+    // duty is 10 bit value
     if (duty > 1023) 
         duty = 1023;
+    if (duty < 0)
+        duty = 0;
                 
     CCP2X = duty & 2;
     CCP2Y = duty & 1;
     CCPR2L = duty >> 2;
-    
-
 }
 
-void PWM1_Start() {
+// set duty of PWM using percentage (0% - 100%)
+void PWM2_duty_percent(unsigned char duty){
+    PWM2_duty( ((float)duty / 100) * 1023 );
+}
+
+/*
+ * 
+ */
+void PWM1_start() {
     CCP1M3 = 1;
     CCP1M2 = 1;
 #if TMR2PRESCALAR == 1
@@ -60,12 +97,12 @@ void PWM1_Start() {
     TRISC2 = 0;
 }
 
-void PWM1_Stop() {
+void PWM1_stop() {
     CCP1M3 = 0;
     CCP1M2 = 0;
 }
 
-void PWM2_Start() {
+void PWM2_start() {
     CCP2M3 = 1;
     CCP2M2 = 1;
 #if TMR2PRESCALE == 1
@@ -82,7 +119,8 @@ void PWM2_Start() {
     TRISC1 = 0;
 }
 
-void PWM2_Stop() {
+void PWM2_stop() {
     CCP2M3 = 0;
     CCP2M2 = 0;
 }
+
