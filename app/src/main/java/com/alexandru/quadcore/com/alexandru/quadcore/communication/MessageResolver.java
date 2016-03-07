@@ -41,8 +41,7 @@ public class MessageResolver {
         this.activity = (BluetoothActivity)activity;
     }
 
-    public void resolve(String message)
-    {
+    public void resolve(String message) {
         int code;
 
         try {
@@ -76,15 +75,17 @@ public class MessageResolver {
      * Updates the progress bar representing the battery status
      * @param level the value of the battery status
      */
-    private void updateUIBaterry(int level)
-    {
+    private void updateUIBaterry(int level) {
         Toast.makeText(activity, "Battery: " + level, Toast.LENGTH_SHORT).show();
         ((ProgressBar)activity.findViewById(R.id.batteryStatus)).setProgress(level);
     }
 
-    private void updateSensorStatus(int level)
-    {
+    private void updateSensorStatus(int level) {
 
     }
 
+    // set speed and direction to right motor
+    private void motorRight(char direction, char speed){
+
+    }
 }
