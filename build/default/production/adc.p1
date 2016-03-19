@@ -45,7 +45,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "150 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic.h
 [v __delay `JF2607 ~T0 @X0 0 e ]
 [p i __delay ]
-"2798 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic16f917.h
+"1153 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic16f917.h
+[v _ADRESH `Vuc ~T0 @X0 0 e@30 ]
+"2798
 [v _ADRESL `Vuc ~T0 @X0 0 e@158 ]
 "343
 [v _PORTD `Vuc ~T0 @X0 0 e@8 ]
@@ -2317,137 +2319,167 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 184: extern unsigned char __resetbits;
 [; ;pic.h: 185: extern __bit __powerdown;
 [; ;pic.h: 186: extern __bit __timeout;
-[; ;adc.h: 36: void init_adc(void);
-[; ;adc.h: 37: void get_inputs(void);
-[; ;adc.h: 38: void decide(void);
-[; ;adc.h: 39: void do_outputs(void);
-[; ;adc.h: 40: void timing(void);
-[; ;adc.h: 41: unsigned get_adc_value();
-"11 adc.c
+[; ;adc.h: 17: void init_adc(void);
+[; ;adc.h: 20: void get_input(void);
+[; ;adc.h: 22: void decide(void);
+[; ;adc.h: 25: unsigned short adc_channel(int);
+[; ;adc.h: 28: void do_outputs(void);
+[; ;adc.h: 29: void timing(void);
+[; ;adc.h: 30: unsigned get_adc_value();
+"12 adc.c
 [v _LED_output `ui ~T0 @X0 1 e ]
 [i _LED_output
 -> -> 0 `i `ui
 ]
-[; ;adc.c: 11: unsigned LED_output = 0;
-"13
+[; ;adc.c: 12: unsigned LED_output = 0;
+"15
 [v _init_adc `(v ~T0 @X0 1 ef ]
-"14
+"16
 {
-[; ;adc.c: 13: void init_adc(void)
-[; ;adc.c: 14: {
+[; ;adc.c: 15: void init_adc(void)
+[; ;adc.c: 16: {
 [e :U _init_adc ]
 [f ]
-[; ;adc.c: 17: TRISBbits.TRISB4 = 1;
-"17
-[e = . . _TRISBbits 0 4 -> -> 1 `i `uc ]
-[; ;adc.c: 19: ANSEL = 0x01;
+[; ;adc.c: 19: TRISBbits.TRISB4 = 1;
 "19
+[e = . . _TRISBbits 0 4 -> -> 1 `i `uc ]
+[; ;adc.c: 21: ANSEL = 0x01;
+"21
 [e = _ANSEL -> -> 1 `i `uc ]
-[; ;adc.c: 20: TRISA = 0xFF;
-"20
-[e = _TRISA -> -> 255 `i `uc ]
-[; ;adc.c: 22: TRISD = 0x00;
+[; ;adc.c: 22: TRISA = 0xFF;
 "22
+[e = _TRISA -> -> 255 `i `uc ]
+[; ;adc.c: 24: TRISD = 0x00;
+"24
 [e = _TRISD -> -> 0 `i `uc ]
-[; ;adc.c: 26: ADCON1bits.ADCS = 0b11;
-"26
+[; ;adc.c: 28: ADCON1bits.ADCS = 0b11;
+"28
 [e = . . _ADCON1bits 0 1 -> -> 3 `i `uc ]
-[; ;adc.c: 29: ADCON0bits.VCFG = 0;
-"29
-[e = . . _ADCON0bits 0 3 -> -> 0 `i `uc ]
-[; ;adc.c: 31: ADCON0bits.CHS = 0b000;
+[; ;adc.c: 31: ADCON0bits.VCFG = 0;
 "31
-[e = . . _ADCON0bits 0 2 -> -> 0 `i `uc ]
-[; ;adc.c: 33: ADCON0bits.ADFM = 1;
-"33
+[e = . . _ADCON0bits 0 3 -> -> 0 `i `uc ]
+[; ;adc.c: 37: ADCON0bits.ADFM = 1;
+"37
 [e = . . _ADCON0bits 0 4 -> -> 1 `i `uc ]
-[; ;adc.c: 35: ADCON0bits.ADON = 1;
-"35
+[; ;adc.c: 39: ADCON0bits.ADON = 1;
+"39
 [e = . . _ADCON0bits 0 0 -> -> 1 `i `uc ]
-[; ;adc.c: 36: }
-"36
+[; ;adc.c: 40: }
+"40
 [e :UE 209 ]
 }
-"44
-[v _get_inputs `(v ~T0 @X0 1 ef ]
-"45
-{
-[; ;adc.c: 44: void get_inputs(void)
-[; ;adc.c: 45: {
-[e :U _get_inputs ]
-[f ]
-[; ;adc.c: 48: _delay((unsigned long)((1)*(4000000/4000.0)));
 "48
+[v _get_input `(v ~T0 @X0 1 ef ]
+"49
+{
+[; ;adc.c: 48: void get_input(void)
+[; ;adc.c: 49: {
+[e :U _get_input ]
+[f ]
+[; ;adc.c: 52: _delay((unsigned long)((1)*(4000000/4000.0)));
+"52
 [e ( __delay (1 -> * -> -> 1 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-[; ;adc.c: 50: ADCON0bits.GO_nDONE = 1;
-"50
+[; ;adc.c: 54: ADCON0bits.GO_nDONE = 1;
+"54
 [e = . . _ADCON0bits 0 1 -> -> 1 `i `uc ]
-[; ;adc.c: 55: while(ADCON0bits.GO_nDONE == 1);
-"55
+[; ;adc.c: 59: while(ADCON0bits.GO_nDONE == 1);
+"59
 [e $U 211  ]
 [e :U 212 ]
 [e :U 211 ]
 [e $ == -> . . _ADCON0bits 0 1 `i -> 1 `i 212  ]
 [e :U 213 ]
-[; ;adc.c: 56: }
-"56
+[; ;adc.c: 60: }
+"60
 [e :UE 210 ]
 }
-"65
-[v _decide `(v ~T0 @X0 1 ef ]
-"66
+"63
+[v _adc_channel `(us ~T0 @X0 1 ef1`i ]
+"64
 {
-[; ;adc.c: 65: void decide(void)
-[; ;adc.c: 66: {
-[e :U _decide ]
+[; ;adc.c: 63: unsigned short adc_channel(int ch)
+[; ;adc.c: 64: {
+[e :U _adc_channel ]
+"63
+[v _ch `i ~T0 @X0 1 r1 ]
+"64
 [f ]
-[; ;adc.c: 69: LED_output = ADRESL;
+[; ;adc.c: 66: ADCON0bits.CHS = ch;
+"66
+[e = . . _ADCON0bits 0 2 -> _ch `uc ]
+[; ;adc.c: 69: get_input();
 "69
-[e = _LED_output -> _ADRESL `ui ]
-[; ;adc.c: 70: }
-"70
+[e ( _get_input ..  ]
+"72
+[v _adc_val `us ~T0 @X0 1 a ]
+[; ;adc.c: 72: unsigned short adc_val = (unsigned int)ADRESH << 8 ;
+[e = _adc_val -> << -> _ADRESH `ui -> 8 `i `us ]
+[; ;adc.c: 73: adc_val = adc_val + ADRESL;
+"73
+[e = _adc_val -> + -> _adc_val `ui -> _ADRESL `ui `us ]
+[; ;adc.c: 74: return adc_val;
+"74
+[e ) _adc_val ]
+[e $UE 214  ]
+[; ;adc.c: 75: }
+"75
 [e :UE 214 ]
 }
-"79
-[v _do_output `(v ~T0 @X0 1 ef ]
-"80
-{
-[; ;adc.c: 79: void do_output(void)
-[; ;adc.c: 80: {
-[e :U _do_output ]
-[f ]
-[; ;adc.c: 83: PORTD = LED_output;
-"83
-[e = _PORTD -> _LED_output `uc ]
-[; ;adc.c: 84: }
 "84
-[e :UE 215 ]
-}
-"86
-[v _get_adc_value `(ui ~T0 @X0 1 ef ]
-"87
+[v _decide `(v ~T0 @X0 1 ef ]
+"85
 {
-[; ;adc.c: 86: unsigned get_adc_value()
-[; ;adc.c: 87: {
-[e :U _get_adc_value ]
+[; ;adc.c: 84: void decide(void)
+[; ;adc.c: 85: {
+[e :U _decide ]
 [f ]
-[; ;adc.c: 88: return LED_output;
+[; ;adc.c: 88: LED_output = ADRESL;
 "88
-[e ) _LED_output ]
-[e $UE 216  ]
+[e = _LED_output -> _ADRESL `ui ]
 [; ;adc.c: 89: }
 "89
-[e :UE 216 ]
+[e :UE 215 ]
 }
-"97
-[v _timing `(v ~T0 @X0 1 ef ]
+"98
+[v _do_output `(v ~T0 @X0 1 ef ]
 "99
 {
-[; ;adc.c: 97: void timing(void)
+[; ;adc.c: 98: void do_output(void)
 [; ;adc.c: 99: {
+[e :U _do_output ]
+[f ]
+[; ;adc.c: 102: PORTD = LED_output;
+"102
+[e = _PORTD -> _LED_output `uc ]
+[; ;adc.c: 103: }
+"103
+[e :UE 216 ]
+}
+"105
+[v _get_adc_value `(ui ~T0 @X0 1 ef ]
+"106
+{
+[; ;adc.c: 105: unsigned get_adc_value()
+[; ;adc.c: 106: {
+[e :U _get_adc_value ]
+[f ]
+[; ;adc.c: 107: return LED_output;
+"107
+[e ) _LED_output ]
+[e $UE 217  ]
+[; ;adc.c: 108: }
+"108
+[e :UE 217 ]
+}
+"116
+[v _timing `(v ~T0 @X0 1 ef ]
+"118
+{
+[; ;adc.c: 116: void timing(void)
+[; ;adc.c: 118: {
 [e :U _timing ]
 [f ]
-[; ;adc.c: 101: }
-"101
-[e :UE 217 ]
+[; ;adc.c: 120: }
+"120
+[e :UE 218 ]
 }

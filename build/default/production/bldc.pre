@@ -1,0 +1,60 @@
+
+# 1 "bldc.c"
+
+# 17 "adc.h"
+void init_adc(void);
+
+
+void get_input(void);
+
+void decide(void);
+
+
+unsigned short adc_channel(int);
+
+
+void do_outputs(void);
+void timing(void);
+unsigned get_adc_value();
+
+# 37 "bldc.h"
+static unsigned short read_feedback(int);
+
+
+unsigned short read_feedback1();
+unsigned short read_feedback2();
+unsigned short read_feedback3();
+
+# 3 "bldc.c"
+unsigned short read_feedback1()
+{
+return read_feedback(1);
+}
+
+unsigned short read_feedback2()
+{
+return read_feedback(2);
+}
+
+unsigned short read_feedback3()
+{
+return read_feedback(3);
+}
+
+
+void digitalWrite(int transistor, int value)
+{
+}
+
+static unsigned short read_feedback(int channel)
+{
+switch (channel)
+{
+case 1:
+return adc_channel(0);
+case 2:
+return adc_channel(1);
+case 3:
+return adc_channel(2);
+}
+}

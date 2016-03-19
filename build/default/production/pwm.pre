@@ -3121,20 +3121,25 @@ extern unsigned char __resetbits;
 extern __bit __powerdown;
 extern __bit __timeout;
 
-# 15 "pwm.h"
+# 28 "pwm.h"
 void PWM1_init(unsigned long freq);
 void PWM2_init(unsigned long freq);
+
 
 void PWM1_start();
 void PWM2_start();
 
+
 void PWM1_stop();
 void PWM2_stop();
+
 
 void PWM2_duty(unsigned int duty);
 void PWM1_duty(unsigned int duty);
 
+
 void PWM2_duty_percent(unsigned char duty);
+void PWM1_duty_percent(unsigned char duty);
 
 # 24 "pwm.c"
 unsigned long freq;
@@ -3177,16 +3182,20 @@ CCPR2L = duty >> 2;
 }
 
 
+void PWM1_duty_percent(unsigned char duty){
+PWM1_duty( ((float)duty / 100) * 1023 );
+}
+
+
 void PWM2_duty_percent(unsigned char duty){
 PWM2_duty( ((float)duty / 100) * 1023 );
 }
 
-# 83
 void PWM1_start() {
 CCP1M3 = 1;
 CCP1M2 = 1;
 
-# 96
+# 98
 TMR2ON = 1;
 TRISC2 = 0;
 }
@@ -3206,7 +3215,7 @@ CCP2M2 = 1;
 T2CKPS0 = 1;
 T2CKPS1 = 0;
 
-# 118
+# 120
 TMR2ON = 1;
 TRISC1 = 0;
 }

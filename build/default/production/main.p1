@@ -1,27 +1,29 @@
 Version 3.2 HI-TECH Software Intermediate Code
 [p mainexit ]
-"36 adc.h
+"17 adc.h
 [v _init_adc `(v ~T0 @X0 0 ef ]
-"343 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic16f917.h
+"1511 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic16f917.h
+[v _TRISD `Vuc ~T0 @X0 0 e@136 ]
+"343
 [v _PORTD `Vuc ~T0 @X0 0 e@8 ]
-"26 i2c.h
+"32 i2c.h
+[u S209 `uc -> 4 `i `us 1 `uc 1 `uc 1 ]
+[n S209 message input_buff motor_speed dir bytes ]
+[v F2651 `(*v ~T0 @X0 1 tf1`S209 ]
+"49
+[v _i2c_set_handler `(v ~T0 @X0 0 ef1`*F2651 ]
+"29 main.c
+[v _i2c_handler `(v ~T0 @X0 0 ef1`S209 ]
+"46 i2c.h
 [v _i2c_init_slave `(v ~T0 @X0 0 ef ]
-"16 pwm.h
+"29 pwm.h
 [v _PWM2_init `(v ~T0 @X0 0 ef1`ul ]
-"24
+"40
 [v _PWM2_duty `(v ~T0 @X0 0 ef1`ui ]
-"19
+"33
 [v _PWM2_start `(v ~T0 @X0 0 ef ]
-"27
-[v _PWM2_duty_percent `(v ~T0 @X0 0 ef1`uc ]
-"6855 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic16f917.h
-[v _SSPIF `Vb ~T0 @X0 0 e@99 ]
-"30 i2c.h
-[v _i2c_read_byte `(uc ~T0 @X0 0 ef ]
-"6041 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic16f917.h
-[v _CCP2IF `Vb ~T0 @X0 0 e@104 ]
-"5961
-[v _ADIF `Vb ~T0 @X0 0 e@102 ]
+"25 adc.h
+[v _adc_channel `(us ~T0 @X0 0 ef1`i ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -2290,141 +2292,146 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 184: extern unsigned char __resetbits;
 [; ;pic.h: 185: extern __bit __powerdown;
 [; ;pic.h: 186: extern __bit __timeout;
-[; ;adc.h: 36: void init_adc(void);
-[; ;adc.h: 37: void get_inputs(void);
-[; ;adc.h: 38: void decide(void);
-[; ;adc.h: 39: void do_outputs(void);
-[; ;adc.h: 40: void timing(void);
-[; ;adc.h: 41: unsigned get_adc_value();
-[; ;pwm.h: 15: void PWM1_init(unsigned long freq);
-[; ;pwm.h: 16: void PWM2_init(unsigned long freq);
-[; ;pwm.h: 18: void PWM1_start();
-[; ;pwm.h: 19: void PWM2_start();
-[; ;pwm.h: 21: void PWM1_stop();
-[; ;pwm.h: 22: void PWM2_stop();
-[; ;pwm.h: 24: void PWM2_duty(unsigned int duty);
-[; ;pwm.h: 25: void PWM1_duty(unsigned int duty);
-[; ;pwm.h: 27: void PWM2_duty_percent(unsigned char duty);
-[; ;i2c.h: 26: void i2c_init_slave();
-[; ;i2c.h: 27: void i2c_init_master();
-[; ;i2c.h: 28: void i2c_master_start();
-[; ;i2c.h: 29: void i2c_write_byte();
-[; ;i2c.h: 30: unsigned char i2c_read_byte();
-"14 main.c
+[; ;adc.h: 17: void init_adc(void);
+[; ;adc.h: 20: void get_input(void);
+[; ;adc.h: 22: void decide(void);
+[; ;adc.h: 25: unsigned short adc_channel(int);
+[; ;adc.h: 28: void do_outputs(void);
+[; ;adc.h: 29: void timing(void);
+[; ;adc.h: 30: unsigned get_adc_value();
+[; ;pwm.h: 28: void PWM1_init(unsigned long freq);
+[; ;pwm.h: 29: void PWM2_init(unsigned long freq);
+[; ;pwm.h: 32: void PWM1_start();
+[; ;pwm.h: 33: void PWM2_start();
+[; ;pwm.h: 36: void PWM1_stop();
+[; ;pwm.h: 37: void PWM2_stop();
+[; ;pwm.h: 40: void PWM2_duty(unsigned int duty);
+[; ;pwm.h: 41: void PWM1_duty(unsigned int duty);
+[; ;pwm.h: 44: void PWM2_duty_percent(unsigned char duty);
+[; ;pwm.h: 45: void PWM1_duty_percent(unsigned char duty);
+[; ;i2c.h: 32: union message {
+[; ;i2c.h: 33: unsigned char input_buff[4];
+[; ;i2c.h: 34: unsigned short motor_speed;
+[; ;i2c.h: 35: unsigned char dir;
+[; ;i2c.h: 36: unsigned char bytes;
+[; ;i2c.h: 37: };
+[; ;i2c.h: 39: typedef union message MESSAGE;
+[; ;i2c.h: 42: typedef void *(handler)(MESSAGE msg);
+[; ;i2c.h: 46: void i2c_init_slave();
+[; ;i2c.h: 49: void i2c_set_handler(handler h);
+[; ;i2c.h: 52: static unsigned char i2c_read_byte();
+[; ;i2c.h: 55: void i2c_write_byte();
+[; ;i2c.h: 58: void i2c_init_master();
+[; ;i2c.h: 61: static void ssp_resolve();
+[; ;i2c.h: 64: void i2c_master_start();
+"13 main.c
 [p x FOSC=HS ]
-"15
+"14
 [p x WDTE=OFF ]
-"16
+"15
 [p x PWRTE=OFF ]
-"17
+"16
 [p x MCLRE=ON ]
-"18
+"17
 [p x CP=OFF ]
-"19
+"18
 [p x BOREN=ON ]
-"20
+"19
 [p x IESO=ON ]
-"21
+"20
 [p x FCMEN=ON ]
-"26
-[v _duty `Vuc ~T0 @X0 1 e ]
+"23
+[v _duty `Vus ~T0 @X0 1 e ]
 [i _duty
--> -> 0 `i `uc
+-> -> 0 `i `us
 ]
-[; ;main.c: 26: volatile unsigned char duty = 0;
-"28
+[; ;main.c: 23: volatile unsigned short duty = 0;
+"26
+[v _direction `Vuc ~T0 @X0 1 e ]
+[i _direction
+-> -> 1 `i `uc
+]
+[; ;main.c: 26: volatile unsigned char direction = 1;
+[; ;main.c: 29: void i2c_handler(MESSAGE msg);
+"31
 [v _main `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 28: void main(void) {
+[; ;main.c: 31: void main(void) {
 [e :U _main ]
 [f ]
-"30
-[v _adc_value `ui ~T0 @X0 1 a ]
-[; ;main.c: 30: unsigned int adc_value;
-[; ;main.c: 32: init_adc();
-"32
-[e ( _init_adc ..  ]
-[; ;main.c: 34: PORTD = 0;
 "34
-[e = _PORTD -> -> 0 `i `uc ]
-[; ;main.c: 36: i2c_init_slave();
+[v _adc_value1 `uc ~T0 @X0 1 a ]
+[v _adc_value2 `uc ~T0 @X0 1 a ]
+[v _adc_value3 `uc ~T0 @X0 1 a ]
+[; ;main.c: 34: unsigned char adc_value1, adc_value2, adc_value3;
+[; ;main.c: 36: init_adc();
 "36
-[e ( _i2c_init_slave ..  ]
-[; ;main.c: 40: PWM2_init(1000);
+[e ( _init_adc ..  ]
+[; ;main.c: 39: TRISD = 0x00;
+"39
+[e = _TRISD -> -> 0 `i `uc ]
+[; ;main.c: 40: PORTD = 0x0;
 "40
-[e ( _PWM2_init (1 -> -> -> 1000 `i `l `ul ]
-[; ;main.c: 41: PWM2_duty(0);
-"41
-[e ( _PWM2_duty (1 -> -> 0 `i `ui ]
-[; ;main.c: 42: PWM2_start();
-"42
-[e ( _PWM2_start ..  ]
-[; ;main.c: 44: while (1) {
-"44
-[e :U 211 ]
-{
-[; ;main.c: 49: PWM2_duty_percent (duty);
+[e = _PORTD -> -> 0 `i `uc ]
+[; ;main.c: 43: i2c_set_handler(&i2c_handler);
+"43
+[e ( _i2c_set_handler (1 -> &U _i2c_handler `*F2651 ]
+[; ;main.c: 46: i2c_init_slave();
+"46
+[e ( _i2c_init_slave ..  ]
+[; ;main.c: 49: PWM2_init(1000);
 "49
-[e ( _PWM2_duty_percent (1 _duty ]
+[e ( _PWM2_init (1 -> -> -> 1000 `i `l `ul ]
+[; ;main.c: 50: PWM2_duty(0);
 "50
-}
-[e :U 210 ]
-"44
-[e $U 211  ]
+[e ( _PWM2_duty (1 -> -> 0 `i `ui ]
+[; ;main.c: 51: PWM2_start();
+"51
+[e ( _PWM2_start ..  ]
+[; ;main.c: 53: while (1) {
+"53
 [e :U 212 ]
-[; ;main.c: 50: }
-[; ;main.c: 52: }
-"52
-[e :UE 209 ]
-}
-[v F2647 `(v ~T0 @X0 1 tf ]
-"55
-[v _ISR_Handler `IF2647 ~T0 @X0 1 e ]
 {
-[; ;main.c: 55: interrupt void ISR_Handler(void){
-[e :U _ISR_Handler ]
-[f ]
-[; ;main.c: 58: if(SSPIF) {
+[v _adc_value1 `us ~T0 @X0 1 a ]
+[; ;main.c: 56: unsigned short adc_value1 = adc_channel(0);
+"56
+[e = _adc_value1 ( _adc_channel (1 -> 0 `i ]
+[v _adc_value2 `us ~T0 @X0 1 a ]
+[; ;main.c: 57: unsigned short adc_value2 = adc_channel(1);
+"57
+[e = _adc_value2 ( _adc_channel (1 -> 1 `i ]
+[v _adc_value3 `us ~T0 @X0 1 a ]
+[; ;main.c: 58: unsigned short adc_value3 = adc_channel(2);
 "58
-[e $ ! _SSPIF 214  ]
-{
-[; ;main.c: 60: duty = i2c_read_byte();
-"60
-[e = _duty ( _i2c_read_byte ..  ]
-[; ;main.c: 62: SSPIF = 0;
+[e = _adc_value3 ( _adc_channel (1 -> 2 `i ]
+[; ;main.c: 61: duty = adc_value1;
+"61
+[e = _duty _adc_value1 ]
+[; ;main.c: 62: PWM2_duty(duty);
 "62
-[e = _SSPIF -> -> 0 `i `b ]
-"64
+[e ( _PWM2_duty (1 -> _duty `ui ]
+"63
 }
-[e :U 214 ]
+[e :U 211 ]
+"53
+[e $U 212  ]
+[e :U 213 ]
+[; ;main.c: 63: }
 [; ;main.c: 64: }
-[; ;main.c: 67: if(CCP2IF)
+"64
+[e :UE 210 ]
+}
+"66
+[v _i2c_handler `(v ~T0 @X0 1 ef1`S209 ]
+{
+[; ;main.c: 66: void i2c_handler(MESSAGE msg){
+[e :U _i2c_handler ]
+[v _msg `S209 ~T0 @X0 1 r1 ]
+[f ]
+[; ;main.c: 67: duty = msg.motor_speed;
 "67
-[e $ ! _CCP2IF 215  ]
-[; ;main.c: 68: {
+[e = _duty . _msg 1 ]
+[; ;main.c: 68: }
 "68
-{
-[; ;main.c: 69: CCP2IF = 0;
-"69
-[e = _CCP2IF -> -> 0 `i `b ]
-"71
-}
-[e :U 215 ]
-[; ;main.c: 71: }
-[; ;main.c: 74: if(ADIF)
-"74
-[e $ ! _ADIF 216  ]
-[; ;main.c: 75: {
-"75
-{
-[; ;main.c: 76: ADIF = 0;
-"76
-[e = _ADIF -> -> 0 `i `b ]
-"78
-}
-[e :U 216 ]
-[; ;main.c: 78: }
-[; ;main.c: 79: }
-"79
-[e :UE 213 ]
+[e :UE 214 ]
 }

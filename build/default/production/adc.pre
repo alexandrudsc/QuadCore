@@ -3121,16 +3121,25 @@ extern unsigned char __resetbits;
 extern __bit __powerdown;
 extern __bit __timeout;
 
-# 36 "adc.h"
+# 17 "adc.h"
 void init_adc(void);
-void get_inputs(void);
+
+
+void get_input(void);
+
 void decide(void);
+
+
+unsigned short adc_channel(int);
+
+
 void do_outputs(void);
 void timing(void);
 unsigned get_adc_value();
 
-# 11 "adc.c"
+# 12 "adc.c"
 unsigned LED_output = 0;
+
 
 void init_adc(void)
 {
@@ -3150,15 +3159,14 @@ ADCON1bits.ADCS = 0b11;
 
 ADCON0bits.VCFG = 0;
 
-ADCON0bits.CHS = 0b000;
-
+# 37
 ADCON0bits.ADFM = 1;
 
 ADCON0bits.ADON = 1;
 }
 
-# 44
-void get_inputs(void)
+# 48
+void get_input(void)
 {
 
 
@@ -3172,7 +3180,22 @@ ADCON0bits.GO_nDONE = 1;
 while(ADCON0bits.GO_nDONE == 1);
 }
 
-# 65
+
+unsigned short adc_channel(int ch)
+{
+
+ADCON0bits.CHS = ch;
+
+
+get_input();
+
+
+unsigned short adc_val = (unsigned int)ADRESH << 8 ;
+adc_val = adc_val + ADRESL;
+return adc_val;
+}
+
+# 84
 void decide(void)
 {
 
@@ -3180,7 +3203,7 @@ void decide(void)
 LED_output = ADRESL;
 }
 
-# 79
+# 98
 void do_output(void)
 {
 
@@ -3193,7 +3216,7 @@ unsigned get_adc_value()
 return LED_output;
 }
 
-# 97
+# 116
 void timing(void)
 
 {

@@ -3121,38 +3121,79 @@ extern unsigned char __resetbits;
 extern __bit __powerdown;
 extern __bit __timeout;
 
-# 36 "adc.h"
+# 17 "adc.h"
 void init_adc(void);
-void get_inputs(void);
+
+
+void get_input(void);
+
 void decide(void);
+
+
+unsigned short adc_channel(int);
+
+
 void do_outputs(void);
 void timing(void);
 unsigned get_adc_value();
 
-# 15 "pwm.h"
+# 28 "pwm.h"
 void PWM1_init(unsigned long freq);
 void PWM2_init(unsigned long freq);
+
 
 void PWM1_start();
 void PWM2_start();
 
+
 void PWM1_stop();
 void PWM2_stop();
+
 
 void PWM2_duty(unsigned int duty);
 void PWM1_duty(unsigned int duty);
 
+
 void PWM2_duty_percent(unsigned char duty);
+void PWM1_duty_percent(unsigned char duty);
 
-# 26 "i2c.h"
+# 32 "i2c.h"
+union message {
+unsigned char input_buff[4];
+unsigned short motor_speed;
+unsigned char dir;
+unsigned char bytes;
+};
+
+typedef union message MESSAGE;
+
+
+typedef void *(handler)(MESSAGE msg);
+
+
+
 void i2c_init_slave();
-void i2c_init_master();
-void i2c_master_start();
+
+
+void i2c_set_handler(handler h);
+
+
+static unsigned char i2c_read_byte();
+
+
 void i2c_write_byte();
-unsigned char i2c_read_byte();
 
 
-# 14 "main.c"
+void i2c_init_master();
+
+
+static void ssp_resolve();
+
+
+void i2c_master_start();
+
+
+# 13 "main.c"
 #pragma config FOSC = HS
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
@@ -3163,20 +3204,30 @@ unsigned char i2c_read_byte();
 #pragma config FCMEN = ON
 
 
+volatile unsigned short duty = 0;
 
 
-volatile unsigned char duty = 0;
+volatile unsigned char direction = 1;
+
+
+void i2c_handler(MESSAGE msg);
 
 void main(void) {
 
-unsigned int adc_value;
+
+unsigned char adc_value1, adc_value2, adc_value3;
 
 init_adc();
 
-PORTD = 0;
+
+TRISD = 0x00;
+PORTD = 0x0;
+
+
+i2c_set_handler(&i2c_handler);
+
 
 i2c_init_slave();
-
 
 
 PWM2_init(1000);
@@ -3186,36 +3237,17 @@ PWM2_start();
 while (1) {
 
 
+unsigned short adc_value1 = adc_channel(0);
+unsigned short adc_value2 = adc_channel(1);
+unsigned short adc_value3 = adc_channel(2);
 
 
-PWM2_duty_percent (duty);
-}
-
-}
-
-
-interrupt void ISR_Handler(void){
-
-
-if(SSPIF) {
-
-duty = i2c_read_byte();
-
-SSPIF = 0;
-
-}
-
-
-if(CCP2IF)
-{
-CCP2IF = 0;
-
-}
-
-
-if(ADIF)
-{
-ADIF = 0;
-
+duty = adc_value1;
+PWM2_duty(duty);
 }
 }
+
+void i2c_handler(MESSAGE msg){
+duty = msg.motor_speed;
+}
+

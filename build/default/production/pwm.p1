@@ -2299,15 +2299,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 184: extern unsigned char __resetbits;
 [; ;pic.h: 185: extern __bit __powerdown;
 [; ;pic.h: 186: extern __bit __timeout;
-[; ;pwm.h: 15: void PWM1_init(unsigned long freq);
-[; ;pwm.h: 16: void PWM2_init(unsigned long freq);
-[; ;pwm.h: 18: void PWM1_start();
-[; ;pwm.h: 19: void PWM2_start();
-[; ;pwm.h: 21: void PWM1_stop();
-[; ;pwm.h: 22: void PWM2_stop();
-[; ;pwm.h: 24: void PWM2_duty(unsigned int duty);
-[; ;pwm.h: 25: void PWM1_duty(unsigned int duty);
-[; ;pwm.h: 27: void PWM2_duty_percent(unsigned char duty);
+[; ;pwm.h: 28: void PWM1_init(unsigned long freq);
+[; ;pwm.h: 29: void PWM2_init(unsigned long freq);
+[; ;pwm.h: 32: void PWM1_start();
+[; ;pwm.h: 33: void PWM2_start();
+[; ;pwm.h: 36: void PWM1_stop();
+[; ;pwm.h: 37: void PWM2_stop();
+[; ;pwm.h: 40: void PWM2_duty(unsigned int duty);
+[; ;pwm.h: 41: void PWM1_duty(unsigned int duty);
+[; ;pwm.h: 44: void PWM2_duty_percent(unsigned char duty);
+[; ;pwm.h: 45: void PWM1_duty_percent(unsigned char duty);
 "24 pwm.c
 [v _freq `ul ~T0 @X0 1 e ]
 [; ;pwm.c: 24: unsigned long freq;
@@ -2414,98 +2415,112 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 214 ]
 }
 "76
-[v _PWM2_duty_percent `(v ~T0 @X0 1 ef1`uc ]
+[v _PWM1_duty_percent `(v ~T0 @X0 1 ef1`uc ]
 {
-[; ;pwm.c: 76: void PWM2_duty_percent(unsigned char duty){
-[e :U _PWM2_duty_percent ]
+[; ;pwm.c: 76: void PWM1_duty_percent(unsigned char duty){
+[e :U _PWM1_duty_percent ]
 [v _duty `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;pwm.c: 77: PWM2_duty( ((float)duty / 100) * 1023 );
+[; ;pwm.c: 77: PWM1_duty( ((float)duty / 100) * 1023 );
 "77
-[e ( _PWM2_duty (1 -> * / -> _duty `f -> -> 100 `i `f -> -> 1023 `i `f `ui ]
+[e ( _PWM1_duty (1 -> * / -> _duty `f -> -> 100 `i `f -> -> 1023 `i `f `ui ]
 [; ;pwm.c: 78: }
 "78
 [e :UE 217 ]
 }
-"83
-[v _PWM1_start `(v ~T0 @X0 1 ef ]
+"81
+[v _PWM2_duty_percent `(v ~T0 @X0 1 ef1`uc ]
 {
-[; ;pwm.c: 83: void PWM1_start() {
-[e :U _PWM1_start ]
+[; ;pwm.c: 81: void PWM2_duty_percent(unsigned char duty){
+[e :U _PWM2_duty_percent ]
+[v _duty `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;pwm.c: 84: CCP1M3 = 1;
-"84
-[e = _CCP1M3 -> -> 1 `i `b ]
-[; ;pwm.c: 85: CCP1M2 = 1;
-"85
-[e = _CCP1M2 -> -> 1 `i `b ]
-[; ;pwm.c: 96: TMR2ON = 1;
-"96
-[e = _TMR2ON -> -> 1 `i `b ]
-[; ;pwm.c: 97: TRISC2 = 0;
-"97
-[e = _TRISC2 -> -> 0 `i `b ]
-[; ;pwm.c: 98: }
-"98
+[; ;pwm.c: 82: PWM2_duty( ((float)duty / 100) * 1023 );
+"82
+[e ( _PWM2_duty (1 -> * / -> _duty `f -> -> 100 `i `f -> -> 1023 `i `f `ui ]
+[; ;pwm.c: 83: }
+"83
 [e :UE 218 ]
 }
-"100
-[v _PWM1_stop `(v ~T0 @X0 1 ef ]
+"85
+[v _PWM1_start `(v ~T0 @X0 1 ef ]
 {
-[; ;pwm.c: 100: void PWM1_stop() {
-[e :U _PWM1_stop ]
+[; ;pwm.c: 85: void PWM1_start() {
+[e :U _PWM1_start ]
 [f ]
-[; ;pwm.c: 101: CCP1M3 = 0;
-"101
-[e = _CCP1M3 -> -> 0 `i `b ]
-[; ;pwm.c: 102: CCP1M2 = 0;
-"102
-[e = _CCP1M2 -> -> 0 `i `b ]
-[; ;pwm.c: 103: }
-"103
+[; ;pwm.c: 86: CCP1M3 = 1;
+"86
+[e = _CCP1M3 -> -> 1 `i `b ]
+[; ;pwm.c: 87: CCP1M2 = 1;
+"87
+[e = _CCP1M2 -> -> 1 `i `b ]
+[; ;pwm.c: 98: TMR2ON = 1;
+"98
+[e = _TMR2ON -> -> 1 `i `b ]
+[; ;pwm.c: 99: TRISC2 = 0;
+"99
+[e = _TRISC2 -> -> 0 `i `b ]
+[; ;pwm.c: 100: }
+"100
 [e :UE 219 ]
 }
-"105
-[v _PWM2_start `(v ~T0 @X0 1 ef ]
+"102
+[v _PWM1_stop `(v ~T0 @X0 1 ef ]
 {
-[; ;pwm.c: 105: void PWM2_start() {
-[e :U _PWM2_start ]
+[; ;pwm.c: 102: void PWM1_stop() {
+[e :U _PWM1_stop ]
 [f ]
-[; ;pwm.c: 106: CCP2M3 = 1;
-"106
-[e = _CCP2M3 -> -> 1 `i `b ]
-[; ;pwm.c: 107: CCP2M2 = 1;
-"107
-[e = _CCP2M2 -> -> 1 `i `b ]
-[; ;pwm.c: 112: T2CKPS0 = 1;
-"112
-[e = _T2CKPS0 -> -> 1 `i `b ]
-[; ;pwm.c: 113: T2CKPS1 = 0;
-"113
-[e = _T2CKPS1 -> -> 0 `i `b ]
-[; ;pwm.c: 118: TMR2ON = 1;
-"118
-[e = _TMR2ON -> -> 1 `i `b ]
-[; ;pwm.c: 119: TRISC1 = 0;
-"119
-[e = _TRISC1 -> -> 0 `i `b ]
-[; ;pwm.c: 120: }
-"120
+[; ;pwm.c: 103: CCP1M3 = 0;
+"103
+[e = _CCP1M3 -> -> 0 `i `b ]
+[; ;pwm.c: 104: CCP1M2 = 0;
+"104
+[e = _CCP1M2 -> -> 0 `i `b ]
+[; ;pwm.c: 105: }
+"105
 [e :UE 220 ]
 }
+"107
+[v _PWM2_start `(v ~T0 @X0 1 ef ]
+{
+[; ;pwm.c: 107: void PWM2_start() {
+[e :U _PWM2_start ]
+[f ]
+[; ;pwm.c: 108: CCP2M3 = 1;
+"108
+[e = _CCP2M3 -> -> 1 `i `b ]
+[; ;pwm.c: 109: CCP2M2 = 1;
+"109
+[e = _CCP2M2 -> -> 1 `i `b ]
+[; ;pwm.c: 114: T2CKPS0 = 1;
+"114
+[e = _T2CKPS0 -> -> 1 `i `b ]
+[; ;pwm.c: 115: T2CKPS1 = 0;
+"115
+[e = _T2CKPS1 -> -> 0 `i `b ]
+[; ;pwm.c: 120: TMR2ON = 1;
+"120
+[e = _TMR2ON -> -> 1 `i `b ]
+[; ;pwm.c: 121: TRISC1 = 0;
+"121
+[e = _TRISC1 -> -> 0 `i `b ]
+[; ;pwm.c: 122: }
 "122
+[e :UE 221 ]
+}
+"124
 [v _PWM2_stop `(v ~T0 @X0 1 ef ]
 {
-[; ;pwm.c: 122: void PWM2_stop() {
+[; ;pwm.c: 124: void PWM2_stop() {
 [e :U _PWM2_stop ]
 [f ]
-[; ;pwm.c: 123: CCP2M3 = 0;
-"123
-[e = _CCP2M3 -> -> 0 `i `b ]
-[; ;pwm.c: 124: CCP2M2 = 0;
-"124
-[e = _CCP2M2 -> -> 0 `i `b ]
-[; ;pwm.c: 125: }
+[; ;pwm.c: 125: CCP2M3 = 0;
 "125
-[e :UE 221 ]
+[e = _CCP2M3 -> -> 0 `i `b ]
+[; ;pwm.c: 126: CCP2M2 = 0;
+"126
+[e = _CCP2M2 -> -> 0 `i `b ]
+[; ;pwm.c: 127: }
+"127
+[e :UE 222 ]
 }

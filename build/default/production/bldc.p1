@@ -1,0 +1,134 @@
+Version 3.2 HI-TECH Software Intermediate Code
+"37 bldc.h
+[v _read_feedback `(us ~T0 @X0 0 sf1`i ]
+"25 adc.h
+[v _adc_channel `(us ~T0 @X0 0 ef1`i ]
+[; ;adc.h: 17: void init_adc(void);
+[; ;adc.h: 20: void get_input(void);
+[; ;adc.h: 22: void decide(void);
+[; ;adc.h: 25: unsigned short adc_channel(int);
+[; ;adc.h: 28: void do_outputs(void);
+[; ;adc.h: 29: void timing(void);
+[; ;adc.h: 30: unsigned get_adc_value();
+[; ;bldc.h: 37: static unsigned short read_feedback(int);
+[; ;bldc.h: 40: unsigned short read_feedback1();
+[; ;bldc.h: 41: unsigned short read_feedback2();
+[; ;bldc.h: 42: unsigned short read_feedback3();
+"3 bldc.c
+[v _read_feedback1 `(us ~T0 @X0 1 ef ]
+"4
+{
+[; ;bldc.c: 3: unsigned short read_feedback1()
+[; ;bldc.c: 4: {
+[e :U _read_feedback1 ]
+[f ]
+[; ;bldc.c: 5: return read_feedback(1);
+"5
+[e ) ( _read_feedback (1 -> 1 `i ]
+[e $UE 1  ]
+[; ;bldc.c: 6: }
+"6
+[e :UE 1 ]
+}
+"8
+[v _read_feedback2 `(us ~T0 @X0 1 ef ]
+"9
+{
+[; ;bldc.c: 8: unsigned short read_feedback2()
+[; ;bldc.c: 9: {
+[e :U _read_feedback2 ]
+[f ]
+[; ;bldc.c: 10: return read_feedback(2);
+"10
+[e ) ( _read_feedback (1 -> 2 `i ]
+[e $UE 2  ]
+[; ;bldc.c: 11: }
+"11
+[e :UE 2 ]
+}
+"13
+[v _read_feedback3 `(us ~T0 @X0 1 ef ]
+"14
+{
+[; ;bldc.c: 13: unsigned short read_feedback3()
+[; ;bldc.c: 14: {
+[e :U _read_feedback3 ]
+[f ]
+[; ;bldc.c: 15: return read_feedback(3);
+"15
+[e ) ( _read_feedback (1 -> 3 `i ]
+[e $UE 3  ]
+[; ;bldc.c: 16: }
+"16
+[e :UE 3 ]
+}
+"19
+[v _digitalWrite `(v ~T0 @X0 1 ef2`i`i ]
+"20
+{
+[; ;bldc.c: 19: void digitalWrite(int transistor, int value)
+[; ;bldc.c: 20: {
+[e :U _digitalWrite ]
+"19
+[v _transistor `i ~T0 @X0 1 r1 ]
+[v _value `i ~T0 @X0 1 r2 ]
+"20
+[f ]
+[; ;bldc.c: 21: }
+"21
+[e :UE 4 ]
+}
+"23
+[v _read_feedback `(us ~T0 @X0 1 sf1`i ]
+"24
+{
+[; ;bldc.c: 23: static unsigned short read_feedback(int channel)
+[; ;bldc.c: 24: {
+[e :U _read_feedback ]
+"23
+[v _channel `i ~T0 @X0 1 r1 ]
+"24
+[f ]
+[; ;bldc.c: 25: switch (channel)
+"25
+[e $U 7  ]
+[; ;bldc.c: 26: {
+"26
+{
+[; ;bldc.c: 27: case 1:
+"27
+[e :U 8 ]
+[; ;bldc.c: 28: return adc_channel(0);
+"28
+[e ) ( _adc_channel (1 -> 0 `i ]
+[e $UE 5  ]
+[; ;bldc.c: 29: case 2:
+"29
+[e :U 9 ]
+[; ;bldc.c: 30: return adc_channel(1);
+"30
+[e ) ( _adc_channel (1 -> 1 `i ]
+[e $UE 5  ]
+[; ;bldc.c: 31: case 3:
+"31
+[e :U 10 ]
+[; ;bldc.c: 32: return adc_channel(2);
+"32
+[e ) ( _adc_channel (1 -> 2 `i ]
+[e $UE 5  ]
+"33
+}
+[; ;bldc.c: 33: }
+[e $U 6  ]
+"25
+[e :U 7 ]
+[e [\ _channel , $ -> 1 `i 8
+ , $ -> 2 `i 9
+ , $ -> 3 `i 10
+ 6 ]
+"33
+[e :U 6 ]
+[; ;bldc.c: 34: }
+"34
+[e :UE 5 ]
+}

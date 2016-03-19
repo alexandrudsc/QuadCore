@@ -1,4 +1,7 @@
 Version 3.2 HI-TECH Software Intermediate Code
+"32 i2c.h
+[u S209 `uc -> 4 `i `us 1 `uc 1 `uc 1 ]
+[n S209 message input_buff motor_speed dir bytes ]
 "6975 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic16f917.h
 [v _TRISC7 `Vb ~T0 @X0 0 e@1087 ]
 "6973
@@ -13,10 +16,37 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _PEIE `Vb ~T0 @X0 0 e@94 ]
 "6853
 [v _SSPIE `Vb ~T0 @X0 0 e@1123 ]
-"6855
-[v _SSPIF `Vb ~T0 @X0 0 e@99 ]
+[v F2594 `(*v ~T0 @X0 1 tf1`S209 ]
 "822
 [v _SSPBUF `Vuc ~T0 @X0 0 e@19 ]
+"6855
+[v _SSPIF `Vb ~T0 @X0 0 e@99 ]
+"2013
+[s S80 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S80 . BF UA R_nW S P D_nA CKE SMP ]
+"2023
+[s S81 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S81 . . R . D ]
+"2029
+[s S82 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S82 . . I2C_READ I2C_START I2C_STOP I2C_DATA ]
+"2036
+[s S83 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S83 . . nW . nA ]
+"2042
+[s S84 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S84 . . nWRITE . nADDRESS ]
+"2048
+[s S85 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S85 . . R_W . D_A ]
+"2054
+[s S86 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S86 . . READ_WRITE . DATA_ADDRESS ]
+"2012
+[u S79 `S80 1 `S81 1 `S82 1 `S83 1 `S84 1 `S85 1 `S86 1 ]
+[n S79 . . . . . . . . ]
+"2061
+[v _SSPSTATbits `VS79 ~T0 @X0 0 e@148 ]
 [; ;pic16f917.h: 49: extern volatile unsigned char INDF @ 0x000;
 "51 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic16f917.h
 [; ;pic16f917.h: 51: asm("INDF equ 00h");
@@ -2272,107 +2302,195 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic16f917.h: 7125: extern volatile __bit nTX8 @ (((unsigned) &TXSTA)*8) + 6;
 [; ;pic16f917.h: 7127: extern volatile __bit nW @ (((unsigned) &SSPSTAT)*8) + 2;
 [; ;pic16f917.h: 7129: extern volatile __bit nWRITE @ (((unsigned) &SSPSTAT)*8) + 2;
-[; ;i2c.h: 26: void i2c_init_slave();
-[; ;i2c.h: 27: void i2c_init_master();
-[; ;i2c.h: 28: void i2c_master_start();
-[; ;i2c.h: 29: void i2c_write_byte();
-[; ;i2c.h: 30: unsigned char i2c_read_byte();
-"14 i2c.c
-[v _input_buff `uc ~T0 @X0 -> 20 `i e ]
-[; ;i2c.c: 14: char input_buff[20];
-"17
+[; ;i2c.h: 32: union message {
+[; ;i2c.h: 33: unsigned char input_buff[4];
+[; ;i2c.h: 34: unsigned short motor_speed;
+[; ;i2c.h: 35: unsigned char dir;
+[; ;i2c.h: 36: unsigned char bytes;
+[; ;i2c.h: 37: };
+[; ;i2c.h: 39: typedef union message MESSAGE;
+[; ;i2c.h: 42: typedef void *(handler)(MESSAGE msg);
+[; ;i2c.h: 46: void i2c_init_slave();
+[; ;i2c.h: 49: void i2c_set_handler(handler h);
+[; ;i2c.h: 52: static unsigned char i2c_read_byte();
+[; ;i2c.h: 55: void i2c_write_byte();
+[; ;i2c.h: 58: void i2c_init_master();
+[; ;i2c.h: 61: static void ssp_resolve();
+[; ;i2c.h: 64: void i2c_master_start();
+"16 i2c.c
+[v _msg `S209 ~T0 @X0 1 e ]
+[; ;i2c.c: 16: MESSAGE msg;
+"42 i2c.h
+[v _handler `(*v ~T0 @X0 1 tf1`S209 ]
+"19 i2c.c
+[v _p `*_handler ~T0 @X0 1 e ]
+[; ;i2c.c: 19: handler* p;
+"22
 [v _i2c_init_slave `(v ~T0 @X0 1 ef ]
-"18
 {
-[; ;i2c.c: 17: void i2c_init_slave()
-[; ;i2c.c: 18: {
+[; ;i2c.c: 22: void i2c_init_slave() {
 [e :U _i2c_init_slave ]
 [f ]
-[; ;i2c.c: 20: TRISC7 = 1;
-"20
-[e = _TRISC7 -> -> 1 `i `b ]
-[; ;i2c.c: 21: TRISC6 = 1;
-"21
-[e = _TRISC6 -> -> 1 `i `b ]
-[; ;i2c.c: 24: SSPADD = 0x10 << 1;
+[; ;i2c.c: 24: TRISC7 = 1;
 "24
+[e = _TRISC7 -> -> 1 `i `b ]
+[; ;i2c.c: 25: TRISC6 = 1;
+"25
+[e = _TRISC6 -> -> 1 `i `b ]
+[; ;i2c.c: 28: SSPADD = 0x10 << 1;
+"28
 [e = _SSPADD -> << -> 16 `i -> 1 `i `uc ]
-[; ;i2c.c: 27: SSPCON = 0x36;
-"27
-[e = _SSPCON -> -> 54 `i `uc ]
-[; ;i2c.c: 30: GIE = 1;
-"30
-[e = _GIE -> -> 1 `i `b ]
-[; ;i2c.c: 31: PEIE = 1;
+[; ;i2c.c: 31: SSPCON = 0x36;
 "31
-[e = _PEIE -> -> 1 `i `b ]
-[; ;i2c.c: 32: SSPIE = 1;
-"32
-[e = _SSPIE -> -> 1 `i `b ]
-[; ;i2c.c: 34: }
+[e = _SSPCON -> -> 54 `i `uc ]
+[; ;i2c.c: 34: GIE = 1;
 "34
-[e :UE 209 ]
-}
-"37
-[v _i2c_init_master `(v ~T0 @X0 1 ef ]
+[e = _GIE -> -> 1 `i `b ]
+[; ;i2c.c: 35: PEIE = 1;
+"35
+[e = _PEIE -> -> 1 `i `b ]
+[; ;i2c.c: 36: SSPIE = 1;
+"36
+[e = _SSPIE -> -> 1 `i `b ]
+[; ;i2c.c: 38: }
 "38
-{
-[; ;i2c.c: 37: void i2c_init_master()
-[; ;i2c.c: 38: {
-[e :U _i2c_init_master ]
-[f ]
-[; ;i2c.c: 40: }
-"40
 [e :UE 210 ]
 }
-"43
-[v _i2c_master_start `(v ~T0 @X0 1 ef ]
-"44
+"41
+[v _i2c_init_master `(v ~T0 @X0 1 ef ]
 {
-[; ;i2c.c: 43: void i2c_master_start()
-[; ;i2c.c: 44: {
-[e :U _i2c_master_start ]
+[; ;i2c.c: 41: void i2c_init_master() {
+[e :U _i2c_init_master ]
 [f ]
-[; ;i2c.c: 46: }
-"46
+[; ;i2c.c: 43: }
+"43
 [e :UE 211 ]
 }
-"48
-[v _i2c_write_byte `(v ~T0 @X0 1 ef ]
-"49
+"46
+[v _i2c_master_start `(v ~T0 @X0 1 ef ]
 {
-[; ;i2c.c: 48: void i2c_write_byte()
-[; ;i2c.c: 49: {
-[e :U _i2c_write_byte ]
+[; ;i2c.c: 46: void i2c_master_start() {
+[e :U _i2c_master_start ]
 [f ]
-[; ;i2c.c: 51: }
-"51
+[; ;i2c.c: 48: }
+"48
 [e :UE 212 ]
 }
-"53
-[v _i2c_read_byte `(uc ~T0 @X0 1 ef ]
-"54
+"51
+[v _i2c_write_byte `(v ~T0 @X0 1 ef ]
 {
-[; ;i2c.c: 53: unsigned char i2c_read_byte()
-[; ;i2c.c: 54: {
+[; ;i2c.c: 51: void i2c_write_byte() {
+[e :U _i2c_write_byte ]
+[f ]
+[; ;i2c.c: 53: }
+"53
+[e :UE 213 ]
+}
+"56
+[v _i2c_set_handler `(v ~T0 @X0 1 ef1`*F2594 ]
+{
+[; ;i2c.c: 56: void i2c_set_handler(handler* h){
+[e :U _i2c_set_handler ]
+[v _h `*_handler ~T0 @X0 1 r1 ]
+[f ]
+[; ;i2c.c: 57: p = h;
+"57
+[e = _p _h ]
+[; ;i2c.c: 58: }
+"58
+[e :UE 214 ]
+}
+"61
+[v _i2c_read_byte `(uc ~T0 @X0 1 sf ]
+{
+[; ;i2c.c: 61: static unsigned char i2c_read_byte() {
 [e :U _i2c_read_byte ]
 [f ]
-[; ;i2c.c: 55: if (!SSPIF){
-"55
-[e $ ! ! _SSPIF 214  ]
-{
-[; ;i2c.c: 56: SSPIF = 0;
-"56
-[e = _SSPIF -> -> 0 `i `b ]
-"57
-}
-[e :U 214 ]
-[; ;i2c.c: 57: }
-[; ;i2c.c: 58: return SSPBUF;
-"58
+[; ;i2c.c: 62: return SSPBUF;
+"62
 [e ) _SSPBUF ]
-[e $UE 213  ]
-[; ;i2c.c: 59: }
-"59
-[e :UE 213 ]
+[e $UE 215  ]
+[; ;i2c.c: 63: }
+"63
+[e :UE 215 ]
+}
+"65
+[v _msg_resolve `(v ~T0 @X0 1 sf ]
+{
+[; ;i2c.c: 65: static void msg_resolve() {
+[e :U _msg_resolve ]
+[f ]
+[; ;i2c.c: 66: (*p)(msg);
+"66
+[e ( *U _p (1 _msg ]
+[; ;i2c.c: 67: }
+"67
+[e :UE 216 ]
+}
+[v F2605 `(v ~T0 @X0 1 tf ]
+"73
+[v _ISR_Handler `IF2605 ~T0 @X0 1 e ]
+{
+[; ;i2c.c: 73: interrupt void ISR_Handler() {
+[e :U _ISR_Handler ]
+[f ]
+[; ;i2c.c: 76: if (SSPIF) {
+"76
+[e $ ! _SSPIF 218  ]
+{
+[; ;i2c.c: 83: if (SSPSTATbits.S && SSPSTATbits.READ_WRITE == 0 && SSPSTATbits.DATA_ADDRESS == 0)
+"83
+[e $ ! && && != -> . . _SSPSTATbits 0 3 `i -> -> -> 0 `i `Vuc `i == -> . . _SSPSTATbits 6 1 `i -> 0 `i == -> . . _SSPSTATbits 6 3 `i -> 0 `i 219  ]
+[; ;i2c.c: 84: {
+"84
+{
+[; ;i2c.c: 85: msg.bytes = 0;
+"85
+[e = . _msg 3 -> -> 0 `i `uc ]
+"86
+}
+[; ;i2c.c: 86: }
+[e $U 220  ]
+"93
+[e :U 219 ]
+[; ;i2c.c: 93: else if (SSPSTATbits.S && SSPSTATbits.READ_WRITE == 0 && SSPSTATbits.DATA_ADDRESS)
+[e $ ! && && != -> . . _SSPSTATbits 0 3 `i -> -> -> 0 `i `Vuc `i == -> . . _SSPSTATbits 6 1 `i -> 0 `i != -> . . _SSPSTATbits 6 3 `i -> -> -> 0 `i `Vuc `i 221  ]
+[; ;i2c.c: 94: {
+"94
+{
+[; ;i2c.c: 95: msg.bytes ++;
+"95
+[e ++ . _msg 3 -> -> 1 `i `uc ]
+"96
+}
+[e :U 221 ]
+"99
+[e :U 220 ]
+[; ;i2c.c: 96: }
+[; ;i2c.c: 99: msg.input_buff[msg.bytes] = i2c_read_byte();
+[e = *U + &U . _msg 0 * -> . _msg 3 `ux -> -> # *U &U . _msg 0 `ui `ux ( _i2c_read_byte ..  ]
+[; ;i2c.c: 102: if (msg.bytes == 3)
+"102
+[e $ ! == -> . _msg 3 `i -> 3 `i 222  ]
+[; ;i2c.c: 103: msg_resolve();
+"103
+[e ( _msg_resolve ..  ]
+[e :U 222 ]
+[; ;i2c.c: 106: if (msg.bytes > 4)
+"106
+[e $ ! > -> . _msg 3 `i -> 4 `i 223  ]
+[; ;i2c.c: 107: msg.bytes = 0;
+"107
+[e = . _msg 3 -> -> 0 `i `uc ]
+[e :U 223 ]
+[; ;i2c.c: 109: SSPIF = 0;
+"109
+[e = _SSPIF -> -> 0 `i `b ]
+"111
+}
+[e :U 218 ]
+[; ;i2c.c: 111: }
+[; ;i2c.c: 112: }
+"112
+[e :UE 217 ]
 }
