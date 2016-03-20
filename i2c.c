@@ -102,8 +102,8 @@ interrupt void ISR_Handler() {
         if (SSPSTATbits.S && SSPSTATbits.READ_WRITE == 0 && SSPSTATbits.DATA_ADDRESS == 0 && BF == 1) {
             // a new message is started
             msg_in_restart();
-            // add to the message the byte we just read 
-            //msg_in_add_byte(i2c_read_byte());
+            // read the address byte as input, in order to avoid NACK on master
+            i2c_read_byte();
         }
         /* State 2:
          * start condition occurred last &&
