@@ -1,15 +1,5 @@
 
-# 1 "adc.c"
-
-# 26 "C:\Program Files (x86)\Microchip\xc8\v1.35\include\htc.h"
-extern const char __xc8_OPTIM_SPEED;
-
-extern double __fpnormalize(double);
-
-
-# 13 "C:\Program Files (x86)\Microchip\xc8\v1.35\include\xc8debug.h"
-#pragma intrinsic(__builtin_software_breakpoint)
-extern void __builtin_software_breakpoint(void);
+# 1 "interrupts.c"
 
 # 49 "C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic16f917.h"
 extern volatile unsigned char INDF @ 0x000;
@@ -3097,29 +3087,64 @@ extern volatile __bit nW @ (((unsigned) &SSPSTAT)*8) + 2;
 
 extern volatile __bit nWRITE @ (((unsigned) &SSPSTAT)*8) + 2;
 
+# 44 "i2c.h"
+union message_in {
+unsigned char input_buff[8];
+unsigned char nr_bytes ;
+};
 
-# 27 "C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic.h"
-#pragma intrinsic(__nop)
-extern void __nop(void);
-
-# 76
-extern unsigned int flash_read(unsigned short addr);
-
-# 41 "C:\Program Files (x86)\Microchip\xc8\v1.35\include\eeprom_routines.h"
-extern void eeprom_write(unsigned char addr, unsigned char value);
-extern unsigned char eeprom_read(unsigned char addr);
-extern void eecpymem(volatile unsigned char *to, __eeprom unsigned char *from, unsigned char size);
-extern void memcpyee(__eeprom unsigned char *to, const unsigned char *from, unsigned char size);
+# 59
+typedef union message_in MESSAGE_IN;
 
 
-# 149 "C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic.h"
-#pragma intrinsic(_delay)
-extern __nonreentrant void _delay(unsigned long);
+union message_out {
+unsigned char output_buff[5];
+unsigned char nr_bytes;
+};
 
-# 184
-extern unsigned char __resetbits;
-extern __bit __powerdown;
-extern __bit __timeout;
+typedef union message_out MESSAGE_OUT;
+
+# 75
+typedef void (handler_in)(MESSAGE_IN* msg);
+
+
+typedef void (handler_out)(MESSAGE_OUT* msg);
+
+
+void i2c_init_slave();
+
+
+void i2c_set_handler_in(handler_in h);
+
+
+void i2c_set_handler_out(handler_out h);
+
+
+static void i2c_write_byte();
+
+
+void i2c_init_master();
+
+
+static void msg_in_resolve();
+
+
+static void msg_in_restart();
+
+
+static void msg_in_add_byte(char byte);
+
+
+static unsigned char i2c_read_byte();
+
+
+static void msg_out_request();
+
+
+void i2c_interrupt();
+
+
+void i2c_master_start();
 
 # 17 "adc.h"
 void init_adc(void);
@@ -3137,88 +3162,14 @@ void do_outputs(void);
 void timing(void);
 unsigned get_adc_value();
 
-# 12 "adc.c"
-unsigned LED_output = 0;
-
-
-void init_adc(void)
+# 7 "interrupts.c"
+interrupt void ISR()
 {
-
-
-TRISBbits.TRISB4 = 1;
-
-ANSEL = 0x01;
-TRISA = 0xFF;
-
-TRISD = 0x00;
-
-
-
-ADCON1bits.ADCS = 0b11;
-
-
-ADCON0bits.VCFG = 0;
-
-# 37
-ADCON0bits.ADFM = 1;
-
-ADCON0bits.ADON = 1;
+if (SSPIF) {
+i2c_interrupt();
 }
 
-# 48
-void get_input(void)
-{
+if (ADIF) {
 
-
-_delay((unsigned long)((1)*(8000000/4000.0)));
-
-ADCON0bits.GO_nDONE = 1;
-
-
-
-
-while(ADCON0bits.GO_nDONE == 1);
 }
-
-
-unsigned short adc_channel(int ch)
-{
-
-ADCON0bits.CHS = ch;
-
-
-get_input();
-
-
-unsigned short adc_val = (unsigned int)ADRESH << 8 ;
-adc_val = adc_val + ADRESL;
-return adc_val;
-}
-
-# 84
-void decide(void)
-{
-
-
-LED_output = ADRESL;
-}
-
-# 98
-void do_output(void)
-{
-
-
-PORTD = LED_output;
-}
-
-unsigned get_adc_value()
-{
-return LED_output;
-}
-
-# 116
-void timing(void)
-
-{
-
 }

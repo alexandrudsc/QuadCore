@@ -2,13 +2,14 @@
  * File:   i2c.c
  * Author: Alexandru
  * Created on November 10, 2015, 2:18 PM
- * Driver for i2c slave configuration. [Only read operation is available].
+ * Driver for i2c slave configuration. [Only read operation is available: EDIT write to master added].
  * The writing to master is done using an output buffer and the bytes are written from LEFT TO RIGHT.  
  * When an i2c event occurs, an interrupt is generated.
  * A complete input message is defined in "i2c.h"
  */
 
 #include <pic16f917.h>
+#include <pic.h>
 
 #include "i2c.h"
 #include "uc_config.h"
@@ -28,8 +29,7 @@ handler_out* p_out = NULL;
 // init SSP module i2c slave config
 void i2c_init_slave() {
     
-    (*p_out)();
-    (*p_in)(msg_in);
+    PORTD = 0x00;
     
     // SCL and SDA pins configured as inputs
     SDA_DIR = 1;
@@ -40,7 +40,12 @@ void i2c_init_slave() {
 
     // select and enable i2c slave mode 7 bit addressing
     SSPCON = 0x36;
-
+    
+    // clear any previous i2c event
+    SSPSTAT = 0x00;
+    SSPOV = 0;
+    BF = 0;
+    
     // enable SSP interrupts for each i2c event  
     GIE = 1; // global software interrupts
     PEIE = 1; // global pheripherals interrupts
@@ -59,18 +64,26 @@ void i2c_master_start() {
 
 // read byte from input register
 static unsigned char i2c_read_byte() {
+    
     return SSPBUF; // return the value of the register
 }
 
 // write one byte to master
 static void i2c_write_byte() {
-    
-    // write a byte from the output message to the buffer register if possibile
+    // write a byte from the output message to the buffer register if possible
     if (msg_out.nr_bytes > 0){
-        SSPBUF = msg_out.output_buff [msg_out.nr_bytes - 1];
+        
+        // rewrite until collision is avoided
+        do
+        {
+            WCOL = 0;                           // delete write collision flag
+            SSPBUF = msg_out.output_buff [msg_out.nr_bytes - 1];
+        }while (WCOL);                          
         
         // delete one byte from message
         msg_out.nr_bytes --;
+        
+        CKP = 1;            // release SCL line
     }
 }
 
@@ -84,34 +97,42 @@ void i2c_set_handler_out(handler_out* h) {
     p_out = h;
 }
 
-/* handler for all interrupts. We use it only for I2C events
+/*
  * I2C communication is implemented as a finite state machine (FSM). 
  * We considered only two states for the slave configuration (only read from master)
  */
-interrupt void ISR_Handler() {
+ void i2c_interrupt() {
 
     // SSP interrupt (i2c) occured
-    if (SSPIF) {
-
-        /* State 1: 
+    if (SSPIF) { 
+        
+        /* State 1: Master writes to slave:
          * start condition occurred last &&
          * master writes to slave &&
          * last byte was an address &&
          * buffer is fuull
          */
-        if (SSPSTATbits.S && SSPSTATbits.READ_WRITE == 0 && SSPSTATbits.DATA_ADDRESS == 0 && BF == 1) {
+        if (SSPSTATbits.S == 1 && SSPSTATbits.R_nW == 0 && SSPSTATbits.D_nA == 0 && SSPSTATbits.BF == 1) {
+            CLRWDT();
             // a new message is started
             msg_in_restart();
-            // read the address byte as input, in order to avoid NACK on master
+     
+            // read input register to clear address and avoid overflow
             i2c_read_byte();
+            if (SSPOV == 1){
+                SSPOV = 0;
+                SSPIF = 0; // Clear the interrupt flag
+            }
         }
-        /* State 2:
+        /* State 2: Master writes to slave:
          * start condition occurred last &&
          * master writes to slave &&
-         * last byte was a data
+         * last byte was a data &&
+         * buffer is full
          */
-        else if (SSPSTATbits.S && SSPSTATbits.READ_WRITE == 0 && SSPSTATbits.DATA_ADDRESS) {
-
+        else if (SSPSTATbits.S == 1 && SSPSTATbits.R_nW == 0 && SSPSTATbits.D_nA == 1  && SSPSTATbits.BF == 1) {
+            CLRWDT();
+            
             // add the byte we just read, to the input buffer
             msg_in_add_byte(i2c_read_byte());
 
@@ -120,34 +141,55 @@ interrupt void ISR_Handler() {
                 msg_in_resolve();
 
             // in case of new message reset communication
-            if (msg_in.nr_bytes > INPUT_BUFFER_SIZE)
+            if (msg_in.nr_bytes > INPUT_BUFFER_SIZE )
                 msg_in_restart();
+
+            if (SSPOV == 1){
+                SSPOV = 0;
+                SSPIF = 0; // Clear the interrupt flag
+            }
         }
-        /* State3:
+        /* State 3: Master reads from slave:
          * start condition occurred last &&
          * master reads from slave &&
          * last byte was an address
          */
-        else if (SSPSTATbits.S && SSPSTATbits.READ_WRITE == 1 && SSPSTATbits.DATA_ADDRESS == 0) {
-            msg_out_request();
+        else if (SSPSTATbits.S == 1 && SSPSTATbits.R_nW == 1 && SSPSTATbits.D_nA == 0) {
+            // request a message to be sent to master
+            msg_out_request();  
+            PORTD = 0x00;            
+            i2c_write_byte();
+            SSPIF = 0; // Clear the interrupt flag
+
         }
         
-        /* State3:
+        /* State 4: Master reads from slave:
          * start condition occurred last &&
          * master reads from slave &&
          * last byte was data &&
          * buffer is empty
          */
-        else if (SSPSTATbits.S && SSPSTATbits.READ_WRITE == 1 && SSPSTATbits.DATA_ADDRESS && BF == 0){
+        else if (SSPSTATbits.S == 1 && SSPSTATbits.R_nW == 1 && SSPSTATbits.D_nA == 1 && SSPSTATbits.BF == 0){
             i2c_write_byte();
+            SSPIF = 0; // Clear the interrupt flag
+
         }
-        
-        
-        SSPIF = 0; // Clear the interrupt flag.
-
+        /* State 5: Master NACK's the byte. It no longer reads from slave. Reset I2C logic:
+         * start condition occurred last &&
+         * last byte was data &&
+         * buffer is empty &&
+         * clock is released
+         */
+        else if (SSPSTATbits.S == 1 && SSPSTATbits.R_nW == 1 && SSPSTATbits.BF == 0 && CKE == 1){
+            // reset slave logic
+            i2c_init_slave();
+        }
     }
-}
+  }
 
+/* At this moment, the number of bytes in input messages = 1 
+ * ( we keep the number of byte within the message)
+ */
 static void msg_in_add_byte(char byte) {
     msg_in.nr_bytes ++;
     msg_in.input_buff[msg_in.nr_bytes - 1] = byte;
@@ -155,14 +197,14 @@ static void msg_in_add_byte(char byte) {
 
 static void msg_in_resolve() {
     if (p_in != NULL)
-        (*p_in)(msg_in);
+        (*p_in)(&msg_in);
 }
 
 static void msg_in_restart() {
-    msg_in.nr_bytes = 0;
+    msg_in.nr_bytes = 1;                        // only the number of bytes is available now. the rest of the message must be read
 }
 
 static void msg_out_request() {
     if (p_out != NULL)
-        msg_out = (*p_out)();
+        (*p_out)(&msg_out);
 }

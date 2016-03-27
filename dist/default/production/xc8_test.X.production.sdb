@@ -7,10 +7,25 @@
 [v _init_adc init_adc `(v  1 e 0 0 ]
 "48
 [v _get_input get_input `(v  1 e 0 0 ]
-"63
-[v _adc_channel adc_channel `(us  1 e 2 0 ]
-"23 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\bldc.c
-[v _read_feedback read_feedback `(us  1 s 2 read_feedback ]
+"12 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\bldc.c
+[v _set_motor_speed set_motor_speed `(v  1 e 0 0 ]
+[v i1_set_motor_speed set_motor_speed `(v  1 e 0 0 ]
+"32
+[v _accelerate_to accelerate_to `(v  1 s 0 accelerate_to ]
+[v i1_accelerate_to accelerate_to `(v  1 s 0 i1_accelerate_to ]
+"38
+[v _deccelerate_to deccelerate_to `(v  1 s 0 deccelerate_to ]
+[v i1_deccelerate_to deccelerate_to `(v  1 s 0 i1_deccelerate_to ]
+"77
+[v _all_low all_low `(v  1 s 0 all_low ]
+"88
+[v _phase_A phase_A `(v  1 s 0 phase_A ]
+"94
+[v _phase_B phase_B `(v  1 s 0 phase_B ]
+"100
+[v _phase_C phase_C `(v  1 s 0 phase_C ]
+"109
+[v _delay_milis delay_milis `(v  1 s 0 delay_milis ]
 "62 C:\Program Files (x86)\Microchip\xc8\v1.35\sources\common\float.c
 [v ___ftpack __ftpack `(f  1 e 3 0 ]
 "86 C:\Program Files (x86)\Microchip\xc8\v1.35\sources\common\ftadd.c
@@ -29,50 +44,75 @@
 [v _eecpymem eecpymem `(v  1 e 0 0 ]
 "24
 [v _memcpyee memcpyee `(v  1 e 0 0 ]
-"22 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\i2c.c
+"30 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\i2c.c
 [v _i2c_init_slave i2c_init_slave `(v  1 e 0 0 ]
-"56
-[v _i2c_set_handler i2c_set_handler `(v  1 e 0 0 ]
-"61
-[v _i2c_read_byte i2c_read_byte `(uc  1 s 1 i2c_read_byte ]
-"65
-[v _msg_resolve msg_resolve `(v  1 s 0 msg_resolve ]
-"73
-[v _ISR_Handler ISR_Handler `II(v  1 e 0 0 ]
-"31 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\main.c
-[v _main main `(v  1 e 0 0 ]
+[v i1_i2c_init_slave i2c_init_slave `(v  1 e 0 0 ]
 "66
-[v _i2c_handler i2c_handler `(v  1 e 0 0 ]
+[v _i2c_read_byte i2c_read_byte `(uc  1 s 1 i2c_read_byte ]
+"72
+[v _i2c_write_byte i2c_write_byte `(v  1 s 0 i2c_write_byte ]
+"91
+[v _i2c_set_handler_in i2c_set_handler_in `(v  1 e 0 0 ]
+"96
+[v _i2c_set_handler_out i2c_set_handler_out `(v  1 e 0 0 ]
+"104
+[v _i2c_interrupt i2c_interrupt `(v  1 e 0 0 ]
+"193
+[v _msg_in_add_byte msg_in_add_byte `(v  1 s 0 msg_in_add_byte ]
+"198
+[v _msg_in_resolve msg_in_resolve `(v  1 s 0 msg_in_resolve ]
+"203
+[v _msg_in_restart msg_in_restart `(v  1 s 0 msg_in_restart ]
+"207
+[v _msg_out_request msg_out_request `(v  1 s 0 msg_out_request ]
+"7 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\interrupts.c
+[v _ISR ISR `II(v  1 e 0 0 ]
+"33 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\main.c
+[v _main main `(v  1 e 0 0 ]
+"76
+[v _i2c_in_handler i2c_in_handler `(v  1 e 0 0 ]
+"96
+[v _i2c_out_handler i2c_out_handler `(v  1 e 0 0 ]
 "41 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\pwm.c
+[v _PWM2_init7k PWM2_init7k `(v  1 e 0 0 ]
+"49
 [v _PWM2_init PWM2_init `(v  1 e 0 0 ]
-"51
-[v _PWM1_duty PWM1_duty `(v  1 e 0 0 ]
-"63
+"71
 [v _PWM2_duty PWM2_duty `(v  1 e 0 0 ]
-"107
-[v _PWM2_start PWM2_start `(v  1 e 0 0 ]
 "12 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\adc.c
 [v _LED_output LED_output `ui  1 e 2 0 ]
+"3 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\bldc.c
+[v _state state `uc  1 e 1 0 ]
+"6
+[v _motor_speed motor_speed `i  1 e 2 0 ]
+"8
+[v _direction direction `uc  1 e 1 0 ]
+"10
+[v _commut_freq commut_freq `VEi  1 e 2 0 ]
 "343 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic16f917.h
 [v _PORTD PORTD `VEuc  1 e 1 @8 ]
+"752
+[v _T2CON T2CON `VEuc  1 e 1 @18 ]
 "822
 [v _SSPBUF SSPBUF `VEuc  1 e 1 @19 ]
 "828
 [v _SSPCON SSPCON `VEuc  1 e 1 @20 ]
 "903
 [v _CCPR1L CCPR1L `VEuc  1 e 1 @21 ]
+"915
+[v _CCP1CON CCP1CON `VEuc  1 e 1 @23 ]
 "1084
 [v _CCPR2L CCPR2L `VEuc  1 e 1 @27 ]
 "1153
 [v _ADRESH ADRESH `VEuc  1 e 1 @30 ]
-[s S123 . 1 `uc 1 ADON 1 0 :1:0 
+[s S157 . 1 `uc 1 ADON 1 0 :1:0 
 `uc 1 GO_nDONE 1 0 :1:1 
 `uc 1 CHS 1 0 :3:2 
 `uc 1 VCFG 1 0 :2:5 
 `uc 1 ADFM 1 0 :1:7 
 ]
 "1190
-[s S129 . 1 `uc 1 . 1 0 :1:0 
+[s S163 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 nDONE 1 0 :1:1 
 `uc 1 CHS0 1 0 :1:2 
 `uc 1 CHS1 1 0 :1:3 
@@ -80,17 +120,17 @@
 `uc 1 VCFG0 1 0 :1:5 
 `uc 1 VCFG1 1 0 :1:6 
 ]
-[s S137 . 1 `uc 1 . 1 0 :1:0 
+[s S171 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO_DONE 1 0 :1:1 
 ]
-[s S140 . 1 `uc 1 . 1 0 :1:0 
+[s S174 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO 1 0 :1:1 
 ]
-[u S143 . 1 `S123 1 . 1 0 `S129 1 . 1 0 `S137 1 . 1 0 `S140 1 . 1 0 ]
-[v _ADCON0bits ADCON0bits `VES143  1 e 1 @31 ]
+[u S177 . 1 `S157 1 . 1 0 `S163 1 . 1 0 `S171 1 . 1 0 `S174 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES177  1 e 1 @31 ]
 "1328
 [v _TRISA TRISA `VEuc  1 e 1 @133 ]
-[s S79 . 1 `uc 1 TRISB0 1 0 :1:0 
+[s S113 . 1 `uc 1 TRISB0 1 0 :1:0 
 `uc 1 TRISB1 1 0 :1:1 
 `uc 1 TRISB2 1 0 :1:2 
 `uc 1 TRISB3 1 0 :1:3 
@@ -100,17 +140,33 @@
 `uc 1 TRISB7 1 0 :1:7 
 ]
 "1406
-[u S88 . 1 `S79 1 . 1 0 ]
-[v _TRISBbits TRISBbits `VES88  1 e 1 @134 ]
+[u S122 . 1 `S113 1 . 1 0 ]
+[v _TRISBbits TRISBbits `VES122  1 e 1 @134 ]
 "1511
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
+[s S19 . 1 `uc 1 SCS 1 0 :1:0 
+`uc 1 LTS 1 0 :1:1 
+`uc 1 HTS 1 0 :1:2 
+`uc 1 OSTS 1 0 :1:3 
+`uc 1 IRCF 1 0 :3:4 
+]
+"1781
+[s S25 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 IRCF0 1 0 :1:4 
+`uc 1 IRCF1 1 0 :1:5 
+`uc 1 IRCF2 1 0 :1:6 
+]
+[u S30 . 1 `S19 1 . 1 0 `S25 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES30  1 e 1 @143 ]
 "1876
 [v _ANSEL ANSEL `VEuc  1 e 1 @145 ]
 "1995
 [v _PR2 PR2 `VEuc  1 e 1 @146 ]
 "2001
 [v _SSPADD SSPADD `VEuc  1 e 1 @147 ]
-[s S253 . 1 `uc 1 BF 1 0 :1:0 
+"2007
+[v _SSPSTAT SSPSTAT `VEuc  1 e 1 @148 ]
+[s S295 . 1 `uc 1 BF 1 0 :1:0 
 `uc 1 UA 1 0 :1:1 
 `uc 1 R_nW 1 0 :1:2 
 `uc 1 S 1 0 :1:3 
@@ -120,52 +176,56 @@
 `uc 1 SMP 1 0 :1:7 
 ]
 "2061
-[s S262 . 1 `uc 1 . 1 0 :2:0 
+[s S304 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D 1 0 :1:5 
 ]
-[s S267 . 1 `uc 1 . 1 0 :2:0 
+[s S309 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 I2C_READ 1 0 :1:2 
 `uc 1 I2C_START 1 0 :1:3 
 `uc 1 I2C_STOP 1 0 :1:4 
 `uc 1 I2C_DATA 1 0 :1:5 
 ]
-[s S273 . 1 `uc 1 . 1 0 :2:0 
+[s S315 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nW 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nA 1 0 :1:5 
 ]
-[s S278 . 1 `uc 1 . 1 0 :2:0 
+[s S320 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nWRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nADDRESS 1 0 :1:5 
 ]
-[s S283 . 1 `uc 1 . 1 0 :2:0 
+[s S325 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R_W 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D_A 1 0 :1:5 
 ]
-[s S288 . 1 `uc 1 . 1 0 :2:0 
+[s S330 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 READ_WRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 DATA_ADDRESS 1 0 :1:5 
 ]
-[u S293 . 1 `S253 1 . 1 0 `S262 1 . 1 0 `S267 1 . 1 0 `S273 1 . 1 0 `S278 1 . 1 0 `S283 1 . 1 0 `S288 1 . 1 0 ]
-[v _SSPSTATbits SSPSTATbits `VES293  1 e 1 @148 ]
+[u S335 . 1 `S295 1 . 1 0 `S304 1 . 1 0 `S309 1 . 1 0 `S315 1 . 1 0 `S320 1 . 1 0 `S325 1 . 1 0 `S330 1 . 1 0 ]
+[v _SSPSTATbits SSPSTATbits `VES335  1 e 1 @148 ]
 "2798
 [v _ADRESL ADRESL `VEuc  1 e 1 @158 ]
-[s S103 . 1 `uc 1 . 1 0 :4:0 
+[s S137 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 ADCS 1 0 :3:4 
 ]
 "2821
-[s S106 . 1 `uc 1 . 1 0 :4:0 
+[s S140 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 ADCS0 1 0 :1:4 
 `uc 1 ADCS1 1 0 :1:5 
 `uc 1 ADCS2 1 0 :1:6 
 ]
-[u S111 . 1 `S103 1 . 1 0 `S106 1 . 1 0 ]
-[v _ADCON1bits ADCON1bits `VES111  1 e 1 @159 ]
+[u S145 . 1 `S137 1 . 1 0 `S140 1 . 1 0 ]
+[v _ADCON1bits ADCON1bits `VES145  1 e 1 @159 ]
+"5961
+[v _ADIF ADIF `VEb  1 e 0 @102 ]
+"5997
+[v _BF BF `VEb  1 e 0 @1184 ]
 "6031
 [v _CCP1M2 CCP1M2 `VEb  1 e 0 @186 ]
 "6033
@@ -182,14 +242,32 @@
 [v _CCP2X CCP2X `VEb  1 e 0 @237 ]
 "6053
 [v _CCP2Y CCP2Y `VEb  1 e 0 @236 ]
+"6063
+[v _CKE CKE `VEb  1 e 0 @1190 ]
+"6065
+[v _CKP CKP `VEb  1 e 0 @164 ]
 "6155
 [v _GIE GIE `VEb  1 e 0 @95 ]
 "6247
 [v _PEIE PEIE `VEb  1 e 0 @94 ]
+"6321
+[v _RD0 RD0 `VEb  1 e 0 @64 ]
+"6323
+[v _RD1 RD1 `VEb  1 e 0 @65 ]
+"6329
+[v _RD4 RD4 `VEb  1 e 0 @68 ]
+"6331
+[v _RD5 RD5 `VEb  1 e 0 @69 ]
+"6333
+[v _RD6 RD6 `VEb  1 e 0 @70 ]
+"6335
+[v _RD7 RD7 `VEb  1 e 0 @71 ]
 "6853
 [v _SSPIE SSPIE `VEb  1 e 0 @1123 ]
 "6855
 [v _SSPIF SSPIF `VEb  1 e 0 @99 ]
+"6865
+[v _SSPOV SSPOV `VEb  1 e 0 @166 ]
 "6897
 [v _T2CKPS0 T2CKPS0 `VEb  1 e 0 @144 ]
 "6899
@@ -204,70 +282,145 @@
 [v _TRISC6 TRISC6 `VEb  1 e 0 @1086 ]
 "6975
 [v _TRISC7 TRISC7 `VEb  1 e 0 @1087 ]
-[u S25 message 4 `[4]uc 1 input_buff 4 0 `us 1 motor_speed 2 0 `uc 1 dir 1 0 `uc 1 bytes 1 0 ]
-"16 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\i2c.c
-[v _msg msg `S25  1 e 4 0 ]
-"19
-[v _p p `*.27(*.1v  1 e 1 0 ]
-"23 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\main.c
-[v _duty duty `VEus  1 e 2 0 ]
-"26
-[v _direction direction `VEuc  1 e 1 0 ]
+"7049
+[v _WCOL WCOL `VEb  1 e 0 @167 ]
+[u S50 message_in 8 `[8]uc 1 input_buff 8 0 `uc 1 nr_bytes 1 0 ]
+"18 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\i2c.c
+[v _msg_in msg_in `S50  1 e 8 0 ]
+[u S64 message_out 5 `[5]uc 1 output_buff 5 0 `uc 1 nr_bytes 1 0 ]
+"21
+[v _msg_out msg_out `S64  1 e 5 0 ]
+"24
+[v _p_in p_in `*.27(v  1 e 1 0 ]
+"27
+[v _p_out p_out `*.27(v  1 e 1 0 ]
+"25 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\main.c
+[v _duty duty `VEuc  1 e 1 0 ]
 "24 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\pwm.c
 [v _freq freq `ul  1 e 4 0 ]
-"31 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\main.c
+"33 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\main.c
 [v _main main `(v  1 e 0 0 ]
 {
-"53
-[v main@adc_value1_70 adc_value1 `us  1 a 2 26 ]
-"57
-[v main@adc_value3_72 adc_value3 `us  1 a 2 24 ]
-"56
-[v main@adc_value2_71 adc_value2 `us  1 a 2 22 ]
-"64
+"39
+[v main@start start `ui  1 a 2 22 ]
+"71
+} 0
+"12 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\bldc.c
+[v _set_motor_speed set_motor_speed `(v  1 e 0 0 ]
+{
+[v set_motor_speed@speed speed `i  1 p 2 19 ]
+"17
+} 0
+"38
+[v _deccelerate_to deccelerate_to `(v  1 s 0 deccelerate_to ]
+{
+[v deccelerate_to@speed speed `i  1 p 2 17 ]
+"41
+} 0
+"32
+[v _accelerate_to accelerate_to `(v  1 s 0 accelerate_to ]
+{
+[v accelerate_to@speed speed `i  1 p 2 17 ]
+"35
 } 0
 "15 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\adc.c
 [v _init_adc init_adc `(v  1 e 0 0 ]
 {
 "40
 } 0
-"56 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\i2c.c
-[v _i2c_set_handler i2c_set_handler `(v  1 e 0 0 ]
+"96 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\i2c.c
+[v _i2c_set_handler_out i2c_set_handler_out `(v  1 e 0 0 ]
 {
-[v i2c_set_handler@h h `*.27(*.1v  1 a 1 wreg ]
-[v i2c_set_handler@h h `*.27(*.1v  1 a 1 wreg ]
-[v i2c_set_handler@h h `*.27(*.1v  1 a 1 1 ]
-"58
+[v i2c_set_handler_out@h h `*.27(v  1 a 1 wreg ]
+[v i2c_set_handler_out@h h `*.27(v  1 a 1 wreg ]
+[v i2c_set_handler_out@h h `*.27(v  1 a 1 18 ]
+"98
 } 0
-"22
+"91
+[v _i2c_set_handler_in i2c_set_handler_in `(v  1 e 0 0 ]
+{
+[v i2c_set_handler_in@h h `*.27(v  1 a 1 wreg ]
+[v i2c_set_handler_in@h h `*.27(v  1 a 1 wreg ]
+[v i2c_set_handler_in@h h `*.27(v  1 a 1 18 ]
+"93
+} 0
+"30
 [v _i2c_init_slave i2c_init_slave `(v  1 e 0 0 ]
 {
+"53
+} 0
+"41 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\pwm.c
+[v _PWM2_init7k PWM2_init7k `(v  1 e 0 0 ]
+{
+"46
+} 0
+"7 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\interrupts.c
+[v _ISR ISR `II(v  1 e 0 0 ]
+{
+"16
+} 0
+"104 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\i2c.c
+[v _i2c_interrupt i2c_interrupt `(v  1 e 0 0 ]
+{
+"188
+} 0
+"30
+[v i1_i2c_init_slave i2c_init_slave `(v  1 e 0 0 ]
+{
+"53
+} 0
+"207
+[v _msg_out_request msg_out_request `(v  1 s 0 msg_out_request ]
+{
+"210
+} 0
+"96 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\main.c
+[v _i2c_out_handler i2c_out_handler `(v  1 e 0 0 ]
+{
+[u S64 message_out 5 `[5]uc 1 output_buff 5 0 `uc 1 nr_bytes 1 0 ]
+[v i2c_out_handler@msg_out msg_out `*.4S64  1 p 1 0 ]
+"102
+} 0
+"203 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\i2c.c
+[v _msg_in_restart msg_in_restart `(v  1 s 0 msg_in_restart ]
+{
+"205
+} 0
+"198
+[v _msg_in_resolve msg_in_resolve `(v  1 s 0 msg_in_resolve ]
+{
+"201
+} 0
+"76 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\main.c
+[v _i2c_in_handler i2c_in_handler `(v  1 e 0 0 ]
+{
+[u S50 message_in 8 `[8]uc 1 input_buff 8 0 `uc 1 nr_bytes 1 0 ]
+[v i2c_in_handler@msg_in msg_in `*.4S50  1 p 1 8 ]
+"91
+} 0
+"12 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\bldc.c
+[v i1_set_motor_speed set_motor_speed `(v  1 e 0 0 ]
+{
+[v i1set_motor_speed@speed speed `i  1 p 2 2 ]
+"17
+} 0
 "38
-} 0
-"63 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\adc.c
-[v _adc_channel adc_channel `(us  1 e 2 0 ]
+[v i1_deccelerate_to deccelerate_to `(v  1 s 0 i1_deccelerate_to ]
 {
-"72
-[v adc_channel@adc_val adc_val `us  1 a 2 5 ]
-"63
-[v adc_channel@ch ch `i  1 p 2 1 ]
-"75
-} 0
-"48
-[v _get_input get_input `(v  1 e 0 0 ]
-{
-"60
-} 0
-"107 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\pwm.c
-[v _PWM2_start PWM2_start `(v  1 e 0 0 ]
-{
-"122
-} 0
+[v i1deccelerate_to@speed speed `i  1 p 2 0 ]
 "41
+} 0
+"32
+[v i1_accelerate_to accelerate_to `(v  1 s 0 i1_accelerate_to ]
+{
+[v i1accelerate_to@speed speed `i  1 p 2 0 ]
+"35
+} 0
+"49 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\pwm.c
 [v _PWM2_init PWM2_init `(v  1 e 0 0 ]
 {
-[v PWM2_init@fre fre `ul  1 p 4 14 ]
-"44
+[v PWM2_init@fre fre `ul  1 p 4 0 ]
+"52
 } 0
 "6 C:\Program Files (x86)\Microchip\xc8\v1.35\sources\common\lldiv.c
 [v ___lldiv __lldiv `(ul  1 e 4 0 ]
@@ -281,31 +434,27 @@
 [v ___lldiv@dividend dividend `ul  1 p 4 4 ]
 "31
 } 0
-"63 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\pwm.c
+"71 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\pwm.c
 [v _PWM2_duty PWM2_duty `(v  1 e 0 0 ]
 {
 [v PWM2_duty@duty duty `ui  1 p 2 0 ]
-"73
+"81
 } 0
-"73 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\i2c.c
-[v _ISR_Handler ISR_Handler `II(v  1 e 0 0 ]
+"193 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\i2c.c
+[v _msg_in_add_byte msg_in_add_byte `(v  1 s 0 msg_in_add_byte ]
 {
-"112
+[v msg_in_add_byte@byte byte `uc  1 a 1 wreg ]
+[v msg_in_add_byte@byte byte `uc  1 a 1 wreg ]
+[v msg_in_add_byte@byte byte `uc  1 a 1 1 ]
+"196
 } 0
-"65
-[v _msg_resolve msg_resolve `(v  1 s 0 msg_resolve ]
+"72
+[v _i2c_write_byte i2c_write_byte `(v  1 s 0 i2c_write_byte ]
 {
-"67
+"88
 } 0
-"66 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\main.c
-[v _i2c_handler i2c_handler `(v  1 e 0 0 ]
-{
-[u S25 message 4 `[4]uc 1 input_buff 4 0 `us 1 motor_speed 2 0 `uc 1 dir 1 0 `uc 1 bytes 1 0 ]
-[v i2c_handler@msg msg `S25  1 p 4 0 ]
-"68
-} 0
-"61 E:\Work\Embedded\Applications\PIC\PWM ADC\xc8_test.X\i2c.c
+"66
 [v _i2c_read_byte i2c_read_byte `(uc  1 s 1 i2c_read_byte ]
 {
-"63
+"69
 } 0

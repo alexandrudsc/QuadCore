@@ -2376,9 +2376,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adc.c: 49: {
 [e :U _get_input ]
 [f ]
-[; ;adc.c: 52: _delay((unsigned long)((1)*(4000000/4000.0)));
+[; ;adc.c: 52: _delay((unsigned long)((1)*(8000000/4000.0)));
 "52
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
 [; ;adc.c: 54: ADCON0bits.GO_nDONE = 1;
 "54
 [e = . . _ADCON0bits 0 1 -> -> 1 `i `uc ]

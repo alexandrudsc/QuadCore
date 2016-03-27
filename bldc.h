@@ -1,6 +1,6 @@
 /* 
  * File:   bldc.h
- * Author: B.G
+ * Author: Alexandru
  *
  * Created on 14 martie 2016, 18:39
  */

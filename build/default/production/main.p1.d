@@ -4,4 +4,5 @@
 pwm.h  \
 i2c.h  \
 uc_config.h  \
-adc.h 
+adc.h  \
+bldc.h 

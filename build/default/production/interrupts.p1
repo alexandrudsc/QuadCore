@@ -1,49 +1,10 @@
 Version 3.2 HI-TECH Software Intermediate Code
-[p mainexit ]
-"1767 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic16f917.h
-[s S70 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 ]
-[n S70 . SCS LTS HTS OSTS IRCF ]
-"1774
-[s S71 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S71 . . IRCF0 IRCF1 IRCF2 ]
-"1766
-[u S69 `S70 1 `S71 1 ]
-[n S69 . . . ]
-"1781
-[v _OSCCONbits `VS69 ~T0 @X0 0 e@143 ]
-"17 adc.h
-[v _init_adc `(v ~T0 @X0 0 ef ]
-"343 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic16f917.h
-[v _PORTD `Vuc ~T0 @X0 0 e@8 ]
-"44 i2c.h
-[u S209 `uc -> 8 `i `uc 1 ]
-[n S209 message_in input_buff nr_bytes ]
-[v F2655 `(v ~T0 @X0 1 tf1`*S209 ]
-"84
-[v _i2c_set_handler_in `(v ~T0 @X0 0 ef1`*F2655 ]
-"28 main.c
-[v _i2c_in_handler `(v ~T0 @X0 0 ef1`*S209 ]
-"62 i2c.h
-[u S210 `uc -> 5 `i `uc 1 ]
-[n S210 message_out output_buff nr_bytes ]
-[v F2658 `(v ~T0 @X0 1 tf1`*S210 ]
-"87
-[v _i2c_set_handler_out `(v ~T0 @X0 0 ef1`*F2658 ]
-"31 main.c
-[v _i2c_out_handler `(v ~T0 @X0 0 ef1`*S210 ]
-"81 i2c.h
-[v _i2c_init_slave `(v ~T0 @X0 0 ef ]
-"21 pwm.h
-[v _PWM2_init7k `(v ~T0 @X0 0 ef ]
-"34 bldc.h
-[v _set_motor_speed `(v ~T0 @X0 0 ef1`i ]
-"16 pwm.h
-[v _PWM2_init `(v ~T0 @X0 0 ef1`ul ]
-"25
-[v _PWM2_duty `(v ~T0 @X0 0 ef1`ui ]
-[; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
-[; ;htc.h: 28: extern double __fpnormalize(double);
-[; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
+"6855 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic16f917.h
+[v _SSPIF `Vb ~T0 @X0 0 e@99 ]
+"111 i2c.h
+[v _i2c_interrupt `(v ~T0 @X0 0 ef ]
+"5961 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic16f917.h
+[v _ADIF `Vb ~T0 @X0 0 e@102 ]
 [; ;pic16f917.h: 49: extern volatile unsigned char INDF @ 0x000;
 "51 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic16f917.h
 [; ;pic16f917.h: 51: asm("INDF equ 00h");
@@ -2299,34 +2260,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic16f917.h: 7125: extern volatile __bit nTX8 @ (((unsigned) &TXSTA)*8) + 6;
 [; ;pic16f917.h: 7127: extern volatile __bit nW @ (((unsigned) &SSPSTAT)*8) + 2;
 [; ;pic16f917.h: 7129: extern volatile __bit nWRITE @ (((unsigned) &SSPSTAT)*8) + 2;
-[; ;pic.h: 28: extern void __nop(void);
-[; ;pic.h: 76: extern unsigned int flash_read(unsigned short addr);
-[; ;eeprom_routines.h: 41: extern void eeprom_write(unsigned char addr, unsigned char value);
-[; ;eeprom_routines.h: 42: extern unsigned char eeprom_read(unsigned char addr);
-[; ;eeprom_routines.h: 43: extern void eecpymem(volatile unsigned char *to, __eeprom unsigned char *from, unsigned char size);
-[; ;eeprom_routines.h: 44: extern void memcpyee(__eeprom unsigned char *to, const unsigned char *from, unsigned char size);
-[; ;pic.h: 150: extern __nonreentrant void _delay(unsigned long);
-[; ;pic.h: 184: extern unsigned char __resetbits;
-[; ;pic.h: 185: extern __bit __powerdown;
-[; ;pic.h: 186: extern __bit __timeout;
-[; ;adc.h: 17: void init_adc(void);
-[; ;adc.h: 20: void get_input(void);
-[; ;adc.h: 22: void decide(void);
-[; ;adc.h: 25: unsigned short adc_channel(int);
-[; ;adc.h: 28: void do_outputs(void);
-[; ;adc.h: 29: void timing(void);
-[; ;adc.h: 30: unsigned get_adc_value();
-[; ;pwm.h: 15: void PWM1_init(unsigned long freq);
-[; ;pwm.h: 16: void PWM2_init(unsigned long freq);
-[; ;pwm.h: 18: void PWM1_start();
-[; ;pwm.h: 19: void PWM2_start();
-[; ;pwm.h: 20: void PWM2_init30k();
-[; ;pwm.h: 21: void PWM2_init7k();
-[; ;pwm.h: 22: void PWM1_stop();
-[; ;pwm.h: 23: void PWM2_stop();
-[; ;pwm.h: 25: void PWM2_duty(unsigned int duty);
-[; ;pwm.h: 26: void PWM1_duty(unsigned int duty);
-[; ;pwm.h: 28: void PWM2_duty_percent(unsigned char duty);
 [; ;i2c.h: 44: union message_in {
 [; ;i2c.h: 45: unsigned char input_buff[8];
 [; ;i2c.h: 46: unsigned char nr_bytes ;
@@ -2351,139 +2284,42 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;i2c.h: 108: static void msg_out_request();
 [; ;i2c.h: 111: void i2c_interrupt();
 [; ;i2c.h: 114: void i2c_master_start();
-[; ;bldc.h: 29: void motor_go_forward();
-[; ;bldc.h: 30: void motor_go_back();
-[; ;bldc.h: 32: void motor_break();
-[; ;bldc.h: 34: void set_motor_speed(int speed);
-[; ;bldc.h: 35: void motor_dir(char dir);
-[; ;bldc.h: 36: void motor_go(int speed);
-[; ;bldc.h: 39: static void accelerate_to (int speed);
-[; ;bldc.h: 40: static void deccelerate_to (int speed);
-[; ;bldc.h: 42: static void delay_milis(int milis);
-[; ;bldc.h: 43: static void delay_micros(int micros);
-[; ;bldc.h: 46: static void all_low();
-[; ;bldc.h: 47: static void phase_A();
-[; ;bldc.h: 48: static void phase_B();
-[; ;bldc.h: 49: static void phase_C();
-"16 main.c
-[p x FOSC=HS ]
-"17
-[p x WDTE=OFF ]
-"18
-[p x PWRTE=OFF ]
-"19
-[p x MCLRE=ON ]
-"20
-[p x CP=OFF ]
-"21
-[p x BOREN=ON ]
-"22
-[p x IESO=ON ]
-"23
-[p x FCMEN=ON ]
-"25
-[v _duty `Vuc ~T0 @X0 1 e ]
-[i _duty
--> -> 0 `i `uc
-]
-[; ;main.c: 25: volatile unsigned char duty = 0;
-[; ;main.c: 28: void i2c_in_handler(MESSAGE_IN* msg_in);
-[; ;main.c: 31: void i2c_out_handler(MESSAGE_OUT* msg_out);
-"33
-[v _main `(v ~T0 @X0 1 ef ]
+[; ;adc.h: 17: void init_adc(void);
+[; ;adc.h: 20: void get_input(void);
+[; ;adc.h: 22: void decide(void);
+[; ;adc.h: 25: unsigned short adc_channel(int);
+[; ;adc.h: 28: void do_outputs(void);
+[; ;adc.h: 29: void timing(void);
+[; ;adc.h: 30: unsigned get_adc_value();
+[v F2626 `(v ~T0 @X0 1 tf ]
+"7 interrupts.c
+[v _ISR `IF2626 ~T0 @X0 1 e ]
+"8
 {
-[; ;main.c: 33: void main(void) {
-[e :U _main ]
+[; ;interrupts.c: 7: interrupt void ISR()
+[; ;interrupts.c: 8: {
+[e :U _ISR ]
 [f ]
-[; ;main.c: 35: OSCCONbits.IRCF = 7;
-"35
-[e = . . _OSCCONbits 0 4 -> -> 7 `i `uc ]
-"39
-[v _start `ui ~T0 @X0 1 a ]
-[; ;main.c: 39: unsigned int start = 100;
-[e = _start -> -> 100 `i `ui ]
-[; ;main.c: 41: init_adc();
-"41
-[e ( _init_adc ..  ]
-[; ;main.c: 43: PORTD = 0x00;
-"43
-[e = _PORTD -> -> 0 `i `uc ]
-[; ;main.c: 46: i2c_set_handler_in(&i2c_in_handler);
-"46
-[e ( _i2c_set_handler_in (1 &U _i2c_in_handler ]
-[; ;main.c: 49: i2c_set_handler_out(&i2c_out_handler);
-"49
-[e ( _i2c_set_handler_out (1 &U _i2c_out_handler ]
-[; ;main.c: 51: i2c_init_slave();
-"51
-[e ( _i2c_init_slave ..  ]
-[; ;main.c: 55: PWM2_init7k();
-"55
-[e ( _PWM2_init7k ..  ]
-[; ;main.c: 58: set_motor_speed(1000);
-"58
-[e ( _set_motor_speed (1 -> 1000 `i ]
-[; ;main.c: 60: while (1) {
-"60
-[e :U 213 ]
+[; ;interrupts.c: 9: if (SSPIF) {
+"9
+[e $ ! _SSPIF 212  ]
 {
-"69
+[; ;interrupts.c: 10: i2c_interrupt();
+"10
+[e ( _i2c_interrupt ..  ]
+"11
 }
 [e :U 212 ]
-"60
-[e $U 213  ]
-[e :U 214 ]
-[; ;main.c: 69: }
-[; ;main.c: 71: }
-"71
+[; ;interrupts.c: 11: }
+[; ;interrupts.c: 13: if (ADIF) {
+"13
+[e $ ! _ADIF 213  ]
+{
+"15
+}
+[e :U 213 ]
+[; ;interrupts.c: 15: }
+[; ;interrupts.c: 16: }
+"16
 [e :UE 211 ]
-}
-"76
-[v _i2c_in_handler `(v ~T0 @X0 1 ef1`*S209 ]
-{
-[; ;main.c: 76: void i2c_in_handler(MESSAGE_IN* msg_in){
-[e :U _i2c_in_handler ]
-[v _msg_in `*S209 ~T0 @X0 1 r1 ]
-[f ]
-[; ;main.c: 78: PORTD = 0xFF;
-"78
-[e = _PORTD -> -> 255 `i `uc ]
-[; ;main.c: 81: PWM2_init(msg_in->input_buff[5] << 8 + msg_in->input_buff[6]);
-"81
-[e ( _PWM2_init (1 -> -> << -> *U + &U . *U _msg_in 0 * -> -> -> 5 `i `ui `ux -> -> # *U &U . *U _msg_in 0 `ui `ux `i + -> 8 `i -> *U + &U . *U _msg_in 0 * -> -> -> 6 `i `ui `ux -> -> # *U &U . *U _msg_in 0 `ui `ux `i `l `ul ]
-[; ;main.c: 84: PWM2_duty(msg_in->input_buff[3] << 8 + msg_in->input_buff[4]);
-"84
-[e ( _PWM2_duty (1 -> << -> *U + &U . *U _msg_in 0 * -> -> -> 3 `i `ui `ux -> -> # *U &U . *U _msg_in 0 `ui `ux `i + -> 8 `i -> *U + &U . *U _msg_in 0 * -> -> -> 4 `i `ui `ux -> -> # *U &U . *U _msg_in 0 `ui `ux `i `ui ]
-[; ;main.c: 89: set_motor_speed(msg_in->input_buff[1] << 8 + msg_in->input_buff[2]);
-"89
-[e ( _set_motor_speed (1 << -> *U + &U . *U _msg_in 0 * -> -> -> 1 `i `ui `ux -> -> # *U &U . *U _msg_in 0 `ui `ux `i + -> 8 `i -> *U + &U . *U _msg_in 0 * -> -> -> 2 `i `ui `ux -> -> # *U &U . *U _msg_in 0 `ui `ux `i ]
-[; ;main.c: 91: }
-"91
-[e :UE 215 ]
-}
-"96
-[v _i2c_out_handler `(v ~T0 @X0 1 ef1`*S210 ]
-{
-[; ;main.c: 96: void i2c_out_handler(MESSAGE_OUT* msg_out){
-[e :U _i2c_out_handler ]
-[v _msg_out `*S210 ~T0 @X0 1 r1 ]
-[f ]
-[; ;main.c: 97: msg_out->nr_bytes = 5;
-"97
-[e = . *U _msg_out 1 -> -> 5 `i `uc ]
-[; ;main.c: 98: msg_out->output_buff[1] = 'A';
-"98
-[e = *U + &U . *U _msg_out 0 * -> -> -> 1 `i `ui `ux -> -> # *U &U . *U _msg_out 0 `ui `ux -> -> 65 `ui `uc ]
-[; ;main.c: 99: msg_out->output_buff[2] = 'B';
-"99
-[e = *U + &U . *U _msg_out 0 * -> -> -> 2 `i `ui `ux -> -> # *U &U . *U _msg_out 0 `ui `ux -> -> 66 `ui `uc ]
-[; ;main.c: 100: msg_out->output_buff[3] = 'a';
-"100
-[e = *U + &U . *U _msg_out 0 * -> -> -> 3 `i `ui `ux -> -> # *U &U . *U _msg_out 0 `ui `ux -> -> 97 `ui `uc ]
-[; ;main.c: 101: msg_out->output_buff[4] = 'b';
-"101
-[e = *U + &U . *U _msg_out 0 * -> -> -> 4 `i `ui `ux -> -> # *U &U . *U _msg_out 0 `ui `ux -> -> 98 `ui `uc ]
-[; ;main.c: 102: }
-"102
-[e :UE 216 ]
 }

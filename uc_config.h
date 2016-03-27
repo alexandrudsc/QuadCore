@@ -11,7 +11,7 @@
 #define	XC_CONFIG_H
 
 // internal frequency after reset 4MHZ
-#define _XTAL_FREQ 4000000
+#define _XTAL_FREQ 8000000
 
 // timer prescaler for pwm 
 #define TMR2PRESCALE 4

@@ -37,6 +37,14 @@ void PWM1_init(unsigned long fre) {
     freq = fre;
 }
 
+// PWM 9bits resolution at 7khz & 40%duty
+void PWM2_init7k(){
+    PR2 = 0b01000110 ;
+    T2CON = 0b00000101 ;
+    CCPR1L = 0b00011100 ;
+    CCP1CON = 0b00011100 ;
+}
+
 
 void PWM2_init(unsigned long fre) {
     PR2 = (_XTAL_FREQ / (fre * 4 * TMR2PRESCALE)) - 1;
@@ -72,16 +80,14 @@ void PWM2_duty(unsigned int duty) {
     CCPR2L = duty >> 2;
 }
 
-// set duty of PWM1 using percentage (0% - 100%)
-void PWM1_duty_percent(unsigned char duty){
-    PWM1_duty( ((float)duty / 100) * 1023 );
-}
-
-// set duty of PWM2 using percentage (0% - 100%)
+// set duty of PWM using percentage (0% - 100%)
 void PWM2_duty_percent(unsigned char duty){
     PWM2_duty( ((float)duty / 100) * 1023 );
 }
 
+/*
+ * 
+ */
 void PWM1_start() {
     CCP1M3 = 1;
     CCP1M2 = 1;

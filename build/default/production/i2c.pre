@@ -3087,49 +3087,116 @@ extern volatile __bit nW @ (((unsigned) &SSPSTAT)*8) + 2;
 
 extern volatile __bit nWRITE @ (((unsigned) &SSPSTAT)*8) + 2;
 
-# 32 "i2c.h"
-union message {
-unsigned char input_buff[4];
-unsigned short motor_speed;
-unsigned char dir;
-unsigned char bytes;
+# 26 "C:\Program Files (x86)\Microchip\xc8\v1.35\include\htc.h"
+extern const char __xc8_OPTIM_SPEED;
+
+extern double __fpnormalize(double);
+
+
+# 13 "C:\Program Files (x86)\Microchip\xc8\v1.35\include\xc8debug.h"
+#pragma intrinsic(__builtin_software_breakpoint)
+extern void __builtin_software_breakpoint(void);
+
+
+# 27 "C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic.h"
+#pragma intrinsic(__nop)
+extern void __nop(void);
+
+# 76
+extern unsigned int flash_read(unsigned short addr);
+
+# 41 "C:\Program Files (x86)\Microchip\xc8\v1.35\include\eeprom_routines.h"
+extern void eeprom_write(unsigned char addr, unsigned char value);
+extern unsigned char eeprom_read(unsigned char addr);
+extern void eecpymem(volatile unsigned char *to, __eeprom unsigned char *from, unsigned char size);
+extern void memcpyee(__eeprom unsigned char *to, const unsigned char *from, unsigned char size);
+
+
+# 149 "C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic.h"
+#pragma intrinsic(_delay)
+extern __nonreentrant void _delay(unsigned long);
+
+# 184
+extern unsigned char __resetbits;
+extern __bit __powerdown;
+extern __bit __timeout;
+
+# 44 "i2c.h"
+union message_in {
+unsigned char input_buff[8];
+unsigned char nr_bytes ;
 };
 
-typedef union message MESSAGE;
+# 59
+typedef union message_in MESSAGE_IN;
 
 
-typedef void *(handler)(MESSAGE msg);
+union message_out {
+unsigned char output_buff[5];
+unsigned char nr_bytes;
+};
 
+typedef union message_out MESSAGE_OUT;
+
+# 75
+typedef void (handler_in)(MESSAGE_IN* msg);
+
+
+typedef void (handler_out)(MESSAGE_OUT* msg);
 
 
 void i2c_init_slave();
 
 
-void i2c_set_handler(handler h);
+void i2c_set_handler_in(handler_in h);
 
 
-static unsigned char i2c_read_byte();
+void i2c_set_handler_out(handler_out h);
 
 
-void i2c_write_byte();
+static void i2c_write_byte();
 
 
 void i2c_init_master();
 
 
-static void ssp_resolve();
+static void msg_in_resolve();
+
+
+static void msg_in_restart();
+
+
+static void msg_in_add_byte(char byte);
+
+
+static unsigned char i2c_read_byte();
+
+
+static void msg_out_request();
+
+
+void i2c_interrupt();
 
 
 void i2c_master_start();
 
-# 16 "i2c.c"
-MESSAGE msg;
+# 18 "i2c.c"
+MESSAGE_IN msg_in;
 
 
-handler* p;
+MESSAGE_OUT msg_out;
+
+
+handler_in* p_in = 0;
+
+
+handler_out* p_out = 0;
 
 
 void i2c_init_slave() {
+
+PORTD = 0x00;
+
 
 TRISC7 = 1;
 TRISC6 = 1;
@@ -3141,10 +3208,14 @@ SSPADD = 0x10 << 1;
 SSPCON = 0x36;
 
 
+SSPSTAT = 0x00;
+SSPOV = 0;
+BF = 0;
+
+
 GIE = 1;
 PEIE = 1;
 SSPIE = 1;
-
 }
 
 
@@ -3158,54 +3229,122 @@ void i2c_master_start() {
 }
 
 
-void i2c_write_byte() {
-
-}
-
-
-void i2c_set_handler(handler* h){
-p = h;
-}
-
-
 static unsigned char i2c_read_byte() {
+
 return SSPBUF;
 }
 
-static void msg_resolve() {
-(*p)(msg);
+
+static void i2c_write_byte() {
+
+if (msg_out.nr_bytes > 0){
+
+
+do
+{
+WCOL = 0;
+SSPBUF = msg_out.output_buff [msg_out.nr_bytes - 1];
+}while (WCOL);
+
+
+msg_out.nr_bytes --;
+
+CKP = 1;
+}
 }
 
-# 73
-interrupt void ISR_Handler() {
+
+void i2c_set_handler_in(handler_in* h) {
+p_in = h;
+}
+
+
+void i2c_set_handler_out(handler_out* h) {
+p_out = h;
+}
+
+# 104
+void i2c_interrupt() {
 
 
 if (SSPIF) {
 
-# 83
-if (SSPSTATbits.S && SSPSTATbits.READ_WRITE == 0 && SSPSTATbits.DATA_ADDRESS == 0)
-{
-msg.bytes = 0;
+# 115
+if (SSPSTATbits.S == 1 && SSPSTATbits.R_nW == 0 && SSPSTATbits.D_nA == 0 && SSPSTATbits.BF == 1) {
+asm("clrwdt");
+
+msg_in_restart();
+
+
+i2c_read_byte();
+if (SSPOV == 1){
+SSPOV = 0;
+SSPIF = 0;
+}
 }
 
-# 93
-else if (SSPSTATbits.S && SSPSTATbits.READ_WRITE == 0 && SSPSTATbits.DATA_ADDRESS)
-{
-msg.bytes ++;
+# 133
+else if (SSPSTATbits.S == 1 && SSPSTATbits.R_nW == 0 && SSPSTATbits.D_nA == 1 && SSPSTATbits.BF == 1) {
+asm("clrwdt");
+
+
+msg_in_add_byte(i2c_read_byte());
+
+
+if (msg_in.nr_bytes == 8)
+msg_in_resolve();
+
+
+if (msg_in.nr_bytes > 8 )
+msg_in_restart();
+
+if (SSPOV == 1){
+SSPOV = 0;
+SSPIF = 0;
+}
 }
 
+# 157
+else if (SSPSTATbits.S == 1 && SSPSTATbits.R_nW == 1 && SSPSTATbits.D_nA == 0) {
 
-msg.input_buff[msg.bytes] = i2c_read_byte();
-
-
-if (msg.bytes == 3)
-msg_resolve();
-
-
-if (msg.bytes > 4)
-msg.bytes = 0;
-
+msg_out_request();
+PORTD = 0x00;
+i2c_write_byte();
 SSPIF = 0;
 
 }
+
+# 172
+else if (SSPSTATbits.S == 1 && SSPSTATbits.R_nW == 1 && SSPSTATbits.D_nA == 1 && SSPSTATbits.BF == 0){
+i2c_write_byte();
+SSPIF = 0;
+
+}
+
+# 183
+else if (SSPSTATbits.S == 1 && SSPSTATbits.R_nW == 1 && SSPSTATbits.BF == 0 && CKE == 1){
+
+i2c_init_slave();
+}
+}
+}
+
+# 193
+static void msg_in_add_byte(char byte) {
+msg_in.nr_bytes ++;
+msg_in.input_buff[msg_in.nr_bytes - 1] = byte;
+}
+
+static void msg_in_resolve() {
+if (p_in != 0)
+(*p_in)(&msg_in);
+}
+
+static void msg_in_restart() {
+msg_in.nr_bytes = 1;
+}
+
+static void msg_out_request() {
+if (p_out != 0)
+(*p_out)(&msg_out);
 }
